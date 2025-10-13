@@ -6,7 +6,20 @@
       "WebSearch",
       "WebFetch(domain:developers.lexoffice.io)",
       "WebFetch(domain:developers.lexware.io)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(npm run build:*)",
+      "mcp__shadcn__getComponents",
+      "mcp__context7__resolve-library-id",
+      "mcp__shadcn__getComponent",
+      "Bash(npm install:*)",
+      "Bash(npx:*)",
+      "Bash(npm run dev)",
+      "Bash(git add:*)",
+      "Bash(node:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run test:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []

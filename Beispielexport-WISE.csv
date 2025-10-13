@@ -1,3 +1,0 @@
-"TransferWise ID",Date,"Date Time",Amount,Currency,Description,"Payment Reference","Running Balance","Exchange From","Exchange To","Exchange Rate","Payer Name","Payee Name","Payee Account Number",Merchant,"Card Last Four Digits","Card Holder Full Name",Attachment,Note,"Total fees","Exchange To Amount","Transaction Type","Transaction Details Type"
-TRANSFER-1696991304,29-08-2025,"29-08-2025 21:07:12.581",-1318.79,EUR,"Geld überwiesen an Person1","Invoice 054",669.12,EUR,PHP,66.85360,,"Person1","(SEA) 342424342",,,,,,9.96,87500.00,DEBIT,TRANSFER
-TRANSFER-1696988931,29-08-2025,"29-08-2025 21:05:15.722",-1582.23,EUR,"Geld überwiesen an Person2","Invoice 39",1987.91,EUR,PHP,66.86220,,"Person2","(UB) 23423423432",,,,,,11.84,105000.00,DEBIT,TRANSFER
