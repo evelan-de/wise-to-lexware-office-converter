@@ -1,0 +1,23 @@
+{
+  "name": "WISE zu Lexware Office Konverter",
+  "short_name": "Wise→Lexware",
+  "description": "Wandeln Sie Wise CSV-Exporte in das Lexware Office Bankimport-Format um - 100% privat in Ihrem Browser",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "productivity", "utilities"],
+  "lang": "de-DE",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}

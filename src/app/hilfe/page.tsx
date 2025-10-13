@@ -1,7 +1,27 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { ArrowLeft, FileUp, CheckCircle, Download, Upload, AlertCircle, ExternalLink } from 'lucide-react';
 import { EvelanBadge } from '@/components/evelan-badge';
+
+export const metadata: Metadata = {
+  title: 'Anleitung zur Verwendung',
+  description: 'Schritt-für-Schritt Anleitung: So konvertieren Sie Wise CSV-Exporte für den Import in Lexware Office. Mit Screenshots und detaillierten Erklärungen.',
+  keywords: [
+    'Wise Anleitung',
+    'Lexware Office Import',
+    'CSV Konvertierung Tutorial',
+    'Wise Export',
+    'Bankimport Anleitung',
+    'TransferWise zu Lexware',
+    'Schritt für Schritt',
+  ],
+  openGraph: {
+    title: 'Anleitung: Wise zu Lexware Office Konverter',
+    description: 'Schritt-für-Schritt Anleitung mit Screenshots: Wise CSV-Exporte für Lexware Office konvertieren.',
+    type: 'article',
+  },
+};
 
 export default function HilfePage() {
   return (
@@ -365,8 +385,13 @@ export default function HilfePage() {
 
         {/* Footer */}
         <footer className="mt-16 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-4">
             <EvelanBadge />
+            <div className="flex gap-4 text-xs">
+              <a href="/impressum" className="hover:text-primary transition-colors">
+                Impressum
+              </a>
+            </div>
           </div>
         </footer>
       </div>

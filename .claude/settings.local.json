@@ -19,7 +19,9 @@
       "Bash(node:*)",
       "Bash(npm test:*)",
       "Bash(npm run test:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npm run lint)",
+      "WebFetch(domain:evelan.de)"
     ],
     "deny": [],
     "ask": []

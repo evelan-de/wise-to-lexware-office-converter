@@ -1,0 +1,11 @@
+# Robots.txt für WISE zu Lexware Office Konverter
+# https://wise-lexware-convert.evelan.de
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://wise-lexware-convert.evelan.de/sitemap.xml
+
+# Disallow admin or private areas (none currently)
+# Disallow: /admin/

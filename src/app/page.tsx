@@ -203,6 +203,11 @@ export default function ConverterPage() {
             <p>
               Ihre Daten werden nicht hochgeladen oder gespeichert. Die gesamte Verarbeitung erfolgt lokal in Ihrem Browser.
             </p>
+            <div className="flex gap-4 text-xs">
+              <a href="/impressum" className="hover:text-primary transition-colors">
+                Impressum
+              </a>
+            </div>
           </div>
         </footer>
       </div>
