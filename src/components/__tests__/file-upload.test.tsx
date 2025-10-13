@@ -21,7 +21,7 @@ describe('FileUpload', () => {
 
     expect(screen.getByText(/CSV-Datei hier ablegen oder klicken/i)).toBeInTheDocument();
     expect(screen.getByText(/Nur Wise Export CSV-Dateien/i)).toBeInTheDocument();
-    expect(screen.getByText(/Maximale Dateigröße: 10 MB/i)).toBeInTheDocument();
+    expect(screen.getByText(/Maximale Dateigröße: 5 MB/i)).toBeInTheDocument();
   });
 
   it('should show processing state when isProcessing is true', () => {
@@ -92,8 +92,8 @@ describe('FileUpload', () => {
       />
     );
 
-    // Create file larger than 10MB
-    const largeContent = 'x'.repeat(11 * 1024 * 1024);
+    // Create file larger than 5MB
+    const largeContent = 'x'.repeat(6 * 1024 * 1024);
     const file = new File([largeContent], 'large.csv', { type: 'text/csv' });
 
     const input = container.querySelector('input[type="file"]') as HTMLInputElement;
@@ -106,7 +106,7 @@ describe('FileUpload', () => {
     fireEvent.change(input);
 
     expect(mockOnFileSelect).not.toHaveBeenCalled();
-    expect(mockOnError).toHaveBeenCalledWith('Datei ist zu groß. Maximale Größe: 10 MB');
+    expect(mockOnError).toHaveBeenCalledWith('Datei ist zu groß. Maximale Größe: 5 MB');
   });
 
   it('should accept files with .csv extension', () => {
