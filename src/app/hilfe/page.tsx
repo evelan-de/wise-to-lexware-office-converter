@@ -35,7 +35,7 @@ export default function HilfePage() {
             </h2>
             <p className="text-gray-700 mb-4">
               Dieser Konverter wandelt Wise CSV-Exporte in das spezifische Format um, das von{' '}
-              <strong>Lexware Offices Funktion "Elektronischer Kontoauszug über CSV-Datei importieren"</strong> benötigt wird.
+              <strong>Lexware Offices Funktion &quot;Elektronischer Kontoauszug über CSV-Datei importieren&quot;</strong> benötigt wird.
             </p>
             <div className="mb-4">
               <a
@@ -200,7 +200,7 @@ export default function HilfePage() {
                     <p>1. Melden Sie sich in Ihrem Lexware Office-Konto an</p>
                     <p>2. Navigieren Sie zu <strong>Banking → Konten</strong></p>
                     <p>3. Wählen Sie Ihr Bankkonto aus</p>
-                    <p>4. Klicken Sie auf <strong>"Transaktionen importieren"</strong></p>
+                    <p>4. Klicken Sie auf <strong>&quot;Transaktionen importieren&quot;</strong></p>
                     <div className="rounded-lg border border-gray-200 overflow-hidden">
                       <Image
                         src="/screenshots/lexoffice-upload.png"

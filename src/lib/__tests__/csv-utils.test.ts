@@ -204,7 +204,6 @@ TRANSFER-123,29-09-2025,29-09-2025 16:02:46.004,-553.76,EUR,"Payment with, comma
   });
 
   describe('downloadCSV', () => {
-    let createElementSpy: jest.SpyInstance;
     let mockLink: HTMLAnchorElement;
 
     beforeEach(() => {
@@ -214,7 +213,7 @@ TRANSFER-123,29-09-2025,29-09-2025 16:02:46.004,-553.76,EUR,"Payment with, comma
         style: {},
       } as unknown as HTMLAnchorElement;
 
-      createElementSpy = jest.spyOn(document, 'createElement').mockReturnValue(mockLink);
+      jest.spyOn(document, 'createElement').mockReturnValue(mockLink);
       jest.spyOn(document.body, 'appendChild').mockImplementation(() => mockLink);
       jest.spyOn(document.body, 'removeChild').mockImplementation(() => mockLink);
     });
@@ -275,7 +274,7 @@ TRANSFER-123,29-09-2025,29-09-2025 16:02:46.004,-553.76,EUR,"Payment with, comma
   describe('generateFilename', () => {
     it('should generate filename with current date', () => {
       const mockDate = new Date('2025-10-12T10:00:00.000Z');
-      jest.spyOn(global, 'Date').mockImplementation((() => mockDate) as any);
+      jest.spyOn(global, 'Date').mockImplementation(() => mockDate as unknown as Date);
 
       const filename = generateFilename();
 

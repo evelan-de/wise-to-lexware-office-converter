@@ -54,11 +54,6 @@ export function FileUpload({ onFileSelect, onError, isProcessing }: FileUploadPr
     }
   };
 
-  const resetInput = () => {
-    if (inputRef.current) {
-      inputRef.current.value = '';
-    }
-  };
 
   return (
     <Card

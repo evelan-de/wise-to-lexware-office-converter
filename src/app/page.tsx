@@ -141,7 +141,7 @@ export default function ConverterPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                    So funktioniert's
+                    So funktioniert&apos;s
                   </h3>
                   <ol className="list-decimal list-inside space-y-1 text-blue-800 text-sm">
                     <li>Laden Sie Ihre Wise CSV-Exportdatei hoch (max. 5 MB)</li>

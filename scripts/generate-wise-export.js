@@ -57,14 +57,6 @@ const DESCRIPTIONS_CREDIT = [
   'Zinsen'
 ];
 
-const DETAIL_TYPES = [
-  'TRANSFER',
-  'CARD',
-  'MONEY_ADDED',
-  'CONVERSION',
-  'UNKNOWN'
-];
-
 // Helper functions
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
