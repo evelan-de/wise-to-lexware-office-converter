@@ -2,12 +2,32 @@
   "name": "wise-lexoffice-converter",
   "version": "1.0.0",
   "description": "Convert Wise CSV exports to Lexware Office bank statement import format - privately in your browser",
-  "author": "Evelan (https://evelan.de)",
+  "author": "Evelan GmbH <kontakt@evelan.de> (https://evelan.de)",
   "contributors": [
-    "Andreas Straub"
+    "Andreas Straub <andreas.straub@evelan.de>"
   ],
-  "homepage": "https://evelan.de",
-  "private": true,
+  "homepage": "https://wise-lexware-convert.evelan.de",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evelan-de/wise-to-lexware-office-converter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/evelan-de/wise-to-lexware-office-converter/issues"
+  },
+  "keywords": [
+    "wise",
+    "lexware",
+    "lexoffice",
+    "csv",
+    "converter",
+    "banking",
+    "transferwise",
+    "accounting",
+    "finance",
+    "germany"
+  ],
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",

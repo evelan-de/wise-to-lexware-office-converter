@@ -6,6 +6,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-73%20passing-success)](./docs/TESTING.md)
 [![Coverage](https://img.shields.io/badge/Coverage-76%25-green)](./docs/TESTING.md)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![GitHub](https://img.shields.io/github/stars/evelan-de/wise-to-lexware-office-converter?style=social)](https://github.com/evelan-de/wise-to-lexware-office-converter)
 
 ## ✨ Features
 
@@ -68,7 +70,7 @@ This app is optimized for Vercel deployment:
 
 Or use the deploy button:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/wise-lexoffice-converter)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/evelan-de/wise-to-lexware-office-converter)
 
 ### Build Requirements
 - Node.js 20+ recommended
@@ -82,8 +84,8 @@ The app is fully static after build - no server-side processing required.
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
-cd wise-lexoffice-import
+git clone https://github.com/evelan-de/wise-to-lexware-office-converter.git
+cd wise-to-lexware-office-converter
 
 # Install dependencies
 npm install
@@ -122,7 +124,7 @@ See [scripts/README.md](./scripts/README.md) for test data generator details.
 ### Project Structure
 
 ```
-wise-lexoffice-import/
+wise-to-lexware-office-converter/
 ├── src/
 │   ├── app/                    # Next.js App Router
 │   │   ├── page.tsx           # Main converter page
