@@ -5,7 +5,6 @@ import { FileUpload } from '@/components/file-upload';
 import { StatsCard } from '@/components/stats-card';
 import { ErrorAlert } from '@/components/error-alert';
 import { SuccessMessage } from '@/components/success-message';
-import { EvelanBadge } from '@/components/evelan-badge';
 import { parseWiseCSV, generateLexOfficeCSV, downloadCSV, generateFilename } from '@/lib/csv-utils';
 import { convertWiseToLexOffice, calculateStats } from '@/lib/converter';
 import type { ConversionStats } from '@/lib/converter';
@@ -97,9 +96,8 @@ export default function ConverterPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* Header */}
+    <>
+      {/* Header */}
         <header className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-3">
             WISE zu Lexware Office Konverter
@@ -195,22 +193,6 @@ export default function ConverterPage() {
             </div>
           )}
         </div>
-
-        {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
-          <div className="flex flex-col items-center gap-4">
-            <EvelanBadge />
-            <p>
-              Ihre Daten werden nicht hochgeladen oder gespeichert. Die gesamte Verarbeitung erfolgt lokal in Ihrem Browser.
-            </p>
-            <div className="flex gap-4 text-xs">
-              <a href="/impressum" className="hover:text-primary transition-colors">
-                Impressum
-              </a>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
+    </>
   );
 }

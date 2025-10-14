@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowLeft, FileUp, CheckCircle, Download, Upload, AlertCircle, ExternalLink } from 'lucide-react';
-import { EvelanBadge } from '@/components/evelan-badge';
 
 export const metadata: Metadata = {
   title: 'Anleitung zur Verwendung',
@@ -25,9 +24,8 @@ export const metadata: Metadata = {
 
 export default function HilfePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* Back Button */}
+    <>
+      {/* Back Button */}
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-8 transition-colors"
@@ -382,19 +380,6 @@ export default function HilfePage() {
             </Link>
           </div>
         </div>
-
-        {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
-          <div className="flex flex-col items-center gap-4">
-            <EvelanBadge />
-            <div className="flex gap-4 text-xs">
-              <a href="/impressum" className="hover:text-primary transition-colors">
-                Impressum
-              </a>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
+    </>
   );
 }

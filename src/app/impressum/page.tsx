@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { EvelanBadge } from '@/components/evelan-badge';
 
 export const metadata = {
   title: 'Impressum - WISE zu Lexware Office Konverter',
@@ -9,9 +8,8 @@ export const metadata = {
 
 export default function ImpressumPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* Back Button */}
+    <>
+      {/* Back Button */}
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-8 transition-colors"
@@ -152,12 +150,6 @@ export default function ImpressumPage() {
             </div>
           </section>
         </div>
-
-        {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-gray-200 text-center">
-          <EvelanBadge />
-        </footer>
-      </div>
-    </div>
+    </>
   );
 }

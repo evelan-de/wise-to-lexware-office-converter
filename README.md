@@ -27,6 +27,9 @@
 - 💱 **Exchange rate preservation** in additional info field
 - 📥 **Automatic download** with date-based filename
 - 🚨 **User-friendly errors** with actionable messages in German
+- 🦶 **Professional footer** with ImmuniWeb security badge (Grade A)
+- 📄 **Legal pages** - comprehensive Datenschutz and Impressum pages
+- 🌐 **Fully German** - all UI elements and documentation in German
 
 ### Developer Experience
 - 🧪 **Comprehensive test suite** - 73 tests with 76% coverage
@@ -128,12 +131,16 @@ wise-to-lexware-office-converter/
 ├── src/
 │   ├── app/                    # Next.js App Router
 │   │   ├── page.tsx           # Main converter page
-│   │   └── layout.tsx         # App layout
+│   │   ├── layout.tsx         # App layout with footer
+│   │   ├── datenschutz/       # Privacy policy page
+│   │   ├── impressum/         # Imprint page
+│   │   └── hilfe/             # Help page
 │   ├── components/             # React components
 │   │   ├── file-upload.tsx    # Drag & drop upload
 │   │   ├── stats-card.tsx     # Statistics display
 │   │   ├── error-alert.tsx    # Error messages
 │   │   ├── success-message.tsx # Success confirmation
+│   │   ├── footer.tsx         # Reusable footer component
 │   │   └── ui/                # Shadcn components
 │   └── lib/                    # Core logic
 │       ├── converter.ts        # Conversion logic
