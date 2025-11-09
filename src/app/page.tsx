@@ -7,6 +7,7 @@ import { ErrorAlert } from '@/components/error-alert';
 import { SuccessMessage } from '@/components/success-message';
 import { parseWiseCSV, generateLexOfficeCSV, downloadCSV, generateFilename } from '@/lib/csv-utils';
 import { convertWiseToLexOffice, calculateStats } from '@/lib/converter';
+import { trackFileUpload, trackConversionSuccess, trackConversionError } from '@/lib/analytics';
 import type { ConversionStats } from '@/lib/converter';
 
 type AppStatus = 'idle' | 'processing' | 'success' | 'error';
@@ -16,6 +17,23 @@ interface AppState {
   file: File | null;
   error: string | null;
   stats: ConversionStats | null;
+}
+
+/**
+ * Categorize error type for privacy-friendly analytics
+ * (no personal/financial data, only error categories)
+ */
+function getErrorType(errorMessage: string): string {
+  const msg = errorMessage.toLowerCase();
+
+  if (msg.includes('spalten fehlen') || msg.includes('header')) return 'missing-columns';
+  if (msg.includes('validierung') || msg.includes('ungültig')) return 'validation-error';
+  if (msg.includes('parse') || msg.includes('format')) return 'parse-error';
+  if (msg.includes('keine') && msg.includes('transaktionen')) return 'empty-file';
+  if (msg.includes('zu viele') || msg.includes('zu wenige')) return 'column-count-error';
+  if (msg.includes('delimiter')) return 'delimiter-error';
+
+  return 'unknown-error';
 }
 
 export default function ConverterPage() {
@@ -48,6 +66,9 @@ export default function ConverterPage() {
       // Read file content
       const text = await file.text();
 
+      // Track file upload (privacy-friendly - only file size category)
+      trackFileUpload(file.size);
+
       // Parse Wise CSV
       const wiseData = parseWiseCSV(text);
 
@@ -68,6 +89,9 @@ export default function ConverterPage() {
       // Calculate statistics
       const stats = calculateStats(wiseData);
 
+      // Track successful conversion (privacy-friendly - only transaction count category)
+      trackConversionSuccess(stats.total);
+
       // Update state to success
       setState({
         status: 'success',
@@ -77,6 +101,12 @@ export default function ConverterPage() {
       });
     } catch (error) {
       console.error('Conversion error:', error);
+
+      // Track conversion error (only error type, no personal data)
+      const errorMessage = error instanceof Error ? error.message : 'unknown';
+      const errorType = getErrorType(errorMessage);
+      trackConversionError(errorType);
+
       setState({
         status: 'error',
         file,

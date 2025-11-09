@@ -69,7 +69,9 @@ This app is optimized for Vercel deployment:
 
 1. Fork or clone this repository
 2. Connect your repository to Vercel
-3. Deploy with one click - no environment variables needed!
+3. Configure environment variables (optional - only needed for analytics):
+   - `NEXT_PUBLIC_UMAMI_WEBSITE_ID` - Your Umami website ID
+4. Deploy with one click!
 
 Or use the deploy button:
 
@@ -78,6 +80,15 @@ Or use the deploy button:
 ### Build Requirements
 - Node.js 20+ recommended
 - npm (comes with Node.js)
+
+### Environment Variables
+
+Copy `.env.example` to `.env.local` and configure:
+
+```bash
+# Umami Analytics (optional)
+NEXT_PUBLIC_UMAMI_WEBSITE_ID=your-website-id
+```
 
 The app is fully static after build - no server-side processing required.
 
@@ -302,9 +313,20 @@ Buchungstag;Valuta;Auftraggeber/Zahlungsempfänger;Empfänger/Zahlungspflichtige
 - ✅ **Client-side only** - all processing happens in your browser
 - ✅ **No server uploads** - files never transmitted to any server
 - ✅ **No data storage** - files kept temporarily in memory only
-- ✅ **No analytics** - no tracking of usage or data
+- ✅ **Privacy-friendly analytics** - Umami self-hosted analytics (no cookies, no personal data)
 - ✅ **No third-party requests** - conversion works offline
 - ✅ **Open source** - code is publicly verifiable
+
+### Analytics
+This app uses **[Umami Analytics](https://umami.is/)**, a privacy-friendly, GDPR-compliant analytics solution:
+- ✅ **Self-hosted** on our own infrastructure (analytics.evelan.de)
+- ✅ **No cookies** - no tracking cookies are set
+- ✅ **No personal data** - IP addresses are anonymized
+- ✅ **GDPR compliant** - meets all European privacy regulations
+- ✅ **Open source** - Umami is open source and auditable
+- ✅ **Minimal data** - only page views and basic usage statistics
+
+We use analytics solely to understand how the app is used and to improve the user experience. Your financial data is never tracked or analyzed.
 
 ### Security Features
 - ✅ **CSV injection prevention** - sanitizes all output fields

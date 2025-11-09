@@ -90,6 +90,13 @@
 - **Shadcn UI** - Component Library ✅
 - **Lucide React** - Icons ✅
 
+### Analytics:
+- **Umami Analytics** - Privacy-friendly, self-hosted analytics ✅
+  - Self-hosted on analytics.evelan.de
+  - No cookies, no personal data collection
+  - GDPR compliant
+  - Script loaded via Next.js rewrites (/stats/* → analytics.evelan.de/*)
+
 ### Testing:
 - **Jest** - Test framework ✅
 - **React Testing Library** - Component testing ✅
@@ -97,6 +104,8 @@
 
 ### Deployment:
 - **Vercel** - Hosting (optimized for Next.js)
+- **Environment Variables**:
+  - `NEXT_PUBLIC_UMAMI_WEBSITE_ID` - Umami website tracking ID
 
 ---
 
@@ -120,10 +129,14 @@ wise-lexoffice-import/
 │   │   │   ├── alert.tsx
 │   │   │   ├── button.tsx
 │   │   │   └── card.tsx
+│   │   ├── analytics.tsx           # Umami Analytics integration
 │   │   ├── error-alert.tsx         # Error display component
 │   │   ├── file-upload.tsx         # File upload with drag & drop
+│   │   ├── footer.tsx              # Footer with links
 │   │   ├── stats-card.tsx          # Statistics display
 │   │   └── success-message.tsx     # Success confirmation
+│   ├── types/
+│   │   └── umami.d.ts              # Umami Analytics TypeScript types
 │   └── lib/
 │       ├── __tests__/              # Core logic tests (52 tests)
 │       │   ├── converter.test.ts   # 39 tests
@@ -294,7 +307,19 @@ npm run generate:wise:large        # 500 transactions
 - ✅ **No data transmission** - no network requests for conversion
 - ✅ **CSV injection prevention** - sanitizes all output fields
 - ✅ **GDPR compliant** - no processing of data on servers
+- ✅ **Privacy-friendly analytics** - Umami self-hosted (no cookies, no personal data)
 - ✅ **Open source** - verifiable code
+
+### Analytics Implementation
+
+**Umami Analytics Integration**:
+- Self-hosted on analytics.evelan.de
+- Script loaded via Next.js rewrites: `/stats/*` → `https://analytics.evelan.de/*`
+- Only enabled in production mode
+- Website ID: 570f9c50-cbeb-42b2-a457-65e24f8dbcc2
+- No cookies, no personal data collection
+- GDPR and privacy compliant
+- TypeScript types provided for custom event tracking
 
 ---
 

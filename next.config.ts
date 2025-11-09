@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/stats/:match*",
+        destination: "https://analytics.evelan.de/:match*",
+      },
+    ];
+  },
+
   async headers() {
     return [
       {
