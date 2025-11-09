@@ -189,14 +189,84 @@ export default function DatenschutzPage() {
           </div>
         </section>
 
+        {/* Analytics */}
+        <section className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+            6. Web-Analyse mit Umami Analytics
+          </h2>
+          <div className="text-gray-700 space-y-4">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Umfang der Verarbeitung
+              </h3>
+              <p>
+                Wir nutzen den datenschutzfreundlichen Webanalyse-Dienst <strong>Umami Analytics</strong>, um die Nutzung unserer Website zu verstehen und zu verbessern. Umami wird auf unserer eigenen Infrastruktur (analytics.evelan.de) betrieben.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Erfasste Daten
+              </h3>
+              <p>
+                Es werden ausschließlich anonymisierte Nutzungsdaten erfasst:
+              </p>
+              <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
+                <li>Seitenaufrufe (ohne persönliche Identifikation)</li>
+                <li>Allgemeine Nutzungsstatistiken (z.B. Datei hochgeladen, Konvertierung erfolgreich)</li>
+                <li>Browser-Typ und Betriebssystem (anonymisiert)</li>
+                <li>Referrer-URL (Herkunft des Zugriffs)</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Datenschutz-Merkmale
+              </h3>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li><strong>Keine Cookies:</strong> Umami verwendet keine Tracking-Cookies</li>
+                <li><strong>Keine IP-Speicherung:</strong> IP-Adressen werden nicht gespeichert</li>
+                <li><strong>Keine personenbezogenen Daten:</strong> Es erfolgt keine Erfassung oder Speicherung personenbezogener Informationen</li>
+                <li><strong>Keine Daten Ihrer CSV-Dateien:</strong> Ihre Finanzdaten werden niemals erfasst oder analysiert</li>
+                <li><strong>Self-hosted:</strong> Alle Daten bleiben auf unseren EU-Servern</li>
+                <li><strong>DSGVO-konform:</strong> Vollständig datenschutzkonform ohne Einwilligung</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Rechtsgrundlage
+              </h3>
+              <p>
+                Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse). Unser berechtigtes Interesse liegt in der statistischen Analyse der Website-Nutzung zur Optimierung unseres Angebots.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Speicherdauer
+              </h3>
+              <p>
+                Die anonymisierten Analysedaten werden für maximal 12 Monate gespeichert und anschließend automatisch gelöscht.
+              </p>
+            </div>
+
+            <div className="bg-green-50 rounded-lg p-4 border border-green-100">
+              <p className="text-green-800">
+                <strong>Wichtig:</strong> Umami Analytics ist speziell darauf ausgelegt, die Privatsphäre zu schützen und erfüllt alle Anforderungen der DSGVO ohne Einwilligung des Nutzers. Es werden keinerlei personenbezogene Daten erfasst.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* No Cookies */}
         <section className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-            6. Cookies und Tracking
+            7. Cookies
           </h2>
           <div className="text-gray-700">
             <p>
-              Diese Website verwendet <strong>keine Cookies</strong> und setzt <strong>keine Tracking-Tools</strong> ein. Es erfolgt keine Analyse Ihres Nutzerverhaltens.
+              Diese Website verwendet <strong>keine Cookies</strong>. Auch unser Analytics-Tool Umami setzt keine Cookies ein und benötigt daher keine Cookie-Einwilligung.
             </p>
           </div>
         </section>
@@ -204,7 +274,7 @@ export default function DatenschutzPage() {
         {/* Your Rights */}
         <section className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-            7. Ihre Rechte
+            8. Ihre Rechte
           </h2>
           <div className="text-gray-700 space-y-3">
             <p>
@@ -228,14 +298,14 @@ export default function DatenschutzPage() {
         {/* Updates */}
         <section className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-            8. Änderungen dieser Datenschutzerklärung
+            9. Änderungen dieser Datenschutzerklärung
           </h2>
           <div className="text-gray-700">
             <p>
               Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen umzusetzen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.
             </p>
             <p className="mt-3 text-sm text-gray-600">
-              <strong>Stand:</strong> Oktober 2025
+              <strong>Stand:</strong> November 2025
             </p>
           </div>
         </section>
