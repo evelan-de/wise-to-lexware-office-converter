@@ -4,6 +4,8 @@ import {
   REQUIRED_WISE_HEADERS,
   LEXOFFICE_HEADERS,
   ERROR_MESSAGES,
+  getMissingHeadersError,
+  getCSVReadError,
 } from './constants';
 
 /**
@@ -23,23 +25,17 @@ export function parseWiseCSV(csvContent: string): WiseRow[] {
   });
 
   if (result.errors.length > 0) {
-    console.error('CSV parsing errors:', result.errors);
-
     // Provide user-friendly error messages based on error type
     const firstError = result.errors[0];
     const errorCode = firstError.code;
 
     // Check for field count errors
     if (errorCode === 'TooManyFields') {
-      throw new Error(
-        'Die CSV-Datei enthält zu viele Spalten. Bitte stellen Sie sicher, dass Sie eine unveränderte Wise-Exportdatei verwenden.'
-      );
+      throw new Error(ERROR_MESSAGES.TOO_MANY_COLUMNS);
     }
 
     if (errorCode === 'TooFewFields') {
-      throw new Error(
-        'Die CSV-Datei enthält zu wenige Spalten. Bitte stellen Sie sicher, dass Sie eine vollständige Wise-Exportdatei verwenden.'
-      );
+      throw new Error(ERROR_MESSAGES.TOO_FEW_COLUMNS);
     }
 
     // Check for delimiter and quote errors (different type in Papaparse)
@@ -48,15 +44,11 @@ export function parseWiseCSV(csvContent: string): WiseRow[] {
       errorCode === 'MissingQuotes' ||
       errorCode === 'InvalidQuotes'
     ) {
-      throw new Error(
-        'Die CSV-Datei hat ein ungültiges Format. Möglicherweise wurde die Datei verändert oder ist beschädigt.'
-      );
+      throw new Error(ERROR_MESSAGES.INVALID_CSV_FORMAT);
     }
 
     // Generic error message for other parsing issues
-    throw new Error(
-      `Die CSV-Datei konnte nicht gelesen werden: ${firstError.message || 'Unbekannter Fehler'}. Bitte prüfen Sie, ob es sich um eine gültige Wise-Exportdatei handelt.`
-    );
+    throw new Error(getCSVReadError(firstError.message));
   }
 
   if (!result.data || result.data.length === 0) {
@@ -79,14 +71,7 @@ function validateWiseHeaders(headers: string[]): void {
   );
 
   if (missingHeaders.length > 0) {
-    console.error('Missing required headers:', missingHeaders);
-    console.error('Found headers:', headers);
-
-    // Provide detailed error message
-    const missingHeadersList = missingHeaders.map((h) => `"${h}"`).join(', ');
-    throw new Error(
-      `Die CSV-Datei ist keine gültige Wise-Exportdatei. Folgende erforderliche Spalten fehlen: ${missingHeadersList}. Bitte exportieren Sie die Daten direkt aus Ihrem Wise-Konto.`
-    );
+    throw new Error(getMissingHeadersError(missingHeaders));
   }
 }
 
@@ -95,7 +80,7 @@ function validateWiseHeaders(headers: string[]): void {
  */
 export function generateLexOfficeCSV(data: LexOfficeRow[]): string {
   return Papa.unparse(data, {
-    columns: LEXOFFICE_HEADERS as unknown as string[],
+    columns: [...LEXOFFICE_HEADERS], // Spread to convert readonly tuple to string[]
     delimiter: ';', // LexOffice uses semicolon
     header: true,
     newline: '\r\n', // Windows line endings for better compatibility

@@ -1,6 +1,16 @@
 import { ACCOUNT_HOLDER } from './constants';
 
 /**
+ * Module-level formatter for German number format
+ * Created once to avoid recreation on every convertAmount() call
+ */
+const germanAmountFormatter = new Intl.NumberFormat('de-DE', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+  useGrouping: false, // No thousands separator for LexOffice
+});
+
+/**
  * Sanitize CSV field to prevent formula injection
  * Escapes fields starting with =, +, -, @, tab, or carriage return
  * These characters can be interpreted as formulas by Excel/LexOffice
@@ -76,7 +86,6 @@ export function convertDate(date: string): string {
   const match = date.match(/^(\d{2})-(\d{2})-(\d{4})$/);
   if (!match) {
     // If the format doesn't match, return as-is (fail gracefully)
-    console.warn(`Invalid date format: ${date}`);
     return date;
   }
 
@@ -94,18 +103,10 @@ export function convertAmount(amount: string): string {
   // Parse as float and handle NaN
   const num = parseFloat(amount);
   if (isNaN(num)) {
-    console.warn(`Invalid amount: ${amount}`);
     return '0,00';
   }
 
-  // Format using German locale (comma as decimal separator, no thousands separator)
-  const formatter = new Intl.NumberFormat('de-DE', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-    useGrouping: false, // No thousands separator for LexOffice
-  });
-
-  return formatter.format(num);
+  return germanAmountFormatter.format(num);
 }
 
 /**
@@ -135,6 +136,7 @@ function getEmpfaenger(row: WiseRow): string {
 /**
  * Build Verwendungszweck from Description and Payment Reference
  * Format: "Description | Ref: Payment Reference"
+ * Falls back to Transaction Details Type if both are empty (required field in LexOffice)
  */
 function buildVerwendungszweck(row: WiseRow): string {
   const parts: string[] = [];
@@ -145,6 +147,11 @@ function buildVerwendungszweck(row: WiseRow): string {
 
   if (row['Payment Reference']) {
     parts.push(`Ref: ${sanitizeCSVField(row['Payment Reference'])}`);
+  }
+
+  // LexOffice requires Verwendungszweck - fallback to transaction type if empty
+  if (parts.length === 0) {
+    return row['Transaction Details Type'] || row['Transaction Type'] || 'Transaktion';
   }
 
   return parts.join(' | ');
@@ -179,8 +186,9 @@ export function validateRow(row: WiseRow): string[] {
 
   if (!row.Date) errors.push('Missing Date');
   if (!row.Amount) errors.push('Missing Amount');
-  if (!row['Transaction Type']) errors.push('Missing Transaction Type');
-  if (!['DEBIT', 'CREDIT'].includes(row['Transaction Type'])) {
+  if (!row['Transaction Type']) {
+    errors.push('Missing Transaction Type');
+  } else if (!['DEBIT', 'CREDIT'].includes(row['Transaction Type'])) {
     errors.push(`Invalid Transaction Type: ${row['Transaction Type']}`);
   }
 
@@ -195,11 +203,7 @@ export function convertWiseToLexOffice(wiseData: WiseRow[]): LexOfficeRow[] {
     .filter((row) => {
       // Skip rows with validation errors
       const errors = validateRow(row);
-      if (errors.length > 0) {
-        console.warn(`Skipping row with errors:`, errors, row);
-        return false;
-      }
-      return true;
+      return errors.length === 0;
     })
     .map((row) => ({
       Buchungstag: convertDate(row.Date),

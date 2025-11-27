@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { TrendingUp, TrendingDown, FileCheck } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { ConversionStats } from '@/lib/converter';
@@ -9,13 +10,15 @@ interface StatsCardProps {
 }
 
 export function StatsCard({ stats }: StatsCardProps) {
-  const formatAmount = (amount: number) => {
-    return new Intl.NumberFormat('de-DE', {
+  // Memoize formatter to avoid recreation on every render
+  const formatAmount = useMemo(() => {
+    const formatter = new Intl.NumberFormat('de-DE', {
       style: 'currency',
       currency: stats.currency,
       minimumFractionDigits: 2,
-    }).format(amount);
-  };
+    });
+    return (amount: number) => formatter.format(amount);
+  }, [stats.currency]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
