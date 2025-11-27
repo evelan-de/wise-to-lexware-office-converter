@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Footer } from "@/components/footer";
 import { Analytics } from "@/components/analytics";
+import { ClientWrapper } from "@/components/client-wrapper";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -188,7 +189,7 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           <div className="flex-1 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
             <div className="max-w-4xl mx-auto px-4 py-12">
-              {children}
+              <ClientWrapper>{children}</ClientWrapper>
             </div>
           </div>
           <Footer />

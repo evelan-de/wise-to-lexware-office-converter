@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { FileUpload } from '@/components/file-upload';
 import { StatsCard } from '@/components/stats-card';
 import { ErrorAlert } from '@/components/error-alert';
@@ -8,7 +8,11 @@ import { SuccessMessage } from '@/components/success-message';
 import { parseWiseCSV, generateLexOfficeCSV, downloadCSV, generateFilename } from '@/lib/csv-utils';
 import { convertWiseToLexOffice, calculateStats } from '@/lib/converter';
 import { trackFileUpload, trackConversionSuccess, trackConversionError } from '@/lib/analytics';
+import { ERROR_MESSAGES } from '@/lib/constants';
 import type { ConversionStats } from '@/lib/converter';
+
+// Timeout for file processing (30 seconds)
+const PROCESSING_TIMEOUT_MS = 30000;
 
 type AppStatus = 'idle' | 'processing' | 'success' | 'error';
 
@@ -43,6 +47,7 @@ export default function ConverterPage() {
     error: null,
     stats: null,
   });
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleFileError = useCallback((error: string) => {
     setState({
@@ -62,45 +67,66 @@ export default function ConverterPage() {
       stats: null,
     });
 
+    // Set up timeout for long-running operations
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      timeoutRef.current = setTimeout(() => {
+        reject(new Error('Die Verarbeitung hat zu lange gedauert. Bitte versuchen Sie es mit einer kleineren Datei.'));
+      }, PROCESSING_TIMEOUT_MS);
+    });
+
     try {
-      // Read file content
-      const text = await file.text();
+      // Race between actual processing and timeout
+      await Promise.race([
+        (async () => {
+          // Read file content
+          const text = await file.text();
 
-      // Track file upload (privacy-friendly - only file size category)
-      trackFileUpload(file.size);
+          // Track file upload (privacy-friendly - only file size category)
+          trackFileUpload(file.size);
 
-      // Parse Wise CSV
-      const wiseData = parseWiseCSV(text);
+          // Parse Wise CSV
+          const wiseData = parseWiseCSV(text);
 
-      // Convert to LexOffice format
-      const lexOfficeData = convertWiseToLexOffice(wiseData);
+          // Convert to LexOffice format
+          const lexOfficeData = convertWiseToLexOffice(wiseData);
 
-      if (lexOfficeData.length === 0) {
-        throw new Error('Keine gültigen Transaktionen zum Konvertieren gefunden.');
-      }
+          if (lexOfficeData.length === 0) {
+            throw new Error(ERROR_MESSAGES.NO_VALID_TRANSACTIONS);
+          }
 
-      // Generate CSV content
-      const csvContent = generateLexOfficeCSV(lexOfficeData);
+          // Generate CSV content
+          const csvContent = generateLexOfficeCSV(lexOfficeData);
 
-      // Auto-download
-      const filename = generateFilename();
-      downloadCSV(csvContent, filename);
+          // Auto-download
+          const filename = generateFilename();
+          downloadCSV(csvContent, filename);
 
-      // Calculate statistics
-      const stats = calculateStats(wiseData);
+          // Calculate statistics
+          const stats = calculateStats(wiseData);
 
-      // Track successful conversion (privacy-friendly - only transaction count category)
-      trackConversionSuccess(stats.total);
+          // Track successful conversion (privacy-friendly - only transaction count category)
+          trackConversionSuccess(stats.total);
 
-      // Update state to success
-      setState({
-        status: 'success',
-        file,
-        error: null,
-        stats,
-      });
+          // Clear timeout on success
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+          }
+
+          // Update state to success
+          setState({
+            status: 'success',
+            file,
+            error: null,
+            stats,
+          });
+        })(),
+        timeoutPromise,
+      ]);
     } catch (error) {
-      console.error('Conversion error:', error);
+      // Clear timeout on error
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
 
       // Track conversion error (only error type, no personal data)
       const errorMessage = error instanceof Error ? error.message : 'unknown';
@@ -110,13 +136,17 @@ export default function ConverterPage() {
       setState({
         status: 'error',
         file,
-        error: error instanceof Error ? error.message : 'Ein unbekannter Fehler ist aufgetreten.',
+        error: error instanceof Error ? error.message : ERROR_MESSAGES.UNKNOWN_ERROR,
         stats: null,
       });
     }
   }, []);
 
   const handleReset = useCallback(() => {
+    // Clear any pending timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     setState({
       status: 'idle',
       file: null,
