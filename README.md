@@ -2,7 +2,7 @@
 
 🚀 **Production-ready web app** for converting WISE CSV exports to Lexware Office electronic bank statement import format - completely in your browser!
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-73%20passing-success)](./docs/TESTING.md)
 [![Coverage](https://img.shields.io/badge/Coverage-76%25-green)](./docs/TESTING.md)
@@ -41,7 +41,7 @@
 ## 🛠 Tech Stack
 
 ### Frontend Framework
-- **Next.js 15** - React framework with App Router
+- **Next.js 16** - React framework with App Router
 - **React 19** - Latest React with concurrent features
 - **TypeScript 5** - Full type safety throughout
 
