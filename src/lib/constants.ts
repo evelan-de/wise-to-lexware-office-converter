@@ -2,6 +2,11 @@
 export const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 export const MAX_FILE_SIZE_MB = 5;
 
+// Batch processing limits
+export const MAX_BATCH_FILES = 20;
+export const MAX_TOTAL_BATCH_SIZE = 50 * 1024 * 1024; // 50 MB total
+export const MAX_TOTAL_BATCH_SIZE_MB = 50;
+
 export const LEXOFFICE_HEADERS = [
   'Buchungstag',
   'Valuta',
@@ -35,6 +40,14 @@ export const ERROR_MESSAGES = {
   // Conversion errors
   NO_VALID_TRANSACTIONS: 'Keine gültigen Transaktionen zum Konvertieren gefunden.',
   UNKNOWN_ERROR: 'Ein unbekannter Fehler ist aufgetreten.',
+
+  // Batch processing errors
+  TOO_MANY_FILES: `Zu viele Dateien ausgewählt. Maximal ${MAX_BATCH_FILES} Dateien erlaubt.`,
+  BATCH_TOO_LARGE: `Gesamtgröße zu groß. Maximal ${MAX_TOTAL_BATCH_SIZE_MB} MB für alle Dateien zusammen.`,
+  NO_FILES_SELECTED: 'Keine Dateien ausgewählt.',
+  BATCH_PROCESSING_FAILED: 'Stapelverarbeitung fehlgeschlagen.',
+  SOME_FILES_FAILED: 'Einige Dateien konnten nicht verarbeitet werden.',
+  ALL_FILES_FAILED: 'Alle Dateien konnten nicht verarbeitet werden.',
 } as const;
 
 /**
