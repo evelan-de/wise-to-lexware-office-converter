@@ -58,7 +58,7 @@ function convertDate(date: string): string {
 export function ComparisonView({ wiseData }: ComparisonViewProps) {
   const [filters, setFilters] = useState<FilterOptions>(DEFAULT_FILTER_OPTIONS);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
+  const pageSize = 10;
 
   // Filter and paginate data
   const processedData = useMemo(() => {

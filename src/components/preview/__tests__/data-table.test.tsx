@@ -50,12 +50,13 @@ describe('DataTable', () => {
   it('should render table with data', () => {
     render(<DataTable data={mockData} validation={mockValidation} />);
 
-    expect(screen.getByText('Payment 1')).toBeInTheDocument();
-    expect(screen.getByText('Payment 2')).toBeInTheDocument();
-    expect(screen.getByText('Payment 3')).toBeInTheDocument();
+    // Both mobile and desktop views are rendered, so use getAllByText
+    expect(screen.getAllByText('Payment 1').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Payment 2').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Payment 3').length).toBeGreaterThanOrEqual(1);
   });
 
-  it('should display column headers', () => {
+  it('should display column headers in desktop view', () => {
     render(<DataTable data={mockData} validation={mockValidation} />);
 
     expect(screen.getByText('Datum')).toBeInTheDocument();
@@ -73,16 +74,17 @@ describe('DataTable', () => {
   it('should format amounts correctly', () => {
     render(<DataTable data={mockData} validation={mockValidation} />);
 
-    // German format with comma
-    expect(screen.getByText('-100,00')).toBeInTheDocument();
-    expect(screen.getByText('500,00')).toBeInTheDocument();
+    // German format with comma - check that formatted amounts exist
+    expect(screen.getAllByText('-100,00').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('500,00').length).toBeGreaterThanOrEqual(1);
   });
 
-  it('should display transaction types in German', () => {
+  it('should display transaction types in German in desktop view', () => {
     render(<DataTable data={mockData} validation={mockValidation} />);
 
-    expect(screen.getAllByText('Ausgabe')).toHaveLength(2);
-    expect(screen.getByText('Einnahme')).toBeInTheDocument();
+    // Desktop table shows Ausgabe/Einnahme
+    expect(screen.getAllByText('Ausgabe').length).toBeGreaterThanOrEqual(2);
+    expect(screen.getAllByText('Einnahme').length).toBeGreaterThanOrEqual(1);
   });
 
   it('should show search input when showSearch is true', () => {
@@ -97,7 +99,7 @@ describe('DataTable', () => {
     const searchInput = screen.getByPlaceholderText(/Suchen/);
     fireEvent.change(searchInput, { target: { value: 'Payment 1' } });
 
-    expect(screen.getByText('Payment 1')).toBeInTheDocument();
+    expect(screen.getAllByText('Payment 1').length).toBeGreaterThanOrEqual(1);
     expect(screen.queryByText('Payment 2')).not.toBeInTheDocument();
     expect(screen.queryByText('Payment 3')).not.toBeInTheDocument();
   });
@@ -109,7 +111,7 @@ describe('DataTable', () => {
     fireEvent.change(typeSelect, { target: { value: 'CREDIT' } });
 
     expect(screen.queryByText('Payment 1')).not.toBeInTheDocument();
-    expect(screen.getByText('Payment 2')).toBeInTheDocument();
+    expect(screen.getAllByText('Payment 2').length).toBeGreaterThanOrEqual(1);
     expect(screen.queryByText('Payment 3')).not.toBeInTheDocument();
   });
 
@@ -117,8 +119,9 @@ describe('DataTable', () => {
     const mockOnEdit = jest.fn();
     render(<DataTable data={mockData} validation={mockValidation} onEditRow={mockOnEdit} />);
 
+    // Both mobile and desktop views have edit buttons
     const editButtons = screen.getAllByTitle('Zeile bearbeiten');
-    expect(editButtons).toHaveLength(3);
+    expect(editButtons.length).toBeGreaterThanOrEqual(3);
   });
 
   it('should call onEditRow when edit button is clicked', () => {
@@ -137,7 +140,8 @@ describe('DataTable', () => {
     const searchInput = screen.getByPlaceholderText(/Suchen/);
     fireEvent.change(searchInput, { target: { value: 'nonexistent' } });
 
-    expect(screen.getByText('Keine Transaktionen gefunden')).toBeInTheDocument();
+    // Both mobile and desktop show empty state
+    expect(screen.getAllByText('Keine Transaktionen gefunden').length).toBeGreaterThanOrEqual(1);
   });
 
   it('should limit preview rows when maxPreviewRows is set', () => {
@@ -152,19 +156,19 @@ describe('DataTable', () => {
   });
 
   describe('pagination', () => {
-    const manyRows = Array.from({ length: 25 }, (_, i) =>
+    const manyRows = Array.from({ length: 100 }, (_, i) =>
       createWiseRow({ 'TransferWise ID': String(i + 1), Description: `Payment ${i + 1}` })
     );
     const validation = createValidation(manyRows);
 
     it('should show pagination when data exceeds page size', () => {
-      render(<DataTable data={manyRows} validation={validation} pageSize={10} />);
+      render(<DataTable data={manyRows} validation={validation} pageSize={50} />);
 
-      expect(screen.getByText(/Seite 1 von 3/)).toBeInTheDocument();
+      expect(screen.getByText(/Seite 1 von 2/)).toBeInTheDocument();
     });
 
     it('should navigate to next page', () => {
-      render(<DataTable data={manyRows} validation={validation} pageSize={10} />);
+      render(<DataTable data={manyRows} validation={validation} pageSize={50} />);
 
       const nextButton = screen.getAllByRole('button').find(
         (btn) => btn.querySelector('svg.lucide-chevron-right')
@@ -172,13 +176,13 @@ describe('DataTable', () => {
 
       if (nextButton) {
         fireEvent.click(nextButton);
-        expect(screen.getByText(/Seite 2 von 3/)).toBeInTheDocument();
+        expect(screen.getByText(/Seite 2 von 2/)).toBeInTheDocument();
       }
     });
   });
 
   describe('validation display', () => {
-    it('should show error row with red background', () => {
+    it('should show error count in summary', () => {
       const validationWithError: ValidationSummary = {
         ...mockValidation,
         rowsWithErrors: 1,
@@ -195,7 +199,7 @@ describe('DataTable', () => {
       expect(screen.getByText(/1 mit Fehlern/)).toBeInTheDocument();
     });
 
-    it('should show warning count', () => {
+    it('should show warning count in summary', () => {
       const validationWithWarning: ValidationSummary = {
         ...mockValidation,
         rowsWithWarnings: 1,
@@ -209,6 +213,20 @@ describe('DataTable', () => {
       render(<DataTable data={mockData} validation={validationWithWarning} />);
 
       expect(screen.getByText(/1 mit Warnungen/)).toBeInTheDocument();
+    });
+  });
+
+  describe('default page size', () => {
+    it('should use 50 as default page size', () => {
+      const fiftyOneRows = Array.from({ length: 51 }, (_, i) =>
+        createWiseRow({ 'TransferWise ID': String(i + 1), Description: `Payment ${i + 1}` })
+      );
+      const validation = createValidation(fiftyOneRows);
+
+      render(<DataTable data={fiftyOneRows} validation={validation} />);
+
+      // With 51 rows and page size 50, we should have 2 pages
+      expect(screen.getByText(/Seite 1 von 2/)).toBeInTheDocument();
     });
   });
 });

@@ -9,9 +9,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import {
   ChevronLeft,
   ChevronRight,
@@ -52,36 +57,34 @@ type SortConfig = {
   direction: SortDirection;
 };
 
-const DISPLAY_COLUMNS: { key: keyof WiseRow; label: string; width?: string }[] = [
+// Columns for desktop view
+const DISPLAY_COLUMNS: { key: keyof WiseRow; label: string; width?: string; hideOnMobile?: boolean }[] = [
   { key: 'Date', label: 'Datum', width: 'w-28' },
   { key: 'Amount', label: 'Betrag', width: 'w-28' },
-  { key: 'Currency', label: 'Währung', width: 'w-20' },
-  { key: 'Transaction Type', label: 'Typ', width: 'w-24' },
+  { key: 'Currency', label: 'Währung', width: 'w-20', hideOnMobile: true },
+  { key: 'Transaction Type', label: 'Typ', width: 'w-24', hideOnMobile: true },
   { key: 'Description', label: 'Beschreibung' },
-  { key: 'Payer Name', label: 'Zahler', width: 'w-36' },
-  { key: 'Payee Name', label: 'Empfänger', width: 'w-36' },
+  { key: 'Payer Name', label: 'Zahler', width: 'w-36', hideOnMobile: true },
+  { key: 'Payee Name', label: 'Empfänger', width: 'w-36', hideOnMobile: true },
 ];
 
 function getStatusIcon(status: 'valid' | 'warning' | 'error') {
   switch (status) {
     case 'error':
-      return <AlertCircle className="w-4 h-4 text-red-500" />;
+      return <AlertCircle className="w-5 h-5 text-red-500" />;
     case 'warning':
-      return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
+      return <AlertTriangle className="w-5 h-5 text-yellow-500" />;
     case 'valid':
-      return <CheckCircle2 className="w-4 h-4 text-green-500" />;
+      return <CheckCircle2 className="w-5 h-5 text-green-500" />;
   }
 }
 
-function getStatusBadge(status: 'valid' | 'warning' | 'error') {
-  switch (status) {
-    case 'error':
-      return <Badge variant="error">Fehler</Badge>;
-    case 'warning':
-      return <Badge variant="warning">Warnung</Badge>;
-    case 'valid':
-      return <Badge variant="success">OK</Badge>;
-  }
+function getTooltipText(
+  status: 'valid' | 'warning' | 'error',
+  issues: { message: string }[]
+): string {
+  if (status === 'valid') return 'Keine Probleme';
+  return issues.map((i) => i.message).join('\n');
 }
 
 function formatAmount(amount: string): string {
@@ -108,12 +111,89 @@ function getSortIcon(
   );
 }
 
+// Mobile card component for each row
+function MobileRowCard({
+  row,
+  status,
+  tooltipText,
+  onEdit,
+  originalIndex,
+}: {
+  row: WiseRow;
+  status: 'valid' | 'warning' | 'error';
+  tooltipText: string;
+  onEdit?: () => void;
+  originalIndex: number;
+}) {
+  const isNegative = parseFloat(row.Amount) < 0;
+
+  return (
+    <div
+      className={`p-4 border rounded-lg ${
+        status === 'error'
+          ? 'bg-red-50 border-red-200'
+          : status === 'warning'
+          ? 'bg-yellow-50 border-yellow-200'
+          : 'bg-white border-gray-200'
+      }`}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start gap-3 flex-1 min-w-0">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button className="mt-0.5 flex-shrink-0">
+                  {getStatusIcon(status)}
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{tooltipText}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-sm text-gray-500">{row.Date}</span>
+              <span
+                className={`font-semibold ${
+                  isNegative ? 'text-red-600' : 'text-green-600'
+                }`}
+              >
+                {formatAmount(row.Amount)} {row.Currency}
+              </span>
+            </div>
+            <p className="text-sm font-medium mt-1 truncate">
+              {row.Description || row['Payment Reference'] || '-'}
+            </p>
+            <p className="text-xs text-gray-500 mt-0.5">
+              {row['Transaction Type'] === 'DEBIT' ? 'An: ' : 'Von: '}
+              {row['Transaction Type'] === 'DEBIT'
+                ? row['Payee Name'] || '-'
+                : row['Payer Name'] || '-'}
+            </p>
+          </div>
+        </div>
+        {onEdit && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onEdit}
+            className="flex-shrink-0"
+          >
+            <Edit2 className="w-4 h-4" />
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function DataTable({
   data,
   validation,
   onEditRow,
   showSearch = true,
-  pageSize = 10,
+  pageSize = 50,
   maxPreviewRows,
 }: DataTableProps) {
   const [filters, setFilters] = useState<FilterOptions>(DEFAULT_FILTER_OPTIONS);
@@ -181,8 +261,8 @@ export function DataTable({
     <div className="space-y-4">
       {/* Search and Filter Bar */}
       {showSearch && (
-        <div className="flex items-center gap-4">
-          <div className="relative flex-1 max-w-md">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <Input
               placeholder="Suchen in Transaktionen..."
@@ -191,28 +271,26 @@ export function DataTable({
               className="pl-9"
             />
           </div>
-          <div className="flex items-center gap-2">
-            <select
-              className="h-9 rounded-md border border-input bg-transparent px-3 text-sm"
-              value={filters.transactionType}
-              onChange={(e) => {
-                setFilters((prev) => ({
-                  ...prev,
-                  transactionType: e.target.value as 'all' | 'DEBIT' | 'CREDIT',
-                }));
-                setCurrentPage(1);
-              }}
-            >
-              <option value="all">Alle Typen</option>
-              <option value="DEBIT">Ausgaben</option>
-              <option value="CREDIT">Einnahmen</option>
-            </select>
-          </div>
+          <select
+            className="h-9 rounded-md border border-input bg-transparent px-3 text-sm"
+            value={filters.transactionType}
+            onChange={(e) => {
+              setFilters((prev) => ({
+                ...prev,
+                transactionType: e.target.value as 'all' | 'DEBIT' | 'CREDIT',
+              }));
+              setCurrentPage(1);
+            }}
+          >
+            <option value="all">Alle Typen</option>
+            <option value="DEBIT">Ausgaben</option>
+            <option value="CREDIT">Einnahmen</option>
+          </select>
         </div>
       )}
 
       {/* Validation Summary */}
-      <div className="flex items-center gap-4 text-sm">
+      <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm">
         <span className="flex items-center gap-1">
           <CheckCircle2 className="w-4 h-4 text-green-500" />
           {validation.validRows} gültig
@@ -236,16 +314,52 @@ export function DataTable({
         )}
       </div>
 
-      {/* Table */}
-      <div className="border rounded-lg">
+      {/* Mobile View - Card Layout */}
+      <div className="block md:hidden space-y-3">
+        {processedData.data.length === 0 ? (
+          <div className="text-center py-8 text-gray-500 border rounded-lg">
+            Keine Transaktionen gefunden
+          </div>
+        ) : (
+          processedData.data.map((row) => {
+            const originalIndex = getOriginalIndex(row);
+            const validationResult = validationMap.get(originalIndex);
+            const status = validationResult
+              ? getValidationStatus(validationResult)
+              : 'valid';
+            const tooltipText = getTooltipText(
+              status,
+              validationResult?.issues || []
+            );
+
+            return (
+              <MobileRowCard
+                key={`mobile-${row['TransferWise ID']}-${originalIndex}`}
+                row={row}
+                status={status}
+                tooltipText={tooltipText}
+                originalIndex={originalIndex}
+                onEdit={
+                  onEditRow ? () => onEditRow(originalIndex, row) : undefined
+                }
+              />
+            );
+          })
+        )}
+      </div>
+
+      {/* Desktop View - Table */}
+      <div className="hidden md:block border rounded-lg overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-20">Status</TableHead>
+              <TableHead className="w-12">Status</TableHead>
               {DISPLAY_COLUMNS.map((col) => (
                 <TableHead
                   key={col.key}
-                  className={`${col.width || ''} cursor-pointer select-none`}
+                  className={`${col.width || ''} ${
+                    col.hideOnMobile ? 'hidden lg:table-cell' : ''
+                  } cursor-pointer select-none`}
                   onClick={() => handleSort(col.key)}
                 >
                   <div className="flex items-center gap-1">
@@ -268,12 +382,16 @@ export function DataTable({
                 </TableCell>
               </TableRow>
             ) : (
-              processedData.data.map((row, displayIndex) => {
+              processedData.data.map((row) => {
                 const originalIndex = getOriginalIndex(row);
                 const validationResult = validationMap.get(originalIndex);
                 const status = validationResult
                   ? getValidationStatus(validationResult)
                   : 'valid';
+                const tooltipText = getTooltipText(
+                  status,
+                  validationResult?.issues || []
+                );
 
                 return (
                   <TableRow
@@ -287,28 +405,31 @@ export function DataTable({
                     }
                   >
                     <TableCell>
-                      <div
-                        className="flex items-center gap-2"
-                        title={
-                          validationResult?.issues
-                            .map((i) => i.message)
-                            .join('\n') || 'Keine Probleme'
-                        }
-                      >
-                        {getStatusIcon(status)}
-                        {getStatusBadge(status)}
-                      </div>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <button className="flex items-center justify-center">
+                              {getStatusIcon(status)}
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{tooltipText}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </TableCell>
                     {DISPLAY_COLUMNS.map((col) => (
                       <TableCell
                         key={col.key}
-                        className={
+                        className={`${
+                          col.hideOnMobile ? 'hidden lg:table-cell' : ''
+                        } ${
                           col.key === 'Amount'
                             ? parseFloat(row.Amount) < 0
                               ? 'text-red-600 font-medium'
                               : 'text-green-600 font-medium'
                             : ''
-                        }
+                        }`}
                       >
                         {col.key === 'Amount'
                           ? formatAmount(row[col.key])
@@ -341,8 +462,8 @@ export function DataTable({
 
       {/* Pagination */}
       {processedData.totalPages > 1 && (
-        <div className="flex items-center justify-between">
-          <div className="text-sm text-gray-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-sm text-gray-500 text-center sm:text-left">
             Zeige {(processedData.currentPage - 1) * pageSize + 1} bis{' '}
             {Math.min(
               processedData.currentPage * pageSize,
@@ -367,7 +488,7 @@ export function DataTable({
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
-            <span className="px-3 text-sm">
+            <span className="px-3 text-sm whitespace-nowrap">
               Seite {processedData.currentPage} von {processedData.totalPages}
             </span>
             <Button
