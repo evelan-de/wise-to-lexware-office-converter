@@ -133,33 +133,33 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           );
         }
 
-        // Lists
+        // Unordered lists - render bullet explicitly
         if (line.startsWith('- ')) {
           const itemContent = line.slice(2);
           // Check for checkboxes
           if (itemContent.startsWith('[ ] ')) {
             return (
-              <li key={index} className="flex items-start gap-2 ml-4">
-                <input type="checkbox" disabled className="mt-1" />
+              <div key={index} className="ml-4 my-1 flex items-start gap-2">
+                <span className="text-muted-foreground flex-shrink-0">☐</span>
                 <span dangerouslySetInnerHTML={{ __html: formatInlineText(itemContent.slice(4)) }} />
-              </li>
+              </div>
             );
           }
           // Check for checked items
           if (itemContent.startsWith('[x] ') || itemContent.startsWith('[X] ')) {
             return (
-              <li key={index} className="flex items-start gap-2 ml-4">
-                <input type="checkbox" checked disabled className="mt-1" />
+              <div key={index} className="ml-4 my-1 flex items-start gap-2">
+                <span className="text-primary flex-shrink-0">☑</span>
                 <span dangerouslySetInnerHTML={{ __html: formatInlineText(itemContent.slice(4)) }} />
-              </li>
+              </div>
             );
           }
+          // Regular bullet item
           return (
-            <li
-              key={index}
-              className="ml-4 my-1 list-disc list-inside"
-              dangerouslySetInnerHTML={{ __html: formatInlineText(itemContent) }}
-            />
+            <div key={index} className="ml-4 my-1 flex gap-2">
+              <span className="text-muted-foreground flex-shrink-0">•</span>
+              <span dangerouslySetInnerHTML={{ __html: formatInlineText(itemContent) }} />
+            </div>
           );
         }
 
