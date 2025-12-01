@@ -5,22 +5,24 @@ import { FileUpload } from '@/components/file-upload';
 import { StatsCard } from '@/components/stats-card';
 import { ErrorAlert } from '@/components/error-alert';
 import { SuccessMessage } from '@/components/success-message';
-import { parseWiseCSV, generateLexOfficeCSV, downloadCSV, generateFilename } from '@/lib/csv-utils';
-import { convertWiseToLexOffice, calculateStats } from '@/lib/converter';
+import { PreviewContainer } from '@/components/preview/preview-container';
+import { parseWiseCSV } from '@/lib/csv-utils';
+import { calculateStats } from '@/lib/converter';
 import { trackFileUpload, trackConversionSuccess, trackConversionError } from '@/lib/analytics';
 import { ERROR_MESSAGES } from '@/lib/constants';
-import type { ConversionStats } from '@/lib/converter';
+import type { ConversionStats, WiseRow } from '@/lib/converter';
 
 // Timeout for file processing (30 seconds)
 const PROCESSING_TIMEOUT_MS = 30000;
 
-type AppStatus = 'idle' | 'processing' | 'success' | 'error';
+type AppStatus = 'idle' | 'processing' | 'preview' | 'success' | 'error';
 
 interface AppState {
   status: AppStatus;
   file: File | null;
   error: string | null;
   stats: ConversionStats | null;
+  wiseData: WiseRow[];
 }
 
 /**
@@ -46,6 +48,7 @@ export default function ConverterPage() {
     file: null,
     error: null,
     stats: null,
+    wiseData: [],
   });
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -55,6 +58,7 @@ export default function ConverterPage() {
       file: null,
       error,
       stats: null,
+      wiseData: [],
     });
   }, []);
 
@@ -65,6 +69,7 @@ export default function ConverterPage() {
       file,
       error: null,
       stats: null,
+      wiseData: [],
     });
 
     // Set up timeout for long-running operations
@@ -87,37 +92,22 @@ export default function ConverterPage() {
           // Parse Wise CSV
           const wiseData = parseWiseCSV(text);
 
-          // Convert to LexOffice format
-          const lexOfficeData = convertWiseToLexOffice(wiseData);
-
-          if (lexOfficeData.length === 0) {
-            throw new Error(ERROR_MESSAGES.NO_VALID_TRANSACTIONS);
+          if (wiseData.length === 0) {
+            throw new Error(ERROR_MESSAGES.EMPTY_FILE);
           }
-
-          // Generate CSV content
-          const csvContent = generateLexOfficeCSV(lexOfficeData);
-
-          // Auto-download
-          const filename = generateFilename();
-          downloadCSV(csvContent, filename);
-
-          // Calculate statistics
-          const stats = calculateStats(wiseData);
-
-          // Track successful conversion (privacy-friendly - only transaction count category)
-          trackConversionSuccess(stats.total);
 
           // Clear timeout on success
           if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
           }
 
-          // Update state to success
+          // Update state to preview mode
           setState({
-            status: 'success',
+            status: 'preview',
             file,
             error: null,
-            stats,
+            stats: null,
+            wiseData,
           });
         })(),
         timeoutPromise,
@@ -138,9 +128,32 @@ export default function ConverterPage() {
         file,
         error: error instanceof Error ? error.message : ERROR_MESSAGES.UNKNOWN_ERROR,
         stats: null,
+        wiseData: [],
       });
     }
   }, []);
+
+  const handleDataChange = useCallback((newData: WiseRow[]) => {
+    setState((prev) => ({
+      ...prev,
+      wiseData: newData,
+    }));
+  }, []);
+
+  const handleConvert = useCallback(() => {
+    // Calculate statistics
+    const stats = calculateStats(state.wiseData);
+
+    // Track successful conversion (privacy-friendly - only transaction count category)
+    trackConversionSuccess(stats.total);
+
+    // Update state to success
+    setState((prev) => ({
+      ...prev,
+      status: 'success',
+      stats,
+    }));
+  }, [state.wiseData]);
 
   const handleReset = useCallback(() => {
     // Clear any pending timeout
@@ -152,8 +165,25 @@ export default function ConverterPage() {
       file: null,
       error: null,
       stats: null,
+      wiseData: [],
     });
   }, []);
+
+  const handleCancelPreview = useCallback(() => {
+    handleReset();
+  }, [handleReset]);
+
+  // Preview mode - show the preview container
+  if (state.status === 'preview') {
+    return (
+      <PreviewContainer
+        wiseData={state.wiseData}
+        onDataChange={handleDataChange}
+        onConvert={handleConvert}
+        onCancel={handleCancelPreview}
+      />
+    );
+  }
 
   return (
     <>
@@ -181,7 +211,7 @@ export default function ConverterPage() {
               href="/hilfe"
               className="text-primary hover:text-primary/80 font-medium transition-colors underline"
             >
-              📖 Anleitung ansehen
+              Anleitung ansehen
             </a>
           </div>
         </header>
@@ -203,9 +233,10 @@ export default function ConverterPage() {
                   </h3>
                   <ol className="list-decimal list-inside space-y-1 text-blue-800 text-sm">
                     <li>Laden Sie Ihre Wise CSV-Exportdatei hoch (max. 5 MB)</li>
-                    <li>Die Datei wird automatisch validiert und konvertiert</li>
-                    <li>Die konvertierte Datei wird automatisch heruntergeladen</li>
-                    <li>Importieren Sie die Datei in Lexware Office unter <strong>Banking → Konten → Transaktionen importieren</strong></li>
+                    <li><strong>Neu:</strong> Vorschau und Validierung Ihrer Daten</li>
+                    <li>Bearbeiten Sie fehlerhafte Transaktionen direkt</li>
+                    <li>Vergleichen Sie Quell- und Zielformat</li>
+                    <li>Laden Sie die konvertierte Datei herunter</li>
                   </ol>
                   <p className="mt-3 text-xs text-blue-700">
                     <strong>Hinweis:</strong> Lexware Office prüft nicht auf Duplikate. Stellen Sie sicher, dass Sie nur neue Transaktionen importieren.{' '}
