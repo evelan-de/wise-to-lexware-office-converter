@@ -163,15 +163,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           );
         }
 
-        // Numbered lists
+        // Numbered lists - render number explicitly to ensure correct numbering
         const numberedMatch = line.match(/^(\d+)\.\s(.+)$/);
         if (numberedMatch) {
           return (
-            <li
-              key={index}
-              className="ml-4 my-1 list-decimal list-inside"
-              dangerouslySetInnerHTML={{ __html: formatInlineText(numberedMatch[2]) }}
-            />
+            <div key={index} className="ml-4 my-1 flex gap-2">
+              <span className="font-semibold text-foreground min-w-[1.5rem] flex-shrink-0">{numberedMatch[1]}.</span>
+              <span dangerouslySetInnerHTML={{ __html: formatInlineText(numberedMatch[2]) }} />
+            </div>
           );
         }
 

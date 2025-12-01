@@ -188,25 +188,11 @@ Für Freelancer empfehlen wir das **Wise Business**-Konto:
 
 Da Wise keine direkte Integration mit Lexware Office bietet, müssen Sie Ihre Transaktionen manuell importieren. Unser kostenloser [Wise zu Lexware Office Konverter](/) macht diesen Prozess einfach:
 
-1. Exportieren Sie Ihre Transaktionen als CSV aus Wise
-2. Laden Sie die Datei in unseren Konverter
-3. Importieren Sie die konvertierte Datei in Lexware Office
+- Exportieren Sie Ihre Transaktionen als CSV aus Wise
+- Laden Sie die Datei in unseren Konverter
+- Importieren Sie die konvertierte Datei in Lexware Office
 
 So haben Sie alle Ihre Wise-Transaktionen sauber in Ihrer Buchhaltung.
-
-## Steuerliche Hinweise für Freelancer
-
-### Umsatzsteuer bei internationalen Kunden
-
-Bei Dienstleistungen an Geschäftskunden im EU-Ausland gilt das **Reverse-Charge-Verfahren**. Sie stellen die Rechnung ohne Umsatzsteuer aus und vermerken:
-
-> "Steuerschuldnerschaft des Leistungsempfängers gemäß § 13b UStG"
-
-Für Kunden außerhalb der EU ist die Leistung generell umsatzsteuerfrei.
-
-### Währungsgewinne und -verluste
-
-Bei Zahlungen in Fremdwährung können Kursgewinne oder -verluste entstehen. Diese müssen in der Buchhaltung erfasst werden. Wise zeigt Ihnen den genauen Wechselkurs bei jeder Transaktion.
 
 ## Fazit
 
@@ -358,7 +344,7 @@ Offline-Konten in Lexware Office sind die perfekte Lösung für Banken ohne dire
   {
     slug: 'internationale-zahlungen-freelancer-buchhaltung',
     title: 'Internationale Zahlungen als Freelancer: Buchhaltung richtig organisieren',
-    description: 'Leitfaden für deutsche Freelancer zur korrekten Buchhaltung internationaler Zahlungen. Umsatzsteuer, Reverse-Charge, Währungsumrechnung und mehr.',
+    description: 'Praktische Tipps für deutsche Freelancer zur Organisation internationaler Zahlungen. Zahlungsmethoden, Währungsmanagement und Buchhaltung mit Lexware Office.',
     publishedAt: '2024-10-28',
     author: {
       name: 'Evelan GmbH',
@@ -367,83 +353,28 @@ Offline-Konten in Lexware Office sind die perfekte Lösung für Banken ohne dire
     keywords: [
       'internationale Zahlungen',
       'Freelancer Buchhaltung',
-      'Umsatzsteuer international',
-      'Reverse-Charge',
       'Währungsumrechnung',
-      'Auslandsrechnung',
+      'Wise Freelancer',
+      'Lexware Office',
+      'Multi-Währung',
     ],
     category: 'guide',
-    readingTime: 12,
+    readingTime: 8,
     content: `
 ## Die Herausforderung internationaler Zahlungen
 
-Als Freelancer in Deutschland mit internationalen Kunden müssen Sie verschiedene buchhalterische Aspekte beachten:
+Als Freelancer in Deutschland mit internationalen Kunden stehen Sie vor praktischen Herausforderungen:
 
-- Umsatzsteuerliche Behandlung
-- Währungsumrechnung
-- Dokumentationspflichten
-- Bankkonto-Management
+- Welche Zahlungsmethode ist die günstigste?
+- Wie manage ich verschiedene Währungen?
+- Wie dokumentiere ich Wechselkurse?
+- Wie halte ich meine Buchhaltung übersichtlich?
 
-Dieser Leitfaden hilft Ihnen, Ihre Buchhaltung korrekt zu organisieren.
+Dieser Leitfaden gibt praktische Tipps zur Organisation.
 
-## Umsatzsteuer bei internationalen Kunden
+## Zahlungsmethoden im Vergleich
 
-### Kunden im EU-Ausland (B2B)
-
-Bei Geschäftskunden mit gültiger USt-IdNr. im EU-Ausland gilt das **Reverse-Charge-Verfahren** (Umkehr der Steuerschuldnerschaft):
-
-- Sie stellen die Rechnung **ohne Umsatzsteuer** aus
-- Der Kunde schuldet die Steuer in seinem Land
-- Pflichtangabe auf der Rechnung: *"Steuerschuldnerschaft des Leistungsempfängers gem. § 13b UStG"*
-- Sie melden die Leistung in der **Zusammenfassenden Meldung (ZM)**
-
-**Wichtig:** Prüfen Sie die USt-IdNr. Ihres Kunden unter [ec.europa.eu/taxation_customs/vies](https://ec.europa.eu/taxation_customs/vies/)
-
-### Kunden außerhalb der EU (Drittland)
-
-Dienstleistungen an Geschäftskunden in Drittländern sind generell **nicht steuerbar** in Deutschland:
-
-- Rechnung ohne Umsatzsteuer
-- Hinweis: *"Nicht steuerbare sonstige Leistung gem. § 3a Abs. 2 UStG"*
-- Keine Meldung in der ZM erforderlich
-
-### Privatkunden im Ausland
-
-Bei Privatkunden gelten komplexere Regeln je nach Art der Dienstleistung. Im Zweifel konsultieren Sie einen Steuerberater.
-
-## Währungsumrechnung in der Buchhaltung
-
-### Wann muss umgerechnet werden?
-
-Ihre Buchhaltung muss in Euro geführt werden. Zahlungen in Fremdwährung müssen umgerechnet werden:
-
-1. **Bei Rechnungsstellung** – Für die Umsatzsteuer-Voranmeldung
-2. **Bei Zahlungseingang** – Für die Gewinnermittlung
-
-### Welcher Kurs gilt?
-
-Das Finanzamt akzeptiert folgende Kurse:
-
-- **Offizieller EZB-Referenzkurs** am Tag der Transaktion
-- **Durchschnittskurs** des Monats (vereinfachte Methode)
-
-**Tipp:** Wise zeigt Ihnen bei jeder Transaktion den exakten Wechselkurs – dokumentieren Sie diesen.
-
-### Kursgewinne und -verluste
-
-Liegt zwischen Rechnungsstellung und Zahlung eine Kursänderung vor, entstehen:
-
-- **Kursgewinne** (Einnahmen)
-- **Kursverluste** (Betriebsausgaben)
-
-**Beispiel:**
-1. Rechnung über 1.000 USD am 01.10. (Kurs: 1,08 = 925,93 EUR)
-2. Zahlung am 15.10. (Kurs: 1,05 = 952,38 EUR)
-3. **Kursgewinn:** 26,45 EUR
-
-## Zahlungsmethoden für internationale Kunden
-
-### Empfohlene Optionen
+### Überblick der Optionen
 
 | Methode | Vorteile | Nachteile |
 |---------|----------|-----------|
@@ -462,6 +393,30 @@ Wise bietet lokale Bankverbindungen in über 10 Ländern:
 
 Sie zahlen nur Gebühren, wenn Sie Währungen umtauschen möchten.
 
+### Gebührenvergleich bei 1.000 USD
+
+| Anbieter | Typische Gebühren | Sie erhalten ca. |
+|----------|-------------------|------------------|
+| Wise | ~5 EUR | ~920 EUR |
+| PayPal | ~35 EUR | ~890 EUR |
+| Bank (SWIFT) | ~25-50 EUR | ~875 EUR |
+
+## Währungsmanagement
+
+### Dokumentation der Wechselkurse
+
+Bei Zahlungen in Fremdwährung sollten Sie den Wechselkurs dokumentieren:
+
+- **Wise** zeigt bei jeder Transaktion den exakten Kurs
+- Speichern Sie Screenshots oder PDF-Belege
+- Notieren Sie Datum und Kurs in Ihrer Buchhaltung
+
+### Praktischer Workflow
+
+- Zahlungen in der Originalwährung empfangen
+- Nur bei Bedarf in Euro umtauschen
+- Wechselkurs bei Umtausch dokumentieren
+
 ## Buchhaltung mit Lexware Office organisieren
 
 ### Separate Konten anlegen
@@ -474,10 +429,10 @@ Für jede Währung/Bank ein eigenes Konto in Lexware Office:
 
 ### Regelmäßiger Import
 
-1. Wöchentlich oder monatlich Transaktionen exportieren
-2. Mit unserem [Wise Konverter](/) umwandeln
-3. In Lexware Office importieren
-4. Transaktionen kategorisieren
+- Wöchentlich oder monatlich Transaktionen exportieren
+- Mit unserem [Wise Konverter](/) umwandeln
+- In Lexware Office importieren
+- Transaktionen kategorisieren
 
 ### Belege verknüpfen
 
@@ -485,38 +440,31 @@ Verknüpfen Sie Zahlungseingänge mit den entsprechenden Rechnungen. So haben Si
 
 ## Checkliste für internationale Zahlungen
 
-### Bei der Rechnungsstellung:
+### Bei der Rechnungsstellung
 
-- [ ] USt-IdNr. des Kunden geprüft (EU)
-- [ ] Korrekter Hinweis zur Steuerschuldnerschaft
 - [ ] Internationale Bankverbindung angegeben (IBAN/BIC oder lokale Details)
 - [ ] Währung klar ausgewiesen
 - [ ] Zahlungsziel definiert
 
-### Bei Zahlungseingang:
+### Bei Zahlungseingang
 
 - [ ] Wechselkurs dokumentiert
 - [ ] Transaktion in Buchhaltung erfasst
-- [ ] Kursgewinn/-verlust berechnet (falls relevant)
-- [ ] Beleg verknüpft
+- [ ] Beleg gespeichert
 
-### Monatlich:
+### Regelmäßig
 
-- [ ] Zusammenfassende Meldung (EU-Kunden)
-- [ ] Umsatzsteuer-Voranmeldung
-- [ ] Kontenabgleich
+- [ ] Transaktionen in Lexware Office importieren
+- [ ] Kontenabgleich durchführen
+- [ ] Belege verknüpfen
 
 ## Fazit
 
-Die Buchhaltung internationaler Zahlungen erfordert etwas mehr Aufwand, ist aber mit den richtigen Tools gut zu bewältigen. Wise als Zahlungsanbieter und Lexware Office als Buchhaltungssoftware sind eine starke Kombination für Freelancer.
+Mit den richtigen Tools ist die Verwaltung internationaler Zahlungen gut zu bewältigen. Wise als Zahlungsanbieter und Lexware Office als Buchhaltungssoftware sind eine praktische Kombination für Freelancer.
 
 Mit unserem kostenlosen Konverter wird der regelmäßige Import Ihrer Wise-Transaktionen zum Kinderspiel.
 
 [Wise-Transaktionen für Lexware Office konvertieren →](/)
-
----
-
-*Hinweis: Dieser Artikel dient nur der Information und ersetzt keine steuerliche Beratung. Bei komplexen Sachverhalten konsultieren Sie bitte einen Steuerberater.*
     `,
   },
   {
