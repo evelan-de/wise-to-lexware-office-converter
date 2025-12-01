@@ -32,6 +32,7 @@
 
 ### User Experience
 - 🎨 **Modern UI** built with Shadcn/ui and Tailwind CSS
+- 🌓 **Dark/Light Mode** - toggle between themes based on your preference or system setting
 - 📊 **Statistics dashboard** showing transaction breakdown
 - 🔄 **Smart detection** of DEBIT/CREDIT transactions
 - 💱 **Exchange rate preservation** in additional info field
@@ -59,6 +60,7 @@
 - **Tailwind CSS** - Utility-first CSS framework
 - **Shadcn/ui** - Beautiful, accessible component library
 - **Lucide React** - Crisp icon library
+- **next-themes** - Theme management for dark/light mode
 
 ### Data Processing
 - **Papaparse** - Robust CSV parsing with error handling
@@ -434,6 +436,7 @@ See [docs/TESTING.md](./docs/TESTING.md) for detailed testing documentation.
 See [docs/ROADMAP.md](./docs/ROADMAP.md) for the complete feature roadmap.
 
 ### ✅ Recently Completed
+- 🌓 **Dark/Light Mode** - Theme switcher with system preference detection
 - 👁️ **Data Preview & Validation** - Interactive preview with inline editing
 - 🔍 **Search & Filter** - Full-text search and status filtering
 - 🔄 **Comparison View** - Side-by-side Wise → Lexware Office transformation

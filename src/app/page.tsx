@@ -6,6 +6,7 @@ import { StatsCard } from '@/components/stats-card';
 import { ErrorAlert } from '@/components/error-alert';
 import { SuccessMessage } from '@/components/success-message';
 import { PreviewContainer } from '@/components/preview/preview-container';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 import { parseWiseCSV } from '@/lib/csv-utils';
 import { calculateStats } from '@/lib/converter';
 import { trackFileUpload, trackConversionSuccess, trackConversionError } from '@/lib/analytics';
@@ -187,26 +188,31 @@ export default function ConverterPage() {
 
   return (
     <>
+      {/* Theme Switcher */}
+      <div className="absolute top-4 right-4">
+        <ThemeSwitcher />
+      </div>
+
       {/* Header */}
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">
+          <h1 className="text-4xl font-bold text-foreground mb-3">
             WISE zu Lexware Office Konverter
           </h1>
-          <p className="text-lg text-gray-600 mb-2">
+          <p className="text-lg text-muted-foreground mb-2">
             Wandeln Sie Wise CSV-Exporte in das Lexware Office Bankimport-Format um
           </p>
-          <p className="text-sm text-gray-500 mb-4">
+          <p className="text-sm text-muted-foreground/80 mb-4">
             Für Lexware Office: Banking → Konten → Transaktionen importieren
           </p>
           <div className="flex items-center justify-center gap-4 text-sm">
-            <span className="text-green-600 font-medium">
+            <span className="text-green-600 dark:text-green-400 font-medium">
               ✓ 100% Datenschutz
             </span>
-            <span className="text-gray-300">•</span>
-            <span className="text-green-600 font-medium">
+            <span className="text-muted-foreground/50">•</span>
+            <span className="text-green-600 dark:text-green-400 font-medium">
               ✓ Keine Server-Uploads
             </span>
-            <span className="text-gray-300">•</span>
+            <span className="text-muted-foreground/50">•</span>
             <a
               href="/hilfe"
               className="text-primary hover:text-primary/80 font-medium transition-colors underline"
@@ -220,27 +226,27 @@ export default function ConverterPage() {
         <div className="space-y-6">
           {/* Info Box */}
           {state.status === 'idle' && (
-            <div className="bg-blue-50 rounded-xl border border-blue-200 p-6">
+            <div className="bg-blue-50 dark:bg-blue-950/40 rounded-xl border border-blue-200 dark:border-blue-800 p-6">
               <div className="flex gap-3">
                 <div className="flex-shrink-0">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-blue-900 mb-2">
+                  <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">
                     So funktioniert&apos;s
                   </h3>
-                  <ol className="list-decimal list-inside space-y-1 text-blue-800 text-sm">
+                  <ol className="list-decimal list-inside space-y-1 text-blue-800 dark:text-blue-200 text-sm">
                     <li>Laden Sie Ihre Wise CSV-Exportdatei hoch (max. 5 MB)</li>
                     <li><strong>Neu:</strong> Vorschau und Validierung Ihrer Daten</li>
                     <li>Bearbeiten Sie fehlerhafte Transaktionen direkt</li>
                     <li>Vergleichen Sie Quell- und Zielformat</li>
                     <li>Laden Sie die konvertierte Datei herunter</li>
                   </ol>
-                  <p className="mt-3 text-xs text-blue-700">
+                  <p className="mt-3 text-xs text-blue-700 dark:text-blue-300">
                     <strong>Hinweis:</strong> Lexware Office prüft nicht auf Duplikate. Stellen Sie sicher, dass Sie nur neue Transaktionen importieren.{' '}
-                    <a href="/hilfe" className="underline hover:text-blue-900">Mehr erfahren</a>
+                    <a href="/hilfe" className="underline hover:text-blue-900 dark:hover:text-blue-100">Mehr erfahren</a>
                   </p>
                 </div>
               </div>
@@ -265,7 +271,7 @@ export default function ConverterPage() {
           {/* Statistics */}
           {state.status === 'success' && state.stats && (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-foreground mb-4">
                 Konvertierungsstatistik
               </h2>
               <StatsCard stats={state.stats} />

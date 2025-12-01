@@ -89,6 +89,7 @@
 - **React Dropzone** - File Upload UI ✅
 - **Shadcn UI** - Component Library ✅
 - **Lucide React** - Icons ✅
+- **next-themes** - Dark/Light mode theme management ✅
 
 ### Analytics:
 - **Umami Analytics** - Privacy-friendly, self-hosted analytics ✅
@@ -134,7 +135,9 @@ wise-lexoffice-import/
 │   │   ├── file-upload.tsx         # File upload with drag & drop
 │   │   ├── footer.tsx              # Footer with links
 │   │   ├── stats-card.tsx          # Statistics display
-│   │   └── success-message.tsx     # Success confirmation
+│   │   ├── success-message.tsx     # Success confirmation
+│   │   ├── theme-provider.tsx      # Theme context provider (next-themes)
+│   │   └── theme-switcher.tsx      # Dark/Light mode toggle button
 │   ├── types/
 │   │   └── umami.d.ts              # Umami Analytics TypeScript types
 │   └── lib/
