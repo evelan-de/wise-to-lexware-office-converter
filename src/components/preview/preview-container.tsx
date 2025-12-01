@@ -232,21 +232,21 @@ export function PreviewContainer({
       )}
 
       {/* Action Bar */}
-      <div className="flex items-center justify-between pt-4 border-t">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t">
         <div className="text-sm text-gray-500">
           {canConvert ? (
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-green-500" />
+              <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
               {convertedData.length} Transaktionen bereit zur Konvertierung
             </span>
           ) : (
             <span className="flex items-center gap-2 text-red-600">
-              <AlertCircle className="w-4 h-4" />
+              <AlertCircle className="w-5 h-5 flex-shrink-0" />
               Bitte korrigieren Sie zuerst alle Fehler
             </span>
           )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           {step === 'source' && (
             <Button
               variant="outline"
@@ -260,9 +260,9 @@ export function PreviewContainer({
           <Button
             onClick={handleDownload}
             disabled={!canConvert}
-            className="gap-2"
+            className="gap-2 whitespace-nowrap"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-4 h-4 flex-shrink-0" />
             Konvertieren & Herunterladen
           </Button>
         </div>

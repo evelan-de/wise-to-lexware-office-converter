@@ -21,7 +21,8 @@
       "Bash(npm run test:*)",
       "Bash(curl:*)",
       "Bash(npm run lint)",
-      "WebFetch(domain:evelan.de)"
+      "WebFetch(domain:evelan.de)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
