@@ -25,15 +25,15 @@ export function StatsCard({ stats }: StatsCardProps) {
       {/* Total Transactions */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-gray-600">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
             Gesamt Transaktionen
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-3xl font-bold text-foreground">{stats.total}</p>
+              <p className="text-xs text-muted-foreground mt-1">
                 {stats.debit} Ausgaben, {stats.credit} Eingänge
               </p>
             </div>
@@ -47,18 +47,18 @@ export function StatsCard({ stats }: StatsCardProps) {
       {/* Debit Transactions */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-gray-600">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
             Ausgaben
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-3xl font-bold text-gray-900">{stats.debit}</p>
-              <p className="text-xs text-gray-500 mt-1">DEBIT Transaktionen</p>
+              <p className="text-3xl font-bold text-foreground">{stats.debit}</p>
+              <p className="text-xs text-muted-foreground mt-1">DEBIT Transaktionen</p>
             </div>
-            <div className="rounded-full bg-red-50 p-3">
-              <TrendingDown className="w-6 h-6 text-red-600" />
+            <div className="rounded-full bg-red-50 dark:bg-red-950/50 p-3">
+              <TrendingDown className="w-6 h-6 text-red-600 dark:text-red-400" />
             </div>
           </div>
         </CardContent>
@@ -67,18 +67,18 @@ export function StatsCard({ stats }: StatsCardProps) {
       {/* Credit Transactions */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-gray-600">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
             Eingänge
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-3xl font-bold text-gray-900">{stats.credit}</p>
-              <p className="text-xs text-gray-500 mt-1">CREDIT Transaktionen</p>
+              <p className="text-3xl font-bold text-foreground">{stats.credit}</p>
+              <p className="text-xs text-muted-foreground mt-1">CREDIT Transaktionen</p>
             </div>
-            <div className="rounded-full bg-green-50 p-3">
-              <TrendingUp className="w-6 h-6 text-green-600" />
+            <div className="rounded-full bg-green-50 dark:bg-green-950/50 p-3">
+              <TrendingUp className="w-6 h-6 text-green-600 dark:text-green-400" />
             </div>
           </div>
         </CardContent>
@@ -87,15 +87,15 @@ export function StatsCard({ stats }: StatsCardProps) {
       {/* Total Amount - Full Width */}
       <Card className="md:col-span-3">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-gray-600">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
             Gesamtbetrag
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-4xl font-bold text-gray-900">
+          <p className="text-4xl font-bold text-foreground">
             {formatAmount(stats.totalAmount)}
           </p>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Netto-Betrag aller Transaktionen
           </p>
         </CardContent>

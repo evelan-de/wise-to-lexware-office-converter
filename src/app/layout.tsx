@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Footer } from "@/components/footer";
 import { Analytics } from "@/components/analytics";
 import { ClientWrapper } from "@/components/client-wrapper";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -169,7 +170,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="de">
+    <html lang="de" suppressHydrationWarning>
       <head>
         {/* Structured Data */}
         <Script
@@ -186,14 +187,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="min-h-screen flex flex-col">
-          <div className="flex-1 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-            <div className="max-w-4xl mx-auto px-4 py-12">
-              <ClientWrapper>{children}</ClientWrapper>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-screen flex flex-col">
+            <div className="flex-1 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+              <div className="max-w-4xl mx-auto px-4 py-12">
+                <ClientWrapper>{children}</ClientWrapper>
+              </div>
             </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );
