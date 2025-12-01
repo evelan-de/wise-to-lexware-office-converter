@@ -9,7 +9,6 @@ import {
   filterByIndices,
   sortWiseData,
   paginateData,
-  exportToExcel,
   type FilterOptions,
   DEFAULT_FILTER_OPTIONS,
 } from '../filters';
@@ -370,28 +369,3 @@ describe('paginateData', () => {
   });
 });
 
-describe('exportToExcel', () => {
-  it('should export data to TSV format', () => {
-    const data: WiseRow[] = [
-      createWiseRow({
-        'TransferWise ID': 'TEST-1',
-        Date: '29-09-2025',
-        Amount: '-100.00',
-        Currency: 'EUR',
-        Description: 'Test',
-        'Payment Reference': 'REF-1',
-        'Payer Name': '',
-        'Payee Name': 'John',
-        'Transaction Type': 'DEBIT',
-      }),
-    ];
-
-    const content = exportToExcel(data);
-    const lines = content.split('\n');
-
-    expect(lines[0]).toBe('TransferWise ID\tDate\tAmount\tCurrency\tDescription\tPayment Reference\tPayer Name\tPayee Name\tTransaction Type');
-    expect(lines[1]).toContain('TEST-1');
-    expect(lines[1]).toContain('29-09-2025');
-    expect(lines[1]).toContain('-100.00');
-  });
-});

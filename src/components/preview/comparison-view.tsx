@@ -19,14 +19,12 @@ import {
   Search,
   ChevronLeft,
   ChevronRight,
-  FileSpreadsheet,
 } from 'lucide-react';
 import type { WiseRow, LexOfficeRow } from '@/lib/converter';
 import { convertWiseToLexOffice } from '@/lib/converter';
 import {
   filterWiseData,
   paginateData,
-  downloadAsExcel,
   type FilterOptions,
   DEFAULT_FILTER_OPTIONS,
 } from '@/lib/filters';
@@ -84,12 +82,6 @@ export function ComparisonView({ wiseData }: ComparisonViewProps) {
     downloadCSV(csvContent, filename);
   };
 
-  const handleExportExcel = () => {
-    const allFiltered = filterWiseData(wiseData, filters);
-    const timestamp = new Date().toISOString().slice(0, 10);
-    downloadAsExcel(allFiltered, `wise_export_${timestamp}.xls`);
-  };
-
   return (
     <div className="space-y-6">
       {/* Header with actions */}
@@ -100,21 +92,10 @@ export function ComparisonView({ wiseData }: ComparisonViewProps) {
             Vergleich zwischen Wise-Daten und Lexware Office-Format
           </p>
         </div>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleExportExcel}
-            className="gap-2"
-          >
-            <FileSpreadsheet className="w-4 h-4" />
-            Als Excel
-          </Button>
-          <Button size="sm" onClick={handleDownloadFiltered} className="gap-2">
-            <Download className="w-4 h-4" />
-            Gefilterte herunterladen
-          </Button>
-        </div>
+        <Button size="sm" onClick={handleDownloadFiltered} className="gap-2">
+          <Download className="w-4 h-4" />
+          Gefilterte herunterladen
+        </Button>
       </div>
 
       {/* Search */}
