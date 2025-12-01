@@ -76,11 +76,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     day: 'numeric',
   });
 
+  // Helper function to format inline markdown (bold, italic, code, links)
+  const formatInlineText = (text: string): string => {
+    return text
+      .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code class="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:text-primary/80 underline">$1</a>');
+  };
+
   // Simple markdown-like rendering (basic)
   const renderContent = (content: string) => {
+    const lines = content.split('\n');
+
     // Process the content to add styling
-    return content
-      .split('\n')
+    return lines
       .map((line, index) => {
         // Headers
         if (line.startsWith('## ')) {
@@ -88,9 +98,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <h2
               key={index}
               className="text-2xl font-semibold text-foreground mt-8 mb-4"
-            >
-              {line.slice(3)}
-            </h2>
+              dangerouslySetInnerHTML={{ __html: formatInlineText(line.slice(3)) }}
+            />
           );
         }
         if (line.startsWith('### ')) {
@@ -98,9 +107,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <h3
               key={index}
               className="text-xl font-semibold text-foreground mt-6 mb-3"
-            >
-              {line.slice(4)}
-            </h3>
+              dangerouslySetInnerHTML={{ __html: formatInlineText(line.slice(4)) }}
+            />
           );
         }
 
@@ -120,45 +128,38 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <blockquote
               key={index}
               className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4"
-            >
-              {line.slice(2)}
-            </blockquote>
+              dangerouslySetInnerHTML={{ __html: formatInlineText(line.slice(2)) }}
+            />
           );
         }
 
         // Lists
         if (line.startsWith('- ')) {
-          const content = line.slice(2);
+          const itemContent = line.slice(2);
           // Check for checkboxes
-          if (content.startsWith('[ ] ')) {
+          if (itemContent.startsWith('[ ] ')) {
             return (
               <li key={index} className="flex items-start gap-2 ml-4">
                 <input type="checkbox" disabled className="mt-1" />
-                <span>{content.slice(4)}</span>
+                <span dangerouslySetInnerHTML={{ __html: formatInlineText(itemContent.slice(4)) }} />
               </li>
             );
           }
           // Check for checked items
-          if (content.startsWith('[x] ') || content.startsWith('[X] ')) {
+          if (itemContent.startsWith('[x] ') || itemContent.startsWith('[X] ')) {
             return (
               <li key={index} className="flex items-start gap-2 ml-4">
                 <input type="checkbox" checked disabled className="mt-1" />
-                <span>{content.slice(4)}</span>
-              </li>
-            );
-          }
-          // Regular list items with checkmarks
-          if (content.includes('✅') || content.includes('❌')) {
-            return (
-              <li key={index} className="ml-4 my-1">
-                {content}
+                <span dangerouslySetInnerHTML={{ __html: formatInlineText(itemContent.slice(4)) }} />
               </li>
             );
           }
           return (
-            <li key={index} className="ml-4 my-1 list-disc list-inside">
-              {content}
-            </li>
+            <li
+              key={index}
+              className="ml-4 my-1 list-disc list-inside"
+              dangerouslySetInnerHTML={{ __html: formatInlineText(itemContent) }}
+            />
           );
         }
 
@@ -166,9 +167,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         const numberedMatch = line.match(/^(\d+)\.\s(.+)$/);
         if (numberedMatch) {
           return (
-            <li key={index} className="ml-4 my-1 list-decimal list-inside">
-              {numberedMatch[2]}
-            </li>
+            <li
+              key={index}
+              className="ml-4 my-1 list-decimal list-inside"
+              dangerouslySetInnerHTML={{ __html: formatInlineText(numberedMatch[2]) }}
+            />
           );
         }
 
@@ -179,20 +182,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           if (cells.every((cell) => /^[-:]+$/.test(cell))) {
             return null;
           }
-          const isHeader = index > 0 && content.split('\n')[index - 1]?.startsWith('|');
+          const prevLine = lines[index - 1];
+          const isBodyRow = prevLine && (prevLine.includes('---') || prevLine.includes('-|-'));
           return (
             <tr key={index} className="border-b border-border">
-              {cells.map((cell, cellIndex) => (
-                isHeader ? (
-                  <td key={cellIndex} className="py-2 px-3 text-muted-foreground">
-                    {cell}
-                  </td>
+              {cells.map((cell, cellIndex) =>
+                isBodyRow ? (
+                  <td
+                    key={cellIndex}
+                    className="py-2 px-3 text-muted-foreground"
+                    dangerouslySetInnerHTML={{ __html: formatInlineText(cell) }}
+                  />
                 ) : (
-                  <th key={cellIndex} className="py-2 px-3 font-semibold text-foreground text-left">
-                    {cell}
-                  </th>
+                  <th
+                    key={cellIndex}
+                    className="py-2 px-3 font-semibold text-foreground text-left"
+                    dangerouslySetInnerHTML={{ __html: formatInlineText(cell) }}
+                  />
                 )
-              ))}
+              )}
             </tr>
           );
         }
@@ -203,17 +211,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         }
 
         // Regular paragraphs with inline formatting
-        const formattedLine = line
-          .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
-          .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-          .replace(/`([^`]+)`/g, '<code class="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">$1</code>')
-          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:text-primary/80 underline">$1</a>');
-
         return (
           <p
             key={index}
             className="text-muted-foreground my-2 leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: formattedLine }}
+            dangerouslySetInnerHTML={{ __html: formatInlineText(line) }}
           />
         );
       })
