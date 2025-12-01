@@ -47,6 +47,12 @@ export const metadata: Metadata = {
     "Kontoumsätze",
     "Finanzen",
     "Deutschland",
+    "Freelancer",
+    "Selbstständige",
+    "Internationale Zahlungen",
+    "Offline-Konto",
+    "Drittbank",
+    "Neobank",
   ],
   authors: [
     {
