@@ -4,8 +4,8 @@
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
-[![Tests](https://img.shields.io/badge/Tests-73%20passing-success)](./docs/TESTING.md)
-[![Coverage](https://img.shields.io/badge/Coverage-76%25-green)](./docs/TESTING.md)
+[![Tests](https://img.shields.io/badge/Tests-169%20passing-success)](./docs/TESTING.md)
+[![Coverage](https://img.shields.io/badge/Coverage-87%25-green)](./docs/TESTING.md)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![GitHub](https://img.shields.io/github/stars/evelan-de/wise-to-lexware-office-converter?style=social)](https://github.com/evelan-de/wise-to-lexware-office-converter)
 
@@ -20,6 +20,16 @@
 - 🎯 **CSV injection prevention** - secure output formatting
 - 🌍 **German locale** - proper formatting for Lexware Office (commas, date format)
 
+### Data Preview & Validation (New!)
+- 👁️ **Interactive data preview** - review all transactions before conversion
+- ✏️ **Inline row editing** - fix errors directly in the browser
+- 🔍 **Smart filtering** - filter by validation status (valid/warnings/errors)
+- 🔎 **Full-text search** - search across all transaction fields
+- 📊 **Validation summary** - see errors, warnings, and valid rows at a glance
+- ⚠️ **Detailed validation** - check dates, amounts, transaction types, and more
+- 🔄 **Comparison view** - side-by-side view of Wise input → Lexware Office output
+- 📋 **Pagination** - handle large files with smooth pagination
+
 ### User Experience
 - 🎨 **Modern UI** built with Shadcn/ui and Tailwind CSS
 - 📊 **Statistics dashboard** showing transaction breakdown
@@ -32,7 +42,7 @@
 - 🌐 **Fully German** - all UI elements and documentation in German
 
 ### Developer Experience
-- 🧪 **Comprehensive test suite** - 73 tests with 76% coverage
+- 🧪 **Comprehensive test suite** - 169 tests with 87% coverage
 - 📝 **Full documentation** - testing guide, roadmap, technical specs
 - 🛠️ **Test data generator** - create random Wise exports for development
 - 🔍 **Type-safe** - TypeScript with strict mode
@@ -56,7 +66,7 @@
 - **Intl.NumberFormat** - Proper German locale formatting
 
 ### Testing & Quality
-- **Jest** - Test framework with 73 passing tests
+- **Jest** - Test framework with 169 passing tests
 - **React Testing Library** - Component testing best practices
 - **@testing-library/jest-dom** - Custom DOM matchers
 
@@ -152,14 +162,21 @@ wise-to-lexware-office-converter/
 │   │   ├── error-alert.tsx    # Error messages
 │   │   ├── success-message.tsx # Success confirmation
 │   │   ├── footer.tsx         # Reusable footer component
+│   │   ├── preview/           # Data preview components
+│   │   │   ├── preview-container.tsx  # Main preview orchestrator
+│   │   │   ├── data-table.tsx         # Interactive data table
+│   │   │   ├── comparison-view.tsx    # Side-by-side comparison
+│   │   │   └── row-editor.tsx         # Inline row editing
 │   │   └── ui/                # Shadcn components
 │   └── lib/                    # Core logic
 │       ├── converter.ts        # Conversion logic
 │       ├── csv-utils.ts        # CSV parsing/generation
+│       ├── validation.ts       # Data validation logic
+│       ├── filters.ts          # Filtering & sorting utilities
 │       └── constants.ts        # Constants & messages
 ├── docs/                       # Documentation
 ├── scripts/                    # Utility scripts
-└── tests/                      # Test files (73 tests)
+└── tests/                      # Test files (169 tests)
 ```
 
 ## 📝 Usage
@@ -185,18 +202,27 @@ This converter transforms Wise CSV exports into the specific format required by 
    - Or click to browse and select the file
    - Maximum file size: 5 MB
 
-3. **Convert**
-   - File is validated automatically (structure, required fields)
+3. **Preview & Validate** (New!)
+   - Review all your transactions in an interactive table
+   - See validation status: ✅ valid, ⚠️ warnings, ❌ errors
+   - Click on status badges to filter by validation state
+   - Use the search bar to find specific transactions
+   - Edit any row directly by clicking the edit button
+   - Switch to "Comparison View" to see Wise → Lexware Office transformation
+
+4. **Fix Issues (if any)**
+   - Rows with errors are highlighted in red
+   - Click "Edit" to fix issues like missing dates or invalid amounts
+   - Warnings (yellow) are informational and won't block conversion
+   - All changes are validated in real-time
+
+5. **Convert & Download**
+   - Click "Konvertieren & Herunterladen" when ready
    - Conversion happens instantly in your browser
-   - See live statistics: total transactions, debits, credits, and total amount
-   - All data stays on your device - no server upload
-
-4. **Download**
-   - Converted file downloads automatically
+   - File downloads automatically
    - Filename format: `lexoffice_import_YYYY-MM-DD.csv`
-   - File is ready for Lexware Office import
 
-5. **Import to Lexware Office**
+6. **Import to Lexware Office**
    - Log into your Lexware Office account
    - Navigate to **Banking → Accounts**
    - Select your bank account
@@ -220,12 +246,23 @@ This converter transforms Wise CSV exports into the specific format required by 
 
 ### Validation & Error Handling
 
-The app validates:
+**File Validation:**
 - ✅ File type (must be .csv)
 - ✅ File size (max 5 MB)
 - ✅ CSV structure (correct columns)
-- ✅ Required fields (Date, Amount, Transaction Type)
-- ✅ Data format (valid dates, numbers, types)
+
+**Row-Level Validation:**
+- ✅ **Date** - Format (dd-mm-yyyy), valid date, future date warning
+- ✅ **Amount** - Numeric format, zero amount warning
+- ✅ **Transaction Type** - Must be DEBIT or CREDIT
+- ✅ **TransferWise ID** - Warning if missing
+- ✅ **Payer/Payee Name** - Warning if missing based on transaction type
+- ✅ **Description** - Warning if both description and reference are empty
+
+**Validation Severity:**
+- ❌ **Errors** - Block conversion, must be fixed (highlighted red)
+- ⚠️ **Warnings** - Informational, don't block conversion (highlighted yellow)
+- ✅ **Valid** - Ready for conversion (highlighted green)
 
 Error messages are displayed in German with specific details about what went wrong.
 
@@ -346,23 +383,28 @@ We use analytics solely to understand how the app is used and to improve the use
 
 The app has comprehensive test coverage:
 
-- **73 tests** across all critical functionality
-- **76% overall coverage** (exceeds target)
-- **95% coverage** of core business logic
-- **86% coverage** of UI components
+- **169 tests** across all critical functionality
+- **87% overall coverage** (exceeds target)
+- **90% coverage** of core business logic (lib/)
+- **89% coverage** of UI components
 
 ### Test Structure
 
 ```
 tests/
 ├── lib/
-│   ├── converter.test.ts      # 39 tests - core conversion logic
-│   └── csv-utils.test.ts      # 13 tests - CSV parsing/generation
+│   ├── converter.test.ts      # Core conversion logic
+│   ├── csv-utils.test.ts      # CSV parsing/generation
+│   ├── validation.test.ts     # Data validation
+│   └── filters.test.ts        # Filtering & sorting
 └── components/
-    ├── file-upload.test.tsx   # 10 tests - file upload validation
-    ├── error-alert.test.tsx   # 3 tests - error display
-    ├── stats-card.test.tsx    # 10 tests - statistics formatting
-    └── success-message.test.tsx # 8 tests - success UI
+    ├── file-upload.test.tsx   # File upload validation
+    ├── error-alert.test.tsx   # Error display
+    ├── stats-card.test.tsx    # Statistics formatting
+    ├── success-message.test.tsx # Success UI
+    └── preview/
+        ├── data-table.test.tsx  # Data table interactions
+        └── row-editor.test.tsx  # Row editing functionality
 ```
 
 ### Running Tests
@@ -389,11 +431,15 @@ See [docs/TESTING.md](./docs/TESTING.md) for detailed testing documentation.
 
 ## 🗺️ Roadmap
 
-See [docs/ROADMAP.md](./docs/ROADMAP.md) for the complete feature roadmap. Highlights:
+See [docs/ROADMAP.md](./docs/ROADMAP.md) for the complete feature roadmap.
+
+### ✅ Recently Completed
+- 👁️ **Data Preview & Validation** - Interactive preview with inline editing
+- 🔍 **Search & Filter** - Full-text search and status filtering
+- 🔄 **Comparison View** - Side-by-side Wise → Lexware Office transformation
 
 ### Planned Features
 - 📦 Multi-file batch processing
-- 🔍 Advanced filtering and search
 - 📊 Transaction categorization
 - 📈 Data visualization and charts
 - 🎛️ Custom export formats
