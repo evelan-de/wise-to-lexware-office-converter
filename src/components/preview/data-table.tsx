@@ -57,6 +57,8 @@ type SortConfig = {
   direction: SortDirection;
 };
 
+type StatusFilter = 'all' | 'valid' | 'warning' | 'error';
+
 // Columns for desktop view
 const DISPLAY_COLUMNS: { key: keyof WiseRow; label: string; width?: string; hideOnMobile?: boolean }[] = [
   { key: 'Date', label: 'Datum', width: 'w-28' },
@@ -202,6 +204,7 @@ export function DataTable({
     direction: 'asc',
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
 
   // Create a map of row index to validation result
   const validationMap = useMemo(() => {
@@ -214,12 +217,27 @@ export function DataTable({
 
   // Apply filters, sorting, and pagination
   const processedData = useMemo(() => {
-    // First filter
+    // First filter by search/transaction type
     let filtered = filterWiseData(data, filters);
 
     // Apply max preview rows if set
     if (maxPreviewRows && filtered.length > maxPreviewRows) {
       filtered = filtered.slice(0, maxPreviewRows);
+    }
+
+    // Apply status filter
+    if (statusFilter !== 'all') {
+      filtered = filtered.filter((row) => {
+        const originalIndex = data.findIndex(
+          (r) =>
+            r['TransferWise ID'] === row['TransferWise ID'] && r.Date === row.Date
+        );
+        const validationResult = validationMap.get(originalIndex);
+        const status = validationResult
+          ? getValidationStatus(validationResult)
+          : 'valid';
+        return status === statusFilter;
+      });
     }
 
     // Then sort if a sort field is selected
@@ -229,7 +247,7 @@ export function DataTable({
 
     // Finally paginate
     return paginateData(filtered, currentPage, pageSize);
-  }, [data, filters, sortConfig, currentPage, pageSize, maxPreviewRows]);
+  }, [data, filters, sortConfig, currentPage, pageSize, maxPreviewRows, statusFilter, validationMap]);
 
   // Get original indices for validation lookup
   const getOriginalIndex = (row: WiseRow): number => {
@@ -289,23 +307,64 @@ export function DataTable({
         </div>
       )}
 
-      {/* Validation Summary */}
-      <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm">
-        <span className="flex items-center gap-1">
+      {/* Validation Summary - Clickable Filters */}
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-sm">
+        <button
+          onClick={() => {
+            setStatusFilter(statusFilter === 'valid' ? 'all' : 'valid');
+            setCurrentPage(1);
+          }}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors ${
+            statusFilter === 'valid'
+              ? 'bg-green-100 text-green-800 ring-2 ring-green-500'
+              : 'hover:bg-green-50 text-gray-700'
+          }`}
+        >
           <CheckCircle2 className="w-4 h-4 text-green-500" />
           {validation.validRows} gültig
-        </span>
+        </button>
         {validation.rowsWithWarnings > 0 && (
-          <span className="flex items-center gap-1">
+          <button
+            onClick={() => {
+              setStatusFilter(statusFilter === 'warning' ? 'all' : 'warning');
+              setCurrentPage(1);
+            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors ${
+              statusFilter === 'warning'
+                ? 'bg-yellow-100 text-yellow-800 ring-2 ring-yellow-500'
+                : 'hover:bg-yellow-50 text-gray-700'
+            }`}
+          >
             <AlertTriangle className="w-4 h-4 text-yellow-500" />
             {validation.rowsWithWarnings} mit Warnungen
-          </span>
+          </button>
         )}
         {validation.rowsWithErrors > 0 && (
-          <span className="flex items-center gap-1">
+          <button
+            onClick={() => {
+              setStatusFilter(statusFilter === 'error' ? 'all' : 'error');
+              setCurrentPage(1);
+            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors ${
+              statusFilter === 'error'
+                ? 'bg-red-100 text-red-800 ring-2 ring-red-500'
+                : 'hover:bg-red-50 text-gray-700'
+            }`}
+          >
             <AlertCircle className="w-4 h-4 text-red-500" />
             {validation.rowsWithErrors} mit Fehlern
-          </span>
+          </button>
+        )}
+        {statusFilter !== 'all' && (
+          <button
+            onClick={() => {
+              setStatusFilter('all');
+              setCurrentPage(1);
+            }}
+            className="text-gray-500 hover:text-gray-700 text-xs underline"
+          >
+            Filter zurücksetzen
+          </button>
         )}
         {maxPreviewRows && data.length > maxPreviewRows && (
           <span className="text-gray-500">
