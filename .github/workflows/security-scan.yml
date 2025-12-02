@@ -26,6 +26,8 @@ jobs:
 
       - name: Determine target URL
         id: url
+        env:
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             if [ -n "${{ github.event.inputs.target_url }}" ]; then
@@ -37,13 +39,29 @@ jobs:
             # Use Vercel preview URL from deployment
             TARGET_URL="${{ github.event.deployment_status.target_url }}"
           fi
+
+          # Append Vercel protection bypass parameters for preview deployments
+          # This allows scanning protected Vercel preview deployments
+          # See: https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation
+          if [ -n "$VERCEL_AUTOMATION_BYPASS_SECRET" ]; then
+            # Check if URL already has query parameters
+            if [[ "$TARGET_URL" == *"?"* ]]; then
+              TARGET_URL="${TARGET_URL}&x-vercel-protection-bypass=${VERCEL_AUTOMATION_BYPASS_SECRET}&x-vercel-set-bypass-cookie=samesitenone"
+            else
+              TARGET_URL="${TARGET_URL}?x-vercel-protection-bypass=${VERCEL_AUTOMATION_BYPASS_SECRET}&x-vercel-set-bypass-cookie=samesitenone"
+            fi
+            echo "Vercel protection bypass enabled"
+          fi
+
           echo "target_url=${TARGET_URL}" >> $GITHUB_OUTPUT
-          echo "Scanning URL: ${TARGET_URL}"
+          echo "Scanning URL: ${TARGET_URL%\?*}"  # Log URL without secret
 
       - name: Run ImmuniWeb Website Security Test
         id: security-scan
         run: |
-          echo "Starting ImmuniWeb security scan for: ${{ steps.url.outputs.target_url }}"
+          TARGET_URL="${{ steps.url.outputs.target_url }}"
+          # Log URL without query parameters (to avoid exposing bypass secret)
+          echo "Starting ImmuniWeb security scan for: ${TARGET_URL%\?*}"
 
           # Create output directory
           mkdir -p scan-output
@@ -55,7 +73,7 @@ jobs:
             -v ${{ github.workspace }}/.github/immuniweb:/config:ro \
             -v ${{ github.workspace }}/scan-output:/output \
             immuniweb/iwtools \
-            websec "${{ steps.url.outputs.target_url }}" \
+            websec "${TARGET_URL}" \
             -p \
             -cfg /config/websec.yaml \
             -o /output/scan-results.json \
@@ -72,9 +90,13 @@ jobs:
       - name: Parse scan results
         if: always()
         run: |
+          # Extract base URL without query parameters (to avoid exposing bypass secret)
+          TARGET_URL="${{ steps.url.outputs.target_url }}"
+          DISPLAY_URL="${TARGET_URL%\?*}"
+
           echo "## ImmuniWeb Security Scan Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Target URL:** ${{ steps.url.outputs.target_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Target URL:** ${DISPLAY_URL}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           if [ -f scan-results.json ]; then
