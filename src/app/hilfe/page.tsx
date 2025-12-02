@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Script from 'next/script';
 import type { Metadata } from 'next';
-import { ArrowLeft, FileUp, CheckCircle, Download, Upload, AlertCircle, ExternalLink } from 'lucide-react';
+import { ArrowLeft, AlertCircle, ExternalLink } from 'lucide-react';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 
 const baseUrl = 'https://wise-lexware-convert.evelan.de';
@@ -275,8 +275,7 @@ export default function HilfePage() {
                   <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
                     1
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                    <Download className="w-5 h-5 text-primary" />
+                  <h3 className="text-lg font-semibold text-foreground">
                     Wise CSV-Export herunterladen
                   </h3>
                 </div>
@@ -341,8 +340,7 @@ export default function HilfePage() {
                   <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
                     2
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                    <FileUp className="w-5 h-5 text-primary" />
+                  <h3 className="text-lg font-semibold text-foreground">
                     CSV-Datei hochladen
                   </h3>
                 </div>
@@ -364,8 +362,7 @@ export default function HilfePage() {
                   <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
                     3
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-primary" />
+                  <h3 className="text-lg font-semibold text-foreground">
                     Automatische Konvertierung
                   </h3>
                 </div>
@@ -387,8 +384,7 @@ export default function HilfePage() {
                   <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
                     4
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                    <Download className="w-5 h-5 text-primary" />
+                  <h3 className="text-lg font-semibold text-foreground">
                     Datei wird automatisch heruntergeladen
                   </h3>
                 </div>
@@ -408,8 +404,7 @@ export default function HilfePage() {
                   <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
                     5
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                    <Upload className="w-5 h-5 text-primary" />
+                  <h3 className="text-lg font-semibold text-foreground">
                     In Lexware Office importieren
                   </h3>
                 </div>
