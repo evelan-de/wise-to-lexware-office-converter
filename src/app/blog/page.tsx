@@ -9,7 +9,7 @@ import { getAllArticles } from '@/data/blog-articles';
 const baseUrl = 'https://wise-lexware-convert.evelan.de';
 
 export const metadata: Metadata = {
-  title: 'Blog - Tipps für Freelancer & Buchhaltung',
+  title: 'Blog: Freelancer-Tipps',
   description:
     'Praktische Tipps und Anleitungen für Freelancer: Wise Kontoauszüge exportieren, Lexware Office CSV Import, internationale Zahlungen und Buchhaltung optimieren.',
   keywords: [

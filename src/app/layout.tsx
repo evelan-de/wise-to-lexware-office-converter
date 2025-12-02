@@ -28,8 +28,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://wise-lexware-convert.evelan.de"),
   title: {
-    default: "WISE zu Lexware Office Konverter - Bankimport CSV Konvertierung",
-    template: "%s | WISE zu Lexware Office Konverter",
+    default: "Wise zu Lexware Office CSV-Konverter",
+    template: "%s | Wise-Lexware Konverter",
   },
   description: "Wandeln Sie Wise CSV-Exporte in das Lexware Office Bankimport-Format um. Für: Banking → Konten → Transaktionen importieren. 100% Datenschutz - alle Daten bleiben in Ihrem Browser.",
   keywords: [

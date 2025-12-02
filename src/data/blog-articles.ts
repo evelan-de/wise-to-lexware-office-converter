@@ -3,7 +3,7 @@ import { BlogArticle } from '@/types/blog';
 export const blogArticles: BlogArticle[] = [
   {
     slug: 'wise-kontoauszug-lexware-office-importieren',
-    title: 'Wise Kontoauszug in Lexware Office importieren: Schritt-für-Schritt Anleitung',
+    title: 'Wise in Lexware Office importieren',
     description: 'Lernen Sie, wie Sie Ihren Wise Kontoauszug als CSV exportieren und in Lexware Office importieren. Mit unserem kostenlosen Konverter-Tool und detaillierter Anleitung.',
     publishedAt: '2024-11-15',
     author: {
@@ -104,7 +104,7 @@ Mit unserem kostenlosen Wise zu Lexware Office Konverter sparen Sie Zeit und ver
   },
   {
     slug: 'wise-geschaeftskonto-freelancer-internationale-kunden',
-    title: 'Wise für Freelancer: Das ideale Geschäftskonto für internationale Kunden',
+    title: 'Wise Geschäftskonto für Freelancer',
     description: 'Erfahren Sie, warum Wise das beste Geschäftskonto für deutsche Freelancer mit internationalen Kunden ist. Niedrige Gebühren, echte Wechselkurse und Multi-Währungs-Konten.',
     publishedAt: '2024-11-10',
     author: {
@@ -205,7 +205,7 @@ Mit unserem kostenlosen Konverter wird auch die Buchhaltung mit Lexware Office z
   },
   {
     slug: 'lexware-office-offline-konto-drittbanken-neobanken',
-    title: 'Offline-Konten in Lexware Office: So binden Sie Drittbanken und Neobanken ein',
+    title: 'Lexware: Offline-Konto einrichten',
     description: 'Anleitung zum Einrichten von Offline-Konten in Lexware Office für Banken ohne direkte Anbindung wie Wise, N26, Revolut oder ausländische Banken.',
     publishedAt: '2024-11-05',
     author: {
@@ -343,7 +343,7 @@ Offline-Konten in Lexware Office sind die perfekte Lösung für Banken ohne dire
   },
   {
     slug: 'internationale-zahlungen-freelancer-buchhaltung',
-    title: 'Internationale Zahlungen als Freelancer: Buchhaltung richtig organisieren',
+    title: 'Internationale Zahlungen verbuchen',
     description: 'Praktische Tipps für deutsche Freelancer zur Organisation internationaler Zahlungen. Zahlungsmethoden, Währungsmanagement und Buchhaltung mit Lexware Office.',
     publishedAt: '2024-10-28',
     author: {
@@ -469,7 +469,7 @@ Mit unserem kostenlosen Konverter wird der regelmäßige Import Ihrer Wise-Trans
   },
   {
     slug: 'csv-import-lexware-office-fehler-vermeiden',
-    title: 'CSV-Import in Lexware Office: Häufige Fehler und wie Sie sie vermeiden',
+    title: 'CSV-Import: Fehler vermeiden',
     description: 'Die häufigsten Probleme beim CSV-Import in Lexware Office und wie Sie sie lösen. Formatierungsfehler, Encoding-Probleme und Tipps zur Fehlerbehebung.',
     publishedAt: '2024-10-20',
     author: {
