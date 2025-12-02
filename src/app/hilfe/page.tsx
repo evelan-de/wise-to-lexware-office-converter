@@ -268,18 +268,19 @@ export default function HilfePage() {
               Schritt-für-Schritt Anleitung
             </h2>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               {/* Step 1 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
-                  1
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
+                    1
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                     <Download className="w-5 h-5 text-primary" />
                     Wise CSV-Export herunterladen
                   </h3>
-                  <div className="text-foreground space-y-3">
+                </div>
+                <div className="text-foreground space-y-3">
                     <ol className="list-decimal list-outside ml-6 space-y-3">
                       <li>
                         Melden Sie sich in Ihrem Wise-Konto an, klicken Sie auf <strong className="text-foreground">Transaktionen</strong> und dann auf <strong className="text-foreground">Kontoauszüge und Berichte</strong>
@@ -331,122 +332,121 @@ export default function HilfePage() {
                       </li>
                       <li>Die CSV-Datei wird automatisch heruntergeladen</li>
                     </ol>
-                  </div>
                 </div>
               </div>
 
               {/* Step 2 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
-                  2
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
+                    2
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                     <FileUp className="w-5 h-5 text-primary" />
                     CSV-Datei hochladen
                   </h3>
-                  <div className="text-foreground space-y-2">
-                    <ol className="list-decimal list-outside ml-6 space-y-1">
-                      <li>Gehen Sie zurück zur <Link href="/" className="text-primary hover:underline">Hauptseite</Link></li>
-                      <li>Ziehen Sie Ihre Wise CSV-Datei in den Upload-Bereich</li>
-                      <li>Oder klicken Sie auf den Bereich, um die Datei auszuwählen</li>
-                    </ol>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      <strong className="text-foreground">Hinweis:</strong> Maximale Dateigröße: 5 MB
-                    </p>
-                  </div>
+                </div>
+                <div className="text-foreground space-y-2">
+                  <ol className="list-decimal list-outside ml-6 space-y-1">
+                    <li>Gehen Sie zurück zur <Link href="/" className="text-primary hover:underline">Hauptseite</Link></li>
+                    <li>Ziehen Sie Ihre Wise CSV-Datei in den Upload-Bereich</li>
+                    <li>Oder klicken Sie auf den Bereich, um die Datei auszuwählen</li>
+                  </ol>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    <strong className="text-foreground">Hinweis:</strong> Maximale Dateigröße: 5 MB
+                  </p>
                 </div>
               </div>
 
               {/* Step 3 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
-                  3
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
+                    3
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-primary" />
                     Automatische Konvertierung
                   </h3>
-                  <div className="text-foreground space-y-2">
-                    <p>Die Datei wird automatisch validiert und konvertiert:</p>
-                    <ul className="list-disc list-outside ml-6 space-y-1">
-                      <li>Prüfung der CSV-Struktur und erforderlichen Felder</li>
-                      <li>Umwandlung der Datumsformate (DD-MM-YYYY → DD.MM.YYYY)</li>
-                      <li>Umwandlung der Betragsformate (1234.56 → 1234,56)</li>
-                      <li>Zuordnung von Sender/Empfänger basierend auf Transaktionstyp</li>
-                    </ul>
-                    <p className="mt-3">Sie sehen Live-Statistiken während der Verarbeitung.</p>
-                  </div>
+                </div>
+                <div className="text-foreground space-y-2">
+                  <p>Die Datei wird automatisch validiert und konvertiert:</p>
+                  <ul className="list-disc list-outside ml-6 space-y-1">
+                    <li>Prüfung der CSV-Struktur und erforderlichen Felder</li>
+                    <li>Umwandlung der Datumsformate (DD-MM-YYYY → DD.MM.YYYY)</li>
+                    <li>Umwandlung der Betragsformate (1234.56 → 1234,56)</li>
+                    <li>Zuordnung von Sender/Empfänger basierend auf Transaktionstyp</li>
+                  </ul>
+                  <p className="mt-3">Sie sehen Live-Statistiken während der Verarbeitung.</p>
                 </div>
               </div>
 
               {/* Step 4 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
-                  4
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
+                    4
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                     <Download className="w-5 h-5 text-primary" />
                     Datei wird automatisch heruntergeladen
                   </h3>
-                  <div className="text-foreground space-y-2">
-                    <p>Die konvertierte Datei wird automatisch heruntergeladen:</p>
-                    <ul className="list-disc list-outside ml-6 space-y-1">
-                      <li>Dateiname: <code className="bg-muted px-2 py-0.5 rounded text-sm text-foreground">lexoffice_import_YYYY-MM-DD.csv</code></li>
-                      <li>Format: Lexware Office-kompatible CSV-Datei</li>
-                      <li>Bereit für den direkten Import in Lexware Office</li>
-                    </ul>
-                  </div>
+                </div>
+                <div className="text-foreground space-y-2">
+                  <p>Die konvertierte Datei wird automatisch heruntergeladen:</p>
+                  <ul className="list-disc list-outside ml-6 space-y-1">
+                    <li>Dateiname: <code className="bg-muted px-2 py-0.5 rounded text-sm text-foreground">lexoffice_import_YYYY-MM-DD.csv</code></li>
+                    <li>Format: Lexware Office-kompatible CSV-Datei</li>
+                    <li>Bereit für den direkten Import in Lexware Office</li>
+                  </ul>
                 </div>
               </div>
 
               {/* Step 5 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
-                  5
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold">
+                    5
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                     <Upload className="w-5 h-5 text-primary" />
                     In Lexware Office importieren
                   </h3>
-                  <div className="text-foreground space-y-3">
-                    <ol className="list-decimal list-outside ml-6 space-y-2">
-                      <li>Melden Sie sich in Ihrem Lexware Office-Konto an</li>
-                      <li>Navigieren Sie zu <strong className="text-foreground">Banking → Konten</strong></li>
-                      <li>Wählen Sie Ihr Bankkonto aus</li>
-                      <li>
-                        Klicken Sie auf <strong className="text-foreground">&quot;Transaktionen importieren&quot;</strong>
-                        <div className="rounded-lg border border-border overflow-hidden mt-2">
-                          <Image
-                            src="/screenshots/lexoffice-upload.png"
-                            alt="Lexware Office - CSV-Datei hochladen"
-                            width={800}
-                            height={450}
-                            className="w-full h-auto"
-                          />
-                        </div>
-                      </li>
-                      <li>Laden Sie die konvertierte CSV-Datei hoch</li>
-                      <li>Überprüfen Sie die Spaltenzuordnung (sollte automatisch erkannt werden)</li>
-                      <li>Bestätigen Sie den Import</li>
-                    </ol>
-                    <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/40 rounded-lg border border-blue-200 dark:border-blue-800">
-                      <p className="text-sm text-blue-800 dark:text-blue-200">
-                        <strong className="text-blue-900 dark:text-blue-100">Hinweis:</strong> Detaillierte Informationen zum Import-Prozess finden Sie in der{' '}
-                        <a
-                          href="https://help.lexware.de/de-form/articles/9555940-import-elektronischer-kontoauszug-uber-csv-datei"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
-                        >
-                          offiziellen Lexware Office-Dokumentation
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                      </p>
-                    </div>
+                </div>
+                <div className="text-foreground space-y-3">
+                  <ol className="list-decimal list-outside ml-6 space-y-2">
+                    <li>Melden Sie sich in Ihrem Lexware Office-Konto an</li>
+                    <li>Navigieren Sie zu <strong className="text-foreground">Banking → Konten</strong></li>
+                    <li>Wählen Sie Ihr Bankkonto aus</li>
+                    <li>
+                      Klicken Sie auf <strong className="text-foreground">&quot;Transaktionen importieren&quot;</strong>
+                      <div className="rounded-lg border border-border overflow-hidden mt-2">
+                        <Image
+                          src="/screenshots/lexoffice-upload.png"
+                          alt="Lexware Office - CSV-Datei hochladen"
+                          width={800}
+                          height={450}
+                          className="w-full h-auto"
+                        />
+                      </div>
+                    </li>
+                    <li>Laden Sie die konvertierte CSV-Datei hoch</li>
+                    <li>Überprüfen Sie die Spaltenzuordnung (sollte automatisch erkannt werden)</li>
+                    <li>Bestätigen Sie den Import</li>
+                  </ol>
+                  <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/40 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <p className="text-sm text-blue-800 dark:text-blue-200">
+                      <strong className="text-blue-900 dark:text-blue-100">Hinweis:</strong> Detaillierte Informationen zum Import-Prozess finden Sie in der{' '}
+                      <a
+                        href="https://help.lexware.de/de-form/articles/9555940-import-elektronischer-kontoauszug-uber-csv-datei"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:text-primary/80 underline inline-flex items-center gap-1"
+                      >
+                        offiziellen Lexware Office-Dokumentation
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>
