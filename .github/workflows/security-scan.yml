@@ -50,7 +50,7 @@ jobs:
 
           # Run the security scan using Docker
           # Using -p (pipeline) mode to validate against config thresholds
-          # -o specifies output file, -f specifies format (raw_json for parsing)
+          # -o specifies output file, -f specifies format (pretty_json for readability)
           docker run --rm \
             -v ${{ github.workspace }}/.github/immuniweb:/config:ro \
             -v ${{ github.workspace }}/scan-output:/output \
@@ -59,7 +59,7 @@ jobs:
             -p \
             -cfg /config/websec.yaml \
             -o /output/scan-results.json \
-            -f raw_json || EXIT_CODE=$?
+            -f pretty_json || EXIT_CODE=$?
 
           # Move results to workspace root
           if [ -f scan-output/scan-results.json ]; then
