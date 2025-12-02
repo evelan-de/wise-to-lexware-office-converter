@@ -1,19 +1,117 @@
 import Link from 'next/link';
+import Script from 'next/script';
+import type { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 
-export const metadata = {
-  title: 'Datenschutzerklärung - WISE zu Lexware Office Konverter',
-  description: 'Datenschutzerklärung für den WISE zu Lexware Office Konverter von Evelan GmbH',
+const baseUrl = 'https://wise-lexware-convert.evelan.de';
+
+export const metadata: Metadata = {
+  title: 'Datenschutzerklärung',
+  description: 'Datenschutzerklärung für den WISE zu Lexware Office Konverter. 100% Datenschutz: Alle Daten werden lokal in Ihrem Browser verarbeitet - keine Server-Uploads.',
+  keywords: [
+    'Datenschutz',
+    'DSGVO',
+    'Datenschutzerklärung',
+    'Privacy Policy',
+    'Wise Konverter Datenschutz',
+    'Lexware Office Datenschutz',
+    'Lokale Verarbeitung',
+    'Keine Cookies',
+  ],
+  openGraph: {
+    title: 'Datenschutzerklärung - WISE zu Lexware Office Konverter',
+    description: '100% Datenschutz: Alle Daten werden lokal in Ihrem Browser verarbeitet.',
+    type: 'website',
+    url: `${baseUrl}/datenschutz`,
+  },
+  alternates: {
+    canonical: `${baseUrl}/datenschutz`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+// WebPage structured data
+const webPageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${baseUrl}/datenschutz`,
+  name: 'Datenschutzerklärung',
+  description: 'Datenschutzerklärung für den WISE zu Lexware Office Konverter von Evelan GmbH.',
+  url: `${baseUrl}/datenschutz`,
+  inLanguage: 'de-DE',
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${baseUrl}/#website`,
+    name: 'WISE zu Lexware Office Konverter',
+    url: baseUrl,
+  },
+  about: {
+    '@type': 'Thing',
+    name: 'Datenschutz und DSGVO-Konformität',
+  },
+  dateModified: '2025-11-01',
+};
+
+// BreadcrumbList structured data
+const breadcrumbStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Startseite',
+      item: baseUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Datenschutzerklärung',
+      item: `${baseUrl}/datenschutz`,
+    },
+  ],
 };
 
 export default function DatenschutzPage() {
   return (
     <>
+      {/* Structured Data - WebPage */}
+      <Script
+        id="webpage-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
+      />
+
+      {/* Structured Data - Breadcrumb */}
+      <Script
+        id="breadcrumb-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
+
       {/* Theme Switcher */}
       <div className="absolute top-4 right-4">
         <ThemeSwitcher />
       </div>
+
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="mb-6">
+        <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+          <li>
+            <Link href="/" className="hover:text-primary transition-colors">
+              Startseite
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li className="text-foreground font-medium" aria-current="page">
+            Datenschutzerklärung
+          </li>
+        </ol>
+      </nav>
 
       {/* Back Button */}
       <Link
@@ -60,7 +158,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             1. Verantwortlicher
           </h2>
-          <div className="text-muted-foreground space-y-2">
+          <div className="text-foreground space-y-2">
             <p className="font-semibold text-lg text-foreground">Evelan GmbH</p>
             <p>Ballindamm 39</p>
             <p>20095 Hamburg</p>
@@ -84,7 +182,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             2. Datenschutzbeauftragter
           </h2>
-          <div className="text-muted-foreground space-y-2">
+          <div className="text-foreground space-y-2">
             <p className="font-semibold text-foreground">heyData GmbH</p>
             <p>Schützenstr. 5</p>
             <p>10117 Berlin</p>
@@ -102,7 +200,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             3. Datenverarbeitung bei Nutzung des Konverters
           </h2>
-          <div className="text-muted-foreground space-y-4">
+          <div className="text-foreground space-y-4">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Keine Übertragung von CSV-Daten
@@ -116,7 +214,7 @@ export default function DatenschutzPage() {
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Technische Funktionsweise
               </h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
+              <ul className="list-disc list-outside ml-6 space-y-1">
                 <li>Ihre CSV-Datei wird lokal im Browser gelesen</li>
                 <li>Die Konvertierung erfolgt clientseitig mittels JavaScript</li>
                 <li>Die konvertierte Datei wird direkt auf Ihr Gerät heruntergeladen</li>
@@ -140,7 +238,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             4. Datenverarbeitung beim Website-Besuch
           </h2>
-          <div className="text-muted-foreground space-y-4">
+          <div className="text-foreground space-y-4">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Server-Logfiles
@@ -148,7 +246,7 @@ export default function DatenschutzPage() {
               <p>
                 Beim Besuch dieser Website werden automatisch Informationen erfasst, die Ihr Browser an unseren Server übermittelt:
               </p>
-              <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
+              <ul className="list-disc list-outside ml-6 space-y-1 mt-2">
                 <li>IP-Adresse (anonymisiert)</li>
                 <li>Datum und Uhrzeit der Anfrage</li>
                 <li>Browsertyp und Browserversion</li>
@@ -188,7 +286,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             5. SSL/TLS-Verschlüsselung
           </h2>
-          <div className="text-muted-foreground">
+          <div className="text-foreground">
             <p>
               Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung eine SSL/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von &quot;http://&quot; auf &quot;https://&quot; wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
             </p>
@@ -200,7 +298,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             6. Web-Analyse mit Umami Analytics
           </h2>
-          <div className="text-muted-foreground space-y-4">
+          <div className="text-foreground space-y-4">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Umfang der Verarbeitung
@@ -217,7 +315,7 @@ export default function DatenschutzPage() {
               <p>
                 Es werden ausschließlich anonymisierte Nutzungsdaten erfasst:
               </p>
-              <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
+              <ul className="list-disc list-outside ml-6 space-y-1 mt-2">
                 <li>Seitenaufrufe (ohne persönliche Identifikation)</li>
                 <li>Allgemeine Nutzungsstatistiken (z.B. Datei hochgeladen, Konvertierung erfolgreich)</li>
                 <li>Browser-Typ und Betriebssystem (anonymisiert)</li>
@@ -229,7 +327,7 @@ export default function DatenschutzPage() {
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Datenschutz-Merkmale
               </h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
+              <ul className="list-disc list-outside ml-6 space-y-1">
                 <li><strong className="text-foreground">Keine Cookies:</strong> Umami verwendet keine Tracking-Cookies</li>
                 <li><strong className="text-foreground">Keine IP-Speicherung:</strong> IP-Adressen werden nicht gespeichert</li>
                 <li><strong className="text-foreground">Keine personenbezogenen Daten:</strong> Es erfolgt keine Erfassung oder Speicherung personenbezogener Informationen</li>
@@ -270,7 +368,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             7. Cookies
           </h2>
-          <div className="text-muted-foreground">
+          <div className="text-foreground">
             <p>
               Diese Website verwendet <strong className="text-foreground">keine Cookies</strong>. Auch unser Analytics-Tool Umami setzt keine Cookies ein und benötigt daher keine Cookie-Einwilligung.
             </p>
@@ -282,11 +380,11 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             8. Ihre Rechte
           </h2>
-          <div className="text-muted-foreground space-y-3">
+          <div className="text-foreground space-y-3">
             <p>
               Sie haben das Recht auf:
             </p>
-            <ul className="list-disc list-inside space-y-1 ml-4">
+            <ul className="list-disc list-outside ml-6 space-y-1">
               <li>Auskunft über Ihre gespeicherten personenbezogenen Daten (Art. 15 DSGVO)</li>
               <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
               <li>Löschung Ihrer Daten (Art. 17 DSGVO)</li>
@@ -306,7 +404,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             9. Änderungen dieser Datenschutzerklärung
           </h2>
-          <div className="text-muted-foreground">
+          <div className="text-foreground">
             <p>
               Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen umzusetzen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.
             </p>

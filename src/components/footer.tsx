@@ -70,6 +70,18 @@ export function Footer() {
           <div className="pt-8">
             <nav className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm mb-4">
               <Link
+                href="/blog"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/hilfe"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Anleitung
+              </Link>
+              <Link
                 href="/impressum"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >

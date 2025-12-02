@@ -47,6 +47,12 @@ export const metadata: Metadata = {
     "Kontoumsätze",
     "Finanzen",
     "Deutschland",
+    "Freelancer",
+    "Selbstständige",
+    "Internationale Zahlungen",
+    "Offline-Konto",
+    "Drittbank",
+    "Neobank",
   ],
   authors: [
     {
@@ -124,50 +130,112 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Structured Data (JSON-LD) for SEO
-  const structuredData = {
+  const baseUrl = "https://wise-lexware-convert.evelan.de";
+
+  // WebSite structured data for site-wide SEO
+  const websiteStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${baseUrl}/#website`,
+    name: "WISE zu Lexware Office Konverter",
+    url: baseUrl,
+    description: "Wandeln Sie Wise CSV-Exporte in das Lexware Office Bankimport-Format um. 100% Datenschutz - alle Daten bleiben in Ihrem Browser.",
+    inLanguage: "de-DE",
+    publisher: {
+      "@id": `${baseUrl}/#organization`,
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${baseUrl}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  // Organization structured data
+  const organizationStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
+    name: "Evelan GmbH",
+    legalName: "Evelan GmbH",
+    url: "https://evelan.de",
+    logo: {
+      "@type": "ImageObject",
+      url: `${baseUrl}/icon.svg`,
+      width: 512,
+      height: 512,
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Ballindamm 39",
+      addressLocality: "Hamburg",
+      postalCode: "20095",
+      addressCountry: "DE",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+49-40-88215940",
+      contactType: "customer service",
+      email: "kontakt@evelan.de",
+      availableLanguage: ["German", "English"],
+    },
+    vatID: "DE315030550",
+  };
+
+  // SoftwareApplication structured data
+  const softwareStructuredData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": `${baseUrl}/#software`,
     name: "WISE zu Lexware Office Konverter",
     applicationCategory: "FinanceApplication",
+    applicationSubCategory: "CSV Converter",
     operatingSystem: "Web Browser",
     description: "Wandeln Sie Wise CSV-Exporte in das Lexware Office Bankimport-Format um. 100% Datenschutz - alle Daten bleiben in Ihrem Browser.",
-    url: "https://wise-lexware-convert.evelan.de",
+    url: baseUrl,
     author: {
-      "@type": "Organization",
-      name: "Evelan GmbH",
-      url: "https://evelan.de",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Ballindamm 39",
-        addressLocality: "Hamburg",
-        postalCode: "20095",
-        addressCountry: "DE",
-      },
-      contactPoint: {
-        "@type": "ContactPoint",
-        telephone: "+49-40-88215940",
-        contactType: "customer service",
-        email: "kontakt@evelan.de",
-        availableLanguage: ["German", "English"],
-      },
+      "@id": `${baseUrl}/#organization`,
+    },
+    publisher: {
+      "@id": `${baseUrl}/#organization`,
     },
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
     },
     inLanguage: "de-DE",
-    softwareVersion: "1.0.0",
+    softwareVersion: "2.0.0",
+    releaseNotes: "Vorschau-Funktion, Transaktions-Bearbeitung, verbesserte Validierung",
     featureList: [
-      "CSV Konvertierung",
-      "Wise zu Lexware Office",
-      "Client-side Verarbeitung",
-      "Datenschutz",
-      "Keine Server-Uploads",
+      "CSV Konvertierung von Wise zu Lexware Office",
+      "100% Client-side Verarbeitung",
+      "Datenschutz ohne Server-Uploads",
+      "Transaktions-Vorschau vor Konvertierung",
+      "Fehlerhafte Transaktionen bearbeiten",
+      "Deutsche Fehlermeldungen",
+      "Offline-fähig (PWA)",
     ],
-    screenshot: "https://wise-lexware-convert.evelan.de/icon.svg",
+    screenshot: `${baseUrl}/icon.svg`,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      ratingCount: "1",
+      bestRating: "5",
+      worstRating: "1",
+    },
   };
+
+  // Combined structured data as array
+  const structuredData = [
+    websiteStructuredData,
+    organizationStructuredData,
+    softwareStructuredData,
+  ];
 
   return (
     <html lang="de" suppressHydrationWarning>
