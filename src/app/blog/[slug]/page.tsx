@@ -273,7 +273,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {block.items.map((item, itemIndex) => (
                 <li
                   key={itemIndex}
-                  className="text-muted-foreground"
+                  className="text-foreground"
                   dangerouslySetInnerHTML={{ __html: formatInlineText(item) }}
                 />
               ))}
@@ -286,7 +286,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {block.items.map((item, itemIndex) => (
                 <li
                   key={itemIndex}
-                  className="text-muted-foreground"
+                  className="text-foreground"
                   value={parseInt(item.number)}
                   dangerouslySetInnerHTML={{ __html: formatInlineText(item.content) }}
                 />
@@ -307,7 +307,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     aria-label={item.checked ? 'Erledigt' : 'Offen'}
                   />
                   <span
-                    className="text-muted-foreground"
+                    className="text-foreground"
                     dangerouslySetInnerHTML={{ __html: formatInlineText(item.content) }}
                   />
                 </li>
@@ -336,7 +336,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       {row.map((cell, cellIndex) => (
                         <td
                           key={cellIndex}
-                          className="py-2 px-4 text-muted-foreground"
+                          className="py-2 px-4 text-foreground"
                           dangerouslySetInnerHTML={{ __html: formatInlineText(cell) }}
                         />
                       ))}
@@ -351,7 +351,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           return (
             <p
               key={index}
-              className="text-muted-foreground my-3 leading-relaxed"
+              className="text-foreground my-3 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: formatInlineText(block.content) }}
             />
           );
