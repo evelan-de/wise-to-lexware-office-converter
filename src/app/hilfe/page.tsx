@@ -280,47 +280,57 @@ export default function HilfePage() {
                     Wise CSV-Export herunterladen
                   </h3>
                   <div className="text-foreground space-y-3">
-                    <p>1. Melden Sie sich in Ihrem Wise-Konto an, klicken Sie auf <strong className="text-foreground">Transaktionen</strong> und dann auf <strong className="text-foreground">Kontoauszüge und Berichte</strong></p>
-                    <div className="rounded-lg border border-border overflow-hidden">
-                      <Image
-                        src="/screenshots/wise-step1.png"
-                        alt="Wise - Transaktionen und Kontoauszüge öffnen"
-                        width={800}
-                        height={450}
-                        className="w-full h-auto"
-                      />
-                    </div>
-                    <p>2. Klicken Sie auf <strong className="text-foreground">Auszüge</strong></p>
-                    <div className="rounded-lg border border-border overflow-hidden">
-                      <Image
-                        src="/screenshots/wise-step2.png"
-                        alt="Wise - Auszüge öffnen"
-                        width={800}
-                        height={450}
-                        className="w-full h-auto"
-                      />
-                    </div>
-                    <p>3. Klicken Sie auf <strong className="text-foreground">Benutzerdefiniert</strong> und dann auf <strong className="text-foreground">Erstelle einen Auszug</strong></p>
-                    <div className="rounded-lg border border-border overflow-hidden">
-                      <Image
-                        src="/screenshots/wise-step3.png"
-                        alt="Wise - Benutzerdefiniert und Auszug erstellen"
-                        width={800}
-                        height={450}
-                        className="w-full h-auto"
-                      />
-                    </div>
-                    <p>4. Wählen Sie das Format <strong className="text-foreground">CSV</strong> und klicken Sie auf <strong className="text-foreground">Kontoauszug erstellen</strong></p>
-                    <div className="rounded-lg border border-border overflow-hidden">
-                      <Image
-                        src="/screenshots/wise-step4.png"
-                        alt="Wise - CSV-Format auswählen und herunterladen"
-                        width={800}
-                        height={450}
-                        className="w-full h-auto"
-                      />
-                    </div>
-                    <p>5. Die CSV-Datei wird automatisch heruntergeladen</p>
+                    <ol className="list-decimal list-outside ml-6 space-y-3">
+                      <li>
+                        Melden Sie sich in Ihrem Wise-Konto an, klicken Sie auf <strong className="text-foreground">Transaktionen</strong> und dann auf <strong className="text-foreground">Kontoauszüge und Berichte</strong>
+                        <div className="rounded-lg border border-border overflow-hidden mt-2">
+                          <Image
+                            src="/screenshots/wise-step1.png"
+                            alt="Wise - Transaktionen und Kontoauszüge öffnen"
+                            width={800}
+                            height={450}
+                            className="w-full h-auto"
+                          />
+                        </div>
+                      </li>
+                      <li>
+                        Klicken Sie auf <strong className="text-foreground">Auszüge</strong>
+                        <div className="rounded-lg border border-border overflow-hidden mt-2">
+                          <Image
+                            src="/screenshots/wise-step2.png"
+                            alt="Wise - Auszüge öffnen"
+                            width={800}
+                            height={450}
+                            className="w-full h-auto"
+                          />
+                        </div>
+                      </li>
+                      <li>
+                        Klicken Sie auf <strong className="text-foreground">Benutzerdefiniert</strong> und dann auf <strong className="text-foreground">Erstelle einen Auszug</strong>
+                        <div className="rounded-lg border border-border overflow-hidden mt-2">
+                          <Image
+                            src="/screenshots/wise-step3.png"
+                            alt="Wise - Benutzerdefiniert und Auszug erstellen"
+                            width={800}
+                            height={450}
+                            className="w-full h-auto"
+                          />
+                        </div>
+                      </li>
+                      <li>
+                        Wählen Sie das Format <strong className="text-foreground">CSV</strong> und klicken Sie auf <strong className="text-foreground">Kontoauszug erstellen</strong>
+                        <div className="rounded-lg border border-border overflow-hidden mt-2">
+                          <Image
+                            src="/screenshots/wise-step4.png"
+                            alt="Wise - CSV-Format auswählen und herunterladen"
+                            width={800}
+                            height={450}
+                            className="w-full h-auto"
+                          />
+                        </div>
+                      </li>
+                      <li>Die CSV-Datei wird automatisch heruntergeladen</li>
+                    </ol>
                   </div>
                 </div>
               </div>
@@ -336,10 +346,12 @@ export default function HilfePage() {
                     CSV-Datei hochladen
                   </h3>
                   <div className="text-foreground space-y-2">
-                    <p>1. Gehen Sie zurück zur <Link href="/" className="text-primary hover:underline">Hauptseite</Link></p>
-                    <p>2. Ziehen Sie Ihre Wise CSV-Datei in den Upload-Bereich</p>
-                    <p>3. Oder klicken Sie auf den Bereich, um die Datei auszuwählen</p>
-                    <p className="text-sm text-muted-foreground">
+                    <ol className="list-decimal list-outside ml-6 space-y-1">
+                      <li>Gehen Sie zurück zur <Link href="/" className="text-primary hover:underline">Hauptseite</Link></li>
+                      <li>Ziehen Sie Ihre Wise CSV-Datei in den Upload-Bereich</li>
+                      <li>Oder klicken Sie auf den Bereich, um die Datei auszuwählen</li>
+                    </ol>
+                    <p className="text-sm text-muted-foreground mt-2">
                       <strong className="text-foreground">Hinweis:</strong> Maximale Dateigröße: 5 MB
                     </p>
                   </div>
@@ -401,22 +413,26 @@ export default function HilfePage() {
                     In Lexware Office importieren
                   </h3>
                   <div className="text-foreground space-y-3">
-                    <p>1. Melden Sie sich in Ihrem Lexware Office-Konto an</p>
-                    <p>2. Navigieren Sie zu <strong className="text-foreground">Banking → Konten</strong></p>
-                    <p>3. Wählen Sie Ihr Bankkonto aus</p>
-                    <p>4. Klicken Sie auf <strong className="text-foreground">&quot;Transaktionen importieren&quot;</strong></p>
-                    <div className="rounded-lg border border-border overflow-hidden">
-                      <Image
-                        src="/screenshots/lexoffice-upload.png"
-                        alt="Lexware Office - CSV-Datei hochladen"
-                        width={800}
-                        height={450}
-                        className="w-full h-auto"
-                      />
-                    </div>
-                    <p>5. Laden Sie die konvertierte CSV-Datei hoch</p>
-                    <p>6. Überprüfen Sie die Spaltenzuordnung (sollte automatisch erkannt werden)</p>
-                    <p>7. Bestätigen Sie den Import</p>
+                    <ol className="list-decimal list-outside ml-6 space-y-2">
+                      <li>Melden Sie sich in Ihrem Lexware Office-Konto an</li>
+                      <li>Navigieren Sie zu <strong className="text-foreground">Banking → Konten</strong></li>
+                      <li>Wählen Sie Ihr Bankkonto aus</li>
+                      <li>
+                        Klicken Sie auf <strong className="text-foreground">&quot;Transaktionen importieren&quot;</strong>
+                        <div className="rounded-lg border border-border overflow-hidden mt-2">
+                          <Image
+                            src="/screenshots/lexoffice-upload.png"
+                            alt="Lexware Office - CSV-Datei hochladen"
+                            width={800}
+                            height={450}
+                            className="w-full h-auto"
+                          />
+                        </div>
+                      </li>
+                      <li>Laden Sie die konvertierte CSV-Datei hoch</li>
+                      <li>Überprüfen Sie die Spaltenzuordnung (sollte automatisch erkannt werden)</li>
+                      <li>Bestätigen Sie den Import</li>
+                    </ol>
                     <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/40 rounded-lg border border-blue-200 dark:border-blue-800">
                       <p className="text-sm text-blue-800 dark:text-blue-200">
                         <strong className="text-blue-900 dark:text-blue-100">Hinweis:</strong> Detaillierte Informationen zum Import-Prozess finden Sie in der{' '}
