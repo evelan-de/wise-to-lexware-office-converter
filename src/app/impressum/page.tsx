@@ -41,7 +41,7 @@ export default function ImpressumPage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">
               Anbieter
             </h2>
-            <div className="text-muted-foreground space-y-2">
+            <div className="text-foreground space-y-2">
               <p className="font-semibold text-lg text-foreground">Evelan GmbH</p>
               <p>Ballindamm 39</p>
               <p>20095 Hamburg</p>
@@ -62,7 +62,7 @@ export default function ImpressumPage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">
               Kontakt
             </h2>
-            <div className="text-muted-foreground space-y-2">
+            <div className="text-foreground space-y-2">
               <p>
                 <strong className="text-foreground">Telefon:</strong>{' '}
                 <a href="tel:+4940882159400" className="text-primary hover:underline">
@@ -83,7 +83,7 @@ export default function ImpressumPage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">
               Umsatzsteuer-ID
             </h2>
-            <div className="text-muted-foreground">
+            <div className="text-foreground">
               <p>
                 <strong className="text-foreground">Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:</strong>
               </p>
@@ -96,7 +96,7 @@ export default function ImpressumPage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">
               Verbraucherstreitbeilegung / Universalschlichtungsstelle
             </h2>
-            <div className="text-muted-foreground space-y-3">
+            <div className="text-foreground space-y-3">
               <p>
                 Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
                 Verbraucherschlichtungsstelle teilzunehmen.
@@ -122,7 +122,7 @@ export default function ImpressumPage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">
               Zentrale Kontaktstelle nach dem Digital Services Act (DSA)
             </h2>
-            <div className="text-muted-foreground space-y-3">
+            <div className="text-foreground space-y-3">
               <p>
                 Unsere zentrale Kontaktstelle für Nutzer und Behörden nach Art. 11, 12 DSA erreichen Sie wie folgt:
               </p>
@@ -143,7 +143,7 @@ export default function ImpressumPage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">
               Urheberrecht
             </h2>
-            <div className="text-muted-foreground space-y-3">
+            <div className="text-foreground space-y-3">
               <p>
                 Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen
                 dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art

@@ -73,7 +73,7 @@ export default function BlogPage() {
         <h2 className="text-2xl font-semibold text-foreground mb-3">
           Bereit, Ihre Wise-Transaktionen zu konvertieren?
         </h2>
-        <p className="text-muted-foreground mb-6">
+        <p className="text-foreground mb-6">
           Unser kostenloser Konverter wandelt Ihre Wise CSV-Exporte in das
           Lexware Office-Format um. Schnell, sicher und ohne Registrierung.
         </p>

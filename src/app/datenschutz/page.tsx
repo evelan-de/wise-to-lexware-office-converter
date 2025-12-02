@@ -60,7 +60,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             1. Verantwortlicher
           </h2>
-          <div className="text-muted-foreground space-y-2">
+          <div className="text-foreground space-y-2">
             <p className="font-semibold text-lg text-foreground">Evelan GmbH</p>
             <p>Ballindamm 39</p>
             <p>20095 Hamburg</p>
@@ -84,7 +84,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             2. Datenschutzbeauftragter
           </h2>
-          <div className="text-muted-foreground space-y-2">
+          <div className="text-foreground space-y-2">
             <p className="font-semibold text-foreground">heyData GmbH</p>
             <p>Schützenstr. 5</p>
             <p>10117 Berlin</p>
@@ -102,7 +102,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             3. Datenverarbeitung bei Nutzung des Konverters
           </h2>
-          <div className="text-muted-foreground space-y-4">
+          <div className="text-foreground space-y-4">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Keine Übertragung von CSV-Daten
@@ -140,7 +140,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             4. Datenverarbeitung beim Website-Besuch
           </h2>
-          <div className="text-muted-foreground space-y-4">
+          <div className="text-foreground space-y-4">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Server-Logfiles
@@ -188,7 +188,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             5. SSL/TLS-Verschlüsselung
           </h2>
-          <div className="text-muted-foreground">
+          <div className="text-foreground">
             <p>
               Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung eine SSL/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von &quot;http://&quot; auf &quot;https://&quot; wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
             </p>
@@ -200,7 +200,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             6. Web-Analyse mit Umami Analytics
           </h2>
-          <div className="text-muted-foreground space-y-4">
+          <div className="text-foreground space-y-4">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Umfang der Verarbeitung
@@ -270,7 +270,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             7. Cookies
           </h2>
-          <div className="text-muted-foreground">
+          <div className="text-foreground">
             <p>
               Diese Website verwendet <strong className="text-foreground">keine Cookies</strong>. Auch unser Analytics-Tool Umami setzt keine Cookies ein und benötigt daher keine Cookie-Einwilligung.
             </p>
@@ -282,7 +282,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             8. Ihre Rechte
           </h2>
-          <div className="text-muted-foreground space-y-3">
+          <div className="text-foreground space-y-3">
             <p>
               Sie haben das Recht auf:
             </p>
@@ -306,7 +306,7 @@ export default function DatenschutzPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">
             9. Änderungen dieser Datenschutzerklärung
           </h2>
-          <div className="text-muted-foreground">
+          <div className="text-foreground">
             <p>
               Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen umzusetzen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.
             </p>

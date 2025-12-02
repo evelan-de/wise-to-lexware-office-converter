@@ -57,9 +57,9 @@ export default function HilfePage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">
               Was macht dieses Tool?
             </h2>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-foreground mb-4">
               Dieser Konverter wandelt Wise CSV-Exporte in das spezifische Format um, das von{' '}
-              <strong className="text-foreground">Lexware Offices Funktion &quot;Elektronischer Kontoauszug über CSV-Datei importieren&quot;</strong> benötigt wird.
+              <strong>Lexware Offices Funktion &quot;Elektronischer Kontoauszug über CSV-Datei importieren&quot;</strong> benötigt wird.
             </p>
             <div className="mb-4">
               <a
@@ -72,10 +72,10 @@ export default function HilfePage() {
                 Offizielle Lexware Office-Dokumentation zum CSV-Import
               </a>
             </div>
-            <p className="text-muted-foreground">
+            <p className="text-foreground">
               Das Tool ist nützlich, wenn Sie:
             </p>
-            <ul className="list-disc list-inside space-y-2 mt-3 text-muted-foreground">
+            <ul className="list-disc list-inside space-y-2 mt-3 text-foreground">
               <li>Historische Wise-Transaktionen in Lexware Office importieren möchten</li>
               <li>Die automatische Bankverbindung nicht verfügbar oder nicht funktionsfähig ist</li>
               <li>Bestimmte Wise-Transaktionen manuell zu Lexware Office hinzufügen müssen</li>
@@ -99,7 +99,7 @@ export default function HilfePage() {
                     <Download className="w-5 h-5 text-primary" />
                     Wise CSV-Export herunterladen
                   </h3>
-                  <div className="text-muted-foreground space-y-3">
+                  <div className="text-foreground space-y-3">
                     <p>1. Melden Sie sich in Ihrem Wise-Konto an, klicken Sie auf <strong className="text-foreground">Transaktionen</strong> und dann auf <strong className="text-foreground">Kontoauszüge und Berichte</strong></p>
                     <div className="rounded-lg border border-border overflow-hidden">
                       <Image
@@ -155,11 +155,11 @@ export default function HilfePage() {
                     <FileUp className="w-5 h-5 text-primary" />
                     CSV-Datei hochladen
                   </h3>
-                  <div className="text-muted-foreground space-y-2">
+                  <div className="text-foreground space-y-2">
                     <p>1. Gehen Sie zurück zur <Link href="/" className="text-primary hover:underline">Hauptseite</Link></p>
                     <p>2. Ziehen Sie Ihre Wise CSV-Datei in den Upload-Bereich</p>
                     <p>3. Oder klicken Sie auf den Bereich, um die Datei auszuwählen</p>
-                    <p className="text-sm text-muted-foreground/80">
+                    <p className="text-sm text-muted-foreground">
                       <strong className="text-foreground">Hinweis:</strong> Maximale Dateigröße: 5 MB
                     </p>
                   </div>
@@ -176,7 +176,7 @@ export default function HilfePage() {
                     <CheckCircle className="w-5 h-5 text-primary" />
                     Automatische Konvertierung
                   </h3>
-                  <div className="text-muted-foreground space-y-2">
+                  <div className="text-foreground space-y-2">
                     <p>Die Datei wird automatisch validiert und konvertiert:</p>
                     <ul className="list-disc list-inside ml-4 space-y-1">
                       <li>Prüfung der CSV-Struktur und erforderlichen Felder</li>
@@ -199,7 +199,7 @@ export default function HilfePage() {
                     <Download className="w-5 h-5 text-primary" />
                     Datei wird automatisch heruntergeladen
                   </h3>
-                  <div className="text-muted-foreground space-y-2">
+                  <div className="text-foreground space-y-2">
                     <p>Die konvertierte Datei wird automatisch heruntergeladen:</p>
                     <ul className="list-disc list-inside ml-4 space-y-1">
                       <li>Dateiname: <code className="bg-muted px-2 py-0.5 rounded text-sm text-foreground">lexoffice_import_YYYY-MM-DD.csv</code></li>
@@ -220,7 +220,7 @@ export default function HilfePage() {
                     <Upload className="w-5 h-5 text-primary" />
                     In Lexware Office importieren
                   </h3>
-                  <div className="text-muted-foreground space-y-3">
+                  <div className="text-foreground space-y-3">
                     <p>1. Melden Sie sich in Ihrem Lexware Office-Konto an</p>
                     <p>2. Navigieren Sie zu <strong className="text-foreground">Banking → Konten</strong></p>
                     <p>3. Wählen Sie Ihr Bankkonto aus</p>
@@ -297,7 +297,7 @@ export default function HilfePage() {
             <div className="space-y-4">
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Was wird validiert?</h3>
-                <ul className="list-disc list-inside space-y-1 text-muted-foreground ml-4">
+                <ul className="list-disc list-inside space-y-1 text-foreground ml-4">
                   <li>Dateityp (muss .csv sein)</li>
                   <li>Dateigröße (maximal 5 MB)</li>
                   <li>CSV-Struktur (korrekte Spalten)</li>
@@ -308,7 +308,7 @@ export default function HilfePage() {
 
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Welche Transformationen werden durchgeführt?</h3>
-                <ul className="list-disc list-inside space-y-1 text-muted-foreground ml-4">
+                <ul className="list-disc list-inside space-y-1 text-foreground ml-4">
                   <li>Datumsformat: <code className="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">29-09-2025</code> → <code className="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">29.09.2025</code></li>
                   <li>Betragsformat: <code className="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">1318.79</code> → <code className="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">1318,79</code></li>
                   <li>Trennzeichen: Komma → Semikolon</li>
@@ -319,7 +319,7 @@ export default function HilfePage() {
 
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Datenschutz & Sicherheit</h3>
-                <ul className="list-disc list-inside space-y-1 text-muted-foreground ml-4">
+                <ul className="list-disc list-inside space-y-1 text-foreground ml-4">
                   <li>✅ Alle Verarbeitungen erfolgen lokal in Ihrem Browser</li>
                   <li>✅ Keine Datenübertragung an Server</li>
                   <li>✅ Keine Datenspeicherung (Dateien nur temporär im Speicher)</li>
@@ -340,35 +340,35 @@ export default function HilfePage() {
             <div className="space-y-4">
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Werden meine Daten hochgeladen?</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground">
                   Nein, Ihre Daten verlassen niemals Ihren Browser. Die gesamte Konvertierung erfolgt lokal auf Ihrem Gerät.
                 </p>
               </div>
 
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Welches CSV-Format benötige ich von Wise?</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground">
                   Sie benötigen den Standard-CSV-Export aus Wise (Kontoverlauf & Dokumente → Kontoauszug herunterladen → CSV).
                 </p>
               </div>
 
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Was passiert, wenn meine Datei einen Fehler hat?</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground">
                   Das Tool zeigt detaillierte Fehlermeldungen auf Deutsch an. Diese erklären genau, was falsch ist und wie Sie es beheben können.
                 </p>
               </div>
 
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Kann ich mehrere Dateien gleichzeitig konvertieren?</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground">
                   Aktuell nicht, aber diese Funktion ist für eine zukünftige Version geplant. Sie können aber schnell nacheinander mehrere Dateien konvertieren.
                 </p>
               </div>
 
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Funktioniert das Tool offline?</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground">
                   Ja, nach dem ersten Laden der Webseite kann das Tool auch offline verwendet werden (dank Progressive Web App Technologie).
                 </p>
               </div>
