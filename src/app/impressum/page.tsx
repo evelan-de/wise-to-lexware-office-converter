@@ -1,19 +1,146 @@
 import Link from 'next/link';
+import Script from 'next/script';
+import type { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 
-export const metadata = {
-  title: 'Impressum - WISE zu Lexware Office Konverter',
-  description: 'Impressum und rechtliche Informationen für den WISE zu Lexware Office Konverter von Evelan GmbH',
+const baseUrl = 'https://wise-lexware-convert.evelan.de';
+
+export const metadata: Metadata = {
+  title: 'Impressum',
+  description: 'Impressum und rechtliche Informationen für den WISE zu Lexware Office Konverter. Anbieter: Evelan GmbH, Hamburg.',
+  keywords: [
+    'Impressum',
+    'Evelan GmbH',
+    'Kontakt',
+    'Rechtliche Informationen',
+    'Hamburg',
+    'Wise Konverter',
+  ],
+  openGraph: {
+    title: 'Impressum - WISE zu Lexware Office Konverter',
+    description: 'Rechtliche Informationen und Kontaktdaten. Anbieter: Evelan GmbH, Hamburg.',
+    type: 'website',
+    url: `${baseUrl}/impressum`,
+  },
+  alternates: {
+    canonical: `${baseUrl}/impressum`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+// Organization structured data (provides rich results for company info)
+const organizationStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${baseUrl}/#organization`,
+  name: 'Evelan GmbH',
+  legalName: 'Evelan GmbH',
+  url: 'https://evelan.de',
+  logo: `${baseUrl}/icon.svg`,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Ballindamm 39',
+    addressLocality: 'Hamburg',
+    postalCode: '20095',
+    addressCountry: 'DE',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+49-40-88215940',
+    contactType: 'customer service',
+    email: 'kontakt@evelan.de',
+    availableLanguage: ['German', 'English'],
+  },
+  vatID: 'DE315030550',
+  sameAs: [
+    'https://evelan.de',
+  ],
+};
+
+// WebPage structured data
+const webPageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${baseUrl}/impressum`,
+  name: 'Impressum',
+  description: 'Impressum und rechtliche Informationen für den WISE zu Lexware Office Konverter.',
+  url: `${baseUrl}/impressum`,
+  inLanguage: 'de-DE',
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${baseUrl}/#website`,
+    name: 'WISE zu Lexware Office Konverter',
+    url: baseUrl,
+  },
+};
+
+// BreadcrumbList structured data
+const breadcrumbStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Startseite',
+      item: baseUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Impressum',
+      item: `${baseUrl}/impressum`,
+    },
+  ],
 };
 
 export default function ImpressumPage() {
   return (
     <>
+      {/* Structured Data - Organization */}
+      <Script
+        id="organization-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationStructuredData) }}
+      />
+
+      {/* Structured Data - WebPage */}
+      <Script
+        id="webpage-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
+      />
+
+      {/* Structured Data - Breadcrumb */}
+      <Script
+        id="breadcrumb-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
+
       {/* Theme Switcher */}
       <div className="absolute top-4 right-4">
         <ThemeSwitcher />
       </div>
+
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="mb-6">
+        <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+          <li>
+            <Link href="/" className="hover:text-primary transition-colors">
+              Startseite
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li className="text-foreground font-medium" aria-current="page">
+            Impressum
+          </li>
+        </ol>
+      </nav>
 
       {/* Back Button */}
         <Link

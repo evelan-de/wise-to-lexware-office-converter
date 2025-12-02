@@ -1,19 +1,117 @@
 import Link from 'next/link';
+import Script from 'next/script';
+import type { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 
-export const metadata = {
-  title: 'Datenschutzerklärung - WISE zu Lexware Office Konverter',
-  description: 'Datenschutzerklärung für den WISE zu Lexware Office Konverter von Evelan GmbH',
+const baseUrl = 'https://wise-lexware-convert.evelan.de';
+
+export const metadata: Metadata = {
+  title: 'Datenschutzerklärung',
+  description: 'Datenschutzerklärung für den WISE zu Lexware Office Konverter. 100% Datenschutz: Alle Daten werden lokal in Ihrem Browser verarbeitet - keine Server-Uploads.',
+  keywords: [
+    'Datenschutz',
+    'DSGVO',
+    'Datenschutzerklärung',
+    'Privacy Policy',
+    'Wise Konverter Datenschutz',
+    'Lexware Office Datenschutz',
+    'Lokale Verarbeitung',
+    'Keine Cookies',
+  ],
+  openGraph: {
+    title: 'Datenschutzerklärung - WISE zu Lexware Office Konverter',
+    description: '100% Datenschutz: Alle Daten werden lokal in Ihrem Browser verarbeitet.',
+    type: 'website',
+    url: `${baseUrl}/datenschutz`,
+  },
+  alternates: {
+    canonical: `${baseUrl}/datenschutz`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+// WebPage structured data
+const webPageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${baseUrl}/datenschutz`,
+  name: 'Datenschutzerklärung',
+  description: 'Datenschutzerklärung für den WISE zu Lexware Office Konverter von Evelan GmbH.',
+  url: `${baseUrl}/datenschutz`,
+  inLanguage: 'de-DE',
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${baseUrl}/#website`,
+    name: 'WISE zu Lexware Office Konverter',
+    url: baseUrl,
+  },
+  about: {
+    '@type': 'Thing',
+    name: 'Datenschutz und DSGVO-Konformität',
+  },
+  dateModified: '2025-11-01',
+};
+
+// BreadcrumbList structured data
+const breadcrumbStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Startseite',
+      item: baseUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Datenschutzerklärung',
+      item: `${baseUrl}/datenschutz`,
+    },
+  ],
 };
 
 export default function DatenschutzPage() {
   return (
     <>
+      {/* Structured Data - WebPage */}
+      <Script
+        id="webpage-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
+      />
+
+      {/* Structured Data - Breadcrumb */}
+      <Script
+        id="breadcrumb-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
+
       {/* Theme Switcher */}
       <div className="absolute top-4 right-4">
         <ThemeSwitcher />
       </div>
+
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="mb-6">
+        <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+          <li>
+            <Link href="/" className="hover:text-primary transition-colors">
+              Startseite
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li className="text-foreground font-medium" aria-current="page">
+            Datenschutzerklärung
+          </li>
+        </ol>
+      </nav>
 
       {/* Back Button */}
       <Link
