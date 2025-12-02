@@ -45,15 +45,26 @@ jobs:
         run: |
           echo "Starting ImmuniWeb security scan for: ${{ steps.url.outputs.target_url }}"
 
+          # Create output directory
+          mkdir -p scan-output
+
           # Run the security scan using Docker
           # Using -p (pipeline) mode to validate against config thresholds
+          # -o specifies output file, -f specifies format (json)
           docker run --rm \
             -v ${{ github.workspace }}/.github/immuniweb:/config:ro \
+            -v ${{ github.workspace }}/scan-output:/output \
             immuniweb/iwtools \
             websec "${{ steps.url.outputs.target_url }}" \
             -p \
             -cfg /config/websec.yaml \
-            --json-file /dev/stdout 2>&1 | tee scan-results.json || EXIT_CODE=$?
+            -o /output/scan-results.json \
+            -f json || EXIT_CODE=$?
+
+          # Move results to workspace root
+          if [ -f scan-output/scan-results.json ]; then
+            mv scan-output/scan-results.json .
+          fi
 
           # Capture exit code (0=pass, 1=error, 2=input error, 3=checks failed)
           echo "exit_code=${EXIT_CODE:-0}" >> $GITHUB_OUTPUT
