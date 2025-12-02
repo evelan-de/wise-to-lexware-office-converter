@@ -8,7 +8,7 @@ import { ThemeSwitcher } from '@/components/theme-switcher';
 const baseUrl = 'https://wise-lexware-convert.evelan.de';
 
 export const metadata: Metadata = {
-  title: 'Anleitung: Wise CSV für Lexware Office konvertieren',
+  title: 'Anleitung: Wise CSV konvertieren',
   description: 'Schritt-für-Schritt Anleitung mit Screenshots: So exportieren Sie Wise-Transaktionen als CSV und importieren sie in Lexware Office. Kostenlos & ohne Registrierung.',
   keywords: [
     'Wise Anleitung',
