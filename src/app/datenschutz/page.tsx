@@ -214,7 +214,7 @@ export default function DatenschutzPage() {
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Technische Funktionsweise
               </h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
+              <ul className="list-disc list-outside ml-6 space-y-1">
                 <li>Ihre CSV-Datei wird lokal im Browser gelesen</li>
                 <li>Die Konvertierung erfolgt clientseitig mittels JavaScript</li>
                 <li>Die konvertierte Datei wird direkt auf Ihr Gerät heruntergeladen</li>
@@ -246,7 +246,7 @@ export default function DatenschutzPage() {
               <p>
                 Beim Besuch dieser Website werden automatisch Informationen erfasst, die Ihr Browser an unseren Server übermittelt:
               </p>
-              <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
+              <ul className="list-disc list-outside ml-6 space-y-1 mt-2">
                 <li>IP-Adresse (anonymisiert)</li>
                 <li>Datum und Uhrzeit der Anfrage</li>
                 <li>Browsertyp und Browserversion</li>
@@ -315,7 +315,7 @@ export default function DatenschutzPage() {
               <p>
                 Es werden ausschließlich anonymisierte Nutzungsdaten erfasst:
               </p>
-              <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
+              <ul className="list-disc list-outside ml-6 space-y-1 mt-2">
                 <li>Seitenaufrufe (ohne persönliche Identifikation)</li>
                 <li>Allgemeine Nutzungsstatistiken (z.B. Datei hochgeladen, Konvertierung erfolgreich)</li>
                 <li>Browser-Typ und Betriebssystem (anonymisiert)</li>
@@ -327,7 +327,7 @@ export default function DatenschutzPage() {
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Datenschutz-Merkmale
               </h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
+              <ul className="list-disc list-outside ml-6 space-y-1">
                 <li><strong className="text-foreground">Keine Cookies:</strong> Umami verwendet keine Tracking-Cookies</li>
                 <li><strong className="text-foreground">Keine IP-Speicherung:</strong> IP-Adressen werden nicht gespeichert</li>
                 <li><strong className="text-foreground">Keine personenbezogenen Daten:</strong> Es erfolgt keine Erfassung oder Speicherung personenbezogener Informationen</li>
@@ -384,7 +384,7 @@ export default function DatenschutzPage() {
             <p>
               Sie haben das Recht auf:
             </p>
-            <ul className="list-disc list-inside space-y-1 ml-4">
+            <ul className="list-disc list-outside ml-6 space-y-1">
               <li>Auskunft über Ihre gespeicherten personenbezogenen Daten (Art. 15 DSGVO)</li>
               <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
               <li>Löschung Ihrer Daten (Art. 17 DSGVO)</li>

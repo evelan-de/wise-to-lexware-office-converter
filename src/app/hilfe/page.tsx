@@ -255,7 +255,7 @@ export default function HilfePage() {
             <p className="text-foreground">
               Das Tool ist nützlich, wenn Sie:
             </p>
-            <ul className="list-disc list-inside space-y-2 mt-3 text-foreground">
+            <ul className="list-disc list-outside ml-6 space-y-2 mt-3 text-foreground">
               <li>Historische Wise-Transaktionen in Lexware Office importieren möchten</li>
               <li>Die automatische Bankverbindung nicht verfügbar oder nicht funktionsfähig ist</li>
               <li>Bestimmte Wise-Transaktionen manuell zu Lexware Office hinzufügen müssen</li>
@@ -358,7 +358,7 @@ export default function HilfePage() {
                   </h3>
                   <div className="text-foreground space-y-2">
                     <p>Die Datei wird automatisch validiert und konvertiert:</p>
-                    <ul className="list-disc list-inside ml-4 space-y-1">
+                    <ul className="list-disc list-outside ml-6 space-y-1">
                       <li>Prüfung der CSV-Struktur und erforderlichen Felder</li>
                       <li>Umwandlung der Datumsformate (DD-MM-YYYY → DD.MM.YYYY)</li>
                       <li>Umwandlung der Betragsformate (1234.56 → 1234,56)</li>
@@ -381,7 +381,7 @@ export default function HilfePage() {
                   </h3>
                   <div className="text-foreground space-y-2">
                     <p>Die konvertierte Datei wird automatisch heruntergeladen:</p>
-                    <ul className="list-disc list-inside ml-4 space-y-1">
+                    <ul className="list-disc list-outside ml-6 space-y-1">
                       <li>Dateiname: <code className="bg-muted px-2 py-0.5 rounded text-sm text-foreground">lexoffice_import_YYYY-MM-DD.csv</code></li>
                       <li>Format: Lexware Office-kompatible CSV-Datei</li>
                       <li>Bereit für den direkten Import in Lexware Office</li>
@@ -449,7 +449,7 @@ export default function HilfePage() {
                   <strong className="text-amber-900 dark:text-amber-100">Lexware Office prüft beim CSV-Import nicht automatisch auf Duplikate.</strong>{' '}
                   Vor dem Import sollten Sie:
                 </p>
-                <ul className="list-disc list-inside space-y-1 text-amber-800 dark:text-amber-200 ml-4">
+                <ul className="list-disc list-outside ml-6 space-y-1 text-amber-800 dark:text-amber-200">
                   <li>Ihr Lexware Office-Konto auf bereits vorhandene Transaktionen aus dem Zeitraum prüfen</li>
                   <li>Nur Transaktionen importieren, die noch nicht vorhanden sind</li>
                   <li>Den Überblick behalten, welche Zeiträume Sie bereits importiert haben</li>
@@ -457,7 +457,7 @@ export default function HilfePage() {
 
                 <div className="mt-4 p-4 bg-white dark:bg-amber-900/30 rounded-lg border border-amber-200 dark:border-amber-700">
                   <p className="font-semibold text-amber-900 dark:text-amber-100 mb-2">Empfohlener Workflow:</p>
-                  <ol className="list-decimal list-inside space-y-1 text-amber-800 dark:text-amber-200 text-sm">
+                  <ol className="list-decimal list-outside ml-6 space-y-1 text-amber-800 dark:text-amber-200 text-sm">
                     <li>Notieren Sie das Datum der letzten Transaktion in Lexware Office</li>
                     <li>Exportieren Sie Wise-Transaktionen ab dem Folgetag</li>
                     <li>Konvertieren und importieren Sie die neuen Transaktionen</li>
@@ -477,7 +477,7 @@ export default function HilfePage() {
             <div className="space-y-4">
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Was wird validiert?</h3>
-                <ul className="list-disc list-inside space-y-1 text-foreground ml-4">
+                <ul className="list-disc list-outside ml-6 space-y-1 text-foreground">
                   <li>Dateityp (muss .csv sein)</li>
                   <li>Dateigröße (maximal 5 MB)</li>
                   <li>CSV-Struktur (korrekte Spalten)</li>
@@ -488,7 +488,7 @@ export default function HilfePage() {
 
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Welche Transformationen werden durchgeführt?</h3>
-                <ul className="list-disc list-inside space-y-1 text-foreground ml-4">
+                <ul className="list-disc list-outside ml-6 space-y-1 text-foreground">
                   <li>Datumsformat: <code className="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">29-09-2025</code> → <code className="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">29.09.2025</code></li>
                   <li>Betragsformat: <code className="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">1318.79</code> → <code className="bg-muted px-1.5 py-0.5 rounded text-sm text-foreground">1318,79</code></li>
                   <li>Trennzeichen: Komma → Semikolon</li>
@@ -499,7 +499,7 @@ export default function HilfePage() {
 
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Datenschutz & Sicherheit</h3>
-                <ul className="list-disc list-inside space-y-1 text-foreground ml-4">
+                <ul className="list-disc list-outside ml-6 space-y-1 text-foreground">
                   <li>✅ Alle Verarbeitungen erfolgen lokal in Ihrem Browser</li>
                   <li>✅ Keine Datenübertragung an Server</li>
                   <li>✅ Keine Datenspeicherung (Dateien nur temporär im Speicher)</li>

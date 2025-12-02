@@ -198,10 +198,10 @@ export default function ConverterPage() {
           <h1 className="text-4xl font-bold text-foreground mb-3">
             WISE zu Lexware Office Konverter
           </h1>
-          <p className="text-lg text-muted-foreground mb-2">
+          <p className="text-lg text-foreground mb-2">
             Wandeln Sie Wise CSV-Exporte in das Lexware Office Bankimport-Format um
           </p>
-          <p className="text-sm text-muted-foreground/80 mb-4">
+          <p className="text-sm text-muted-foreground mb-4">
             Für Lexware Office: Banking → Konten → Transaktionen importieren
           </p>
           <div className="flex items-center justify-center gap-4 text-sm">
