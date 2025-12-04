@@ -44,13 +44,16 @@ jobs:
           # This allows scanning protected Vercel preview deployments
           # See: https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation
           if [ -n "$VERCEL_AUTOMATION_BYPASS_SECRET" ]; then
+            echo "✓ VERCEL_AUTOMATION_BYPASS_SECRET is configured (length: ${#VERCEL_AUTOMATION_BYPASS_SECRET} chars)"
             # Check if URL already has query parameters
             if [[ "$TARGET_URL" == *"?"* ]]; then
               TARGET_URL="${TARGET_URL}&x-vercel-protection-bypass=${VERCEL_AUTOMATION_BYPASS_SECRET}&x-vercel-set-bypass-cookie=samesitenone"
             else
               TARGET_URL="${TARGET_URL}?x-vercel-protection-bypass=${VERCEL_AUTOMATION_BYPASS_SECRET}&x-vercel-set-bypass-cookie=samesitenone"
             fi
-            echo "Vercel protection bypass enabled"
+            echo "Vercel protection bypass parameters added to URL"
+          else
+            echo "⚠ VERCEL_AUTOMATION_BYPASS_SECRET is NOT configured - preview deployments may return 401"
           fi
 
           echo "target_url=${TARGET_URL}" >> $GITHUB_OUTPUT
