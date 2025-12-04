@@ -78,11 +78,49 @@ jobs:
 
           # Run the security scan using Python directly
           echo "Running security scan..."
+
+          # Debug: Print the exact URL being passed
+          echo "DEBUG: Full TARGET_URL variable:"
+          printf '%s\n' "${TARGET_URL}"
+          echo "DEBUG: URL length: ${#TARGET_URL}"
+
+          # Write URL to file and use Python to read it (bypasses all shell interpretation)
+          printf '%s' "${TARGET_URL}" > /tmp/target_url.txt
+          echo "DEBUG: URL from file:"
+          cat /tmp/target_url.txt
+          echo ""
+
+          # Create a Python wrapper script to run iwtools
+          cat > /tmp/run_scan.py << 'PYTHON_SCRIPT'
+import subprocess
+import sys
+
+# Read URL from file to avoid any shell escaping issues
+with open('/tmp/target_url.txt', 'r') as f:
+    url = f.read().strip()
+
+print(f'Python received URL: {url}')
+print(f'URL length: {len(url)}')
+print(f'Contains ?: {"?" in url}')
+print(f'Contains &: {"&" in url}')
+
+output_path = sys.argv[1] if len(sys.argv) > 1 else 'scan-results.json'
+
+# Run iwtools with the URL
+result = subprocess.run(
+    ['python', 'iwtools.py', 'websec', url, '-o', output_path, '-f', 'pretty_json'],
+    capture_output=True,
+    text=True
+)
+print(result.stdout)
+if result.stderr:
+    print(result.stderr, file=sys.stderr)
+sys.exit(result.returncode)
+PYTHON_SCRIPT
+
           set +e
           cd /tmp/iwtools/iwtools
-          python iwtools.py websec "${TARGET_URL}" \
-            -o ${{ github.workspace }}/scan-results.json \
-            -f pretty_json 2>&1 | tee ${{ github.workspace }}/scan-output.log
+          python3 /tmp/run_scan.py "${{ github.workspace }}/scan-results.json" 2>&1 | tee ${{ github.workspace }}/scan-output.log
           EXIT_CODE=${PIPESTATUS[0]}
           set -e
 
