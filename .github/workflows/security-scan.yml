@@ -44,6 +44,17 @@ jobs:
           echo "base_url=${BASE_URL}" >> $GITHUB_OUTPUT
           echo "Scanning URL: ${BASE_URL}"
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install iwtools
+        run: |
+          git clone https://github.com/immuniweb/iwtools.git /tmp/iwtools
+          cd /tmp/iwtools
+          pip install -r requirements.txt
+
       - name: Run ImmuniWeb Website Security Test
         id: security-scan
         env:
@@ -65,59 +76,30 @@ jobs:
           # Debug: Show URL structure (masked)
           echo "URL structure: ${BASE_URL}?x-vercel-protection-bypass=***&x-vercel-set-bypass-cookie=samesitenone"
 
-          # Pull Docker image first (separates pull logs from scan output)
-          echo "Pulling ImmuniWeb Docker image..."
-          docker pull immuniweb/iwtools:latest
-
-          # Create output directory with proper permissions
-          mkdir -p scan-output
-          chmod 777 scan-output
-
-          # Verify config file exists
-          echo "Checking config file..."
-          ls -la ${{ github.workspace }}/.github/immuniweb/
-
-          # Run the security scan using Docker
-          # -o specifies output file, -f specifies format (pretty_json for readability)
+          # Run the security scan using Python directly
           echo "Running security scan..."
-
-          # Write URL to file to pass it safely to Docker (avoids shell interpretation issues)
-          echo -n "${TARGET_URL}" > scan-output/target_url.txt
-          echo "DEBUG: URL written to file:"
-          cat scan-output/target_url.txt
-          echo ""
-          echo "DEBUG: URL hex dump (first 200 bytes):"
-          xxd scan-output/target_url.txt | head -20
-
-          # Read URL from file inside container to preserve special characters
           set +e
-          docker run --rm \
-            -v ${{ github.workspace }}/scan-output:/output \
-            --entrypoint /bin/sh \
-            immuniweb/iwtools \
-            -c 'URL=$(cat /output/target_url.txt) && echo "URL inside container: $URL" && python3 /app/iwtools.py websec "$URL" -o /output/scan-results.json -f pretty_json' 2>&1 | tee scan-output.log
+          cd /tmp/iwtools
+          python iwtools.py websec "${TARGET_URL}" \
+            -o ${{ github.workspace }}/scan-results.json \
+            -f pretty_json 2>&1 | tee ${{ github.workspace }}/scan-output.log
           EXIT_CODE=${PIPESTATUS[0]}
           set -e
 
-          echo "Docker exit code: $EXIT_CODE"
+          echo "Scan exit code: $EXIT_CODE"
 
-          # Display scan output for debugging
+          # Display scan output
           echo "=== Scan Output ==="
-          cat scan-output.log
+          cat ${{ github.workspace }}/scan-output.log
           echo "==================="
 
-          # Check what files were created
-          echo "=== Output directory contents ==="
-          ls -la scan-output/ || echo "scan-output directory is empty"
-
-          # Move results to workspace root
-          if [ -f scan-output/scan-results.json ]; then
-            mv scan-output/scan-results.json .
-            echo "Results file found and moved"
+          # Check results
+          if [ -f ${{ github.workspace }}/scan-results.json ]; then
+            echo "Results file found"
             echo "=== Results preview ==="
-            head -100 scan-results.json || true
+            head -100 ${{ github.workspace }}/scan-results.json || true
           else
-            echo "No results file generated in scan-output/"
+            echo "No results file generated"
           fi
 
           # Capture exit code (0=pass, 1=error, 2=input error, 3=checks failed)
