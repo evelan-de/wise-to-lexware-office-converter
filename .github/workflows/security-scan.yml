@@ -1,8 +1,9 @@
 name: ImmuniWeb Security Scan
 
 on:
-  # Run on deployment completion (works with Vercel preview deployments)
-  deployment_status:
+  # Run on push to main branch (scans production)
+  push:
+    branches: [main]
   # Allow manual trigger with custom URL
   workflow_dispatch:
     inputs:
@@ -15,12 +16,6 @@ jobs:
   security-scan:
     name: Website Security Test
     runs-on: ubuntu-latest
-    # Use Preview environment to access environment secrets
-    environment: Preview
-    # Only run when deployment is successful or on manual trigger
-    if: >
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success')
 
     steps:
       - name: Checkout code
@@ -28,36 +23,15 @@ jobs:
 
       - name: Determine target URL
         id: url
-        env:
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            if [ -n "${{ github.event.inputs.target_url }}" ]; then
-              BASE_URL="${{ github.event.inputs.target_url }}"
-            else
-              BASE_URL="https://wise-lexware-convert.evelan.de"
-            fi
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ -n "${{ github.event.inputs.target_url }}" ]; then
+            TARGET_URL="${{ github.event.inputs.target_url }}"
           else
-            # Use Vercel preview URL from deployment
-            BASE_URL="${{ github.event.deployment_status.target_url }}"
+            TARGET_URL="https://wise-lexware-convert.evelan.de"
           fi
 
-          # Add Vercel bypass parameters if secret is configured
-          if [ -n "$VERCEL_AUTOMATION_BYPASS_SECRET" ]; then
-            echo "✓ VERCEL_AUTOMATION_BYPASS_SECRET is configured"
-            # URL-encode the query string to preserve special characters
-            # ? = %3F, & = %26, = = %3D
-            ENCODED_PARAMS="x-vercel-protection-bypass=${VERCEL_AUTOMATION_BYPASS_SECRET}%26x-vercel-set-bypass-cookie=samesitenone"
-            TARGET_URL="${BASE_URL}%3F${ENCODED_PARAMS}"
-            echo "Vercel protection bypass added (URL-encoded)"
-          else
-            echo "⚠ VERCEL_AUTOMATION_BYPASS_SECRET not configured"
-            TARGET_URL="${BASE_URL}"
-          fi
-
-          echo "base_url=${BASE_URL}" >> $GITHUB_OUTPUT
           echo "target_url=${TARGET_URL}" >> $GITHUB_OUTPUT
-          echo "Scanning URL: ${BASE_URL}"
+          echo "Scanning URL: ${TARGET_URL}"
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -107,7 +81,7 @@ jobs:
       - name: Parse scan results
         if: always()
         run: |
-          DISPLAY_URL="${{ steps.url.outputs.base_url }}"
+          DISPLAY_URL="${{ steps.url.outputs.target_url }}"
 
           echo "## ImmuniWeb Security Scan Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
