@@ -80,13 +80,20 @@ jobs:
           # Run the security scan using Docker
           # -o specifies output file, -f specifies format (pretty_json for readability)
           echo "Running security scan..."
+
+          # Debug: Write URL to file to verify it's correct
+          echo "${TARGET_URL}" > /tmp/target_url.txt
+          echo "DEBUG: URL written to file:"
+          cat /tmp/target_url.txt
+
+          # Pass URL via environment variable to Docker to avoid shell interpretation issues
           set +e
           docker run --rm \
+            -e "SCAN_TARGET=${TARGET_URL}" \
             -v ${{ github.workspace }}/scan-output:/output \
+            --entrypoint /bin/sh \
             immuniweb/iwtools \
-            websec "${TARGET_URL}" \
-            -o /output/scan-results.json \
-            -f pretty_json 2>&1 | tee scan-output.log
+            -c 'python3 /app/iwtools.py websec "$SCAN_TARGET" -o /output/scan-results.json -f pretty_json' 2>&1 | tee scan-output.log
           EXIT_CODE=${PIPESTATUS[0]}
           set -e
 
