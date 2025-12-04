@@ -52,7 +52,7 @@ jobs:
       - name: Install iwtools
         run: |
           git clone https://github.com/immuniweb/iwtools.git /tmp/iwtools
-          cd /tmp/iwtools
+          cd /tmp/iwtools/iwtools
           pip install -r requirements.txt
 
       - name: Run ImmuniWeb Website Security Test
@@ -79,7 +79,7 @@ jobs:
           # Run the security scan using Python directly
           echo "Running security scan..."
           set +e
-          cd /tmp/iwtools
+          cd /tmp/iwtools/iwtools
           python iwtools.py websec "${TARGET_URL}" \
             -o ${{ github.workspace }}/scan-results.json \
             -f pretty_json 2>&1 | tee ${{ github.workspace }}/scan-output.log
