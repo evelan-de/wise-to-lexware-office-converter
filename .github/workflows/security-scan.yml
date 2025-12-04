@@ -2,11 +2,8 @@ name: ImmuniWeb Security Scan
 
 on:
   # Run on push to main branch (scans production)
-  # TODO: Remove feature branch before merging
   push:
-    branches:
-      - main
-      - claude/add-immuniweb-security-action-*
+    branches: [main]
   # Allow manual trigger with custom URL
   workflow_dispatch:
     inputs:
