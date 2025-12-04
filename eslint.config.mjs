@@ -1,16 +1,9 @@
-import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
+import nextConfig from "eslint-config-next";
 
 const eslintConfig = [
-  ...nextCoreWebVitals,
+  ...nextConfig,
   {
-    ignores: [
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "coverage/**",
-      "next-env.d.ts",
-    ],
+    ignores: ["coverage/**"],
   },
   {
     files: ["jest.config.js", "scripts/**/*.js"],
