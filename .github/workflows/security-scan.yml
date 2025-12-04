@@ -1,0 +1,152 @@
+name: ImmuniWeb Security Scan
+
+on:
+  # Run on push to main branch (scans production)
+  push:
+    branches: [main]
+  # Allow manual trigger with custom URL
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: 'URL to scan (leave empty for production URL)'
+        required: false
+        default: ''
+
+jobs:
+  security-scan:
+    name: Website Security Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Determine target URL
+        id: url
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ -n "${{ github.event.inputs.target_url }}" ]; then
+            TARGET_URL="${{ github.event.inputs.target_url }}"
+          else
+            TARGET_URL="https://wise-lexware-convert.evelan.de"
+          fi
+
+          echo "target_url=${TARGET_URL}" >> $GITHUB_OUTPUT
+          echo "Scanning URL: ${TARGET_URL}"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install iwtools
+        run: |
+          git clone https://github.com/immuniweb/iwtools.git /tmp/iwtools
+          cd /tmp/iwtools/iwtools
+          pip install -r requirements.txt
+
+      - name: Run ImmuniWeb Website Security Test
+        id: security-scan
+        run: |
+          TARGET_URL="${{ steps.url.outputs.target_url }}"
+          echo "Starting ImmuniWeb security scan for: ${TARGET_URL}"
+
+          # Run the security scan using Python directly
+          set +e
+          cd /tmp/iwtools/iwtools
+          python iwtools.py websec "${TARGET_URL}" \
+            -o ${{ github.workspace }}/scan-results.json \
+            -f pretty_json 2>&1 | tee ${{ github.workspace }}/scan-output.log
+          EXIT_CODE=${PIPESTATUS[0]}
+          set -e
+
+          echo "Scan exit code: $EXIT_CODE"
+
+          # Display scan output
+          echo "=== Scan Output ==="
+          cat ${{ github.workspace }}/scan-output.log
+          echo "==================="
+
+          # Check results
+          if [ -f ${{ github.workspace }}/scan-results.json ]; then
+            echo "Results file found"
+            echo "=== Results preview ==="
+            head -100 ${{ github.workspace }}/scan-results.json || true
+          else
+            echo "No results file generated"
+          fi
+
+          # Capture exit code (0=pass, 1=error, 2=input error, 3=checks failed)
+          echo "exit_code=${EXIT_CODE}" >> $GITHUB_OUTPUT
+
+      - name: Parse scan results
+        if: always()
+        run: |
+          DISPLAY_URL="${{ steps.url.outputs.target_url }}"
+
+          echo "## ImmuniWeb Security Scan Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Target URL:** ${DISPLAY_URL}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f scan-results.json ]; then
+            # Extract key metrics if JSON is valid
+            if jq -e . scan-results.json > /dev/null 2>&1; then
+              GRADE=$(jq -r '.grade // "N/A"' scan-results.json 2>/dev/null || echo "N/A")
+              PCI_DSS=$(jq -r '.pci_dss.compliant // "N/A"' scan-results.json 2>/dev/null || echo "N/A")
+              GDPR=$(jq -r '.gdpr.compliant // "N/A"' scan-results.json 2>/dev/null || echo "N/A")
+
+              echo "| Metric | Result |" >> $GITHUB_STEP_SUMMARY
+              echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
+              echo "| Security Grade | ${GRADE} |" >> $GITHUB_STEP_SUMMARY
+              echo "| PCI DSS Compliant | ${PCI_DSS} |" >> $GITHUB_STEP_SUMMARY
+              echo "| GDPR Compliant | ${GDPR} |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "Scan completed. Check the logs for detailed results." >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "No results file generated. Check the scan logs." >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Exit Code:** ${{ steps.security-scan.outputs.exit_code }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "*Powered by [ImmuniWeb Community Edition](https://www.immuniweb.com/websec/)*" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload scan results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: immuniweb-scan-results
+          path: |
+            scan-results.json
+            scan-output.log
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Check scan status
+        if: always()
+        run: |
+          EXIT_CODE="${{ steps.security-scan.outputs.exit_code }}"
+
+          case $EXIT_CODE in
+            0)
+              echo "All security checks passed successfully!"
+              ;;
+            1)
+              echo "::warning::An error occurred during the security scan execution"
+              ;;
+            2)
+              echo "::warning::Input data validation failed"
+              ;;
+            3)
+              echo "::warning::One or more security checks failed. Review the scan results."
+              ;;
+            *)
+              echo "::warning::Unknown exit code: $EXIT_CODE"
+              ;;
+          esac
+
+          # Don't fail the workflow for security warnings - just report them
+          # Uncomment the next line to make security failures block PRs:
+          # exit $EXIT_CODE

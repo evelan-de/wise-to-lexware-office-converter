@@ -1,0 +1,38 @@
+# ImmuniWeb Website Security Test Configuration
+# https://github.com/immuniweb/iwtools
+#
+# This configuration is used with the -p (pipeline) flag to validate
+# security test results against predetermined thresholds.
+#
+# Exit codes:
+#   0 - All checks passed
+#   1 - Execution error
+#   2 - Input data error
+#   3 - One or more checks failed
+
+# Minimum acceptable security grade
+# Options: "N", "F", "E", "D", "C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+"
+minimal_grade: "B"
+
+# Require PCI DSS compliance
+# Set to true to enforce PCI DSS compliance checks
+compliance_pci_dss: false
+
+# Require GDPR compliance
+# Set to true to enforce GDPR compliance checks
+compliance_gdpr: true
+
+# Maximum number of outdated software components allowed
+# A value of 0 means no outdated software is acceptable
+max_soft_outdated: 2
+
+# Maximum number of software vulnerabilities allowed
+# A value of 0 means no vulnerabilities are acceptable
+max_soft_vulnerabilities: 0
+
+# Maximum number of HTTP header security issues allowed
+max_headers_issue: 5
+
+# Require Content-Security-Policy header
+# Set to true to enforce CSP header presence
+csp_is_set: false
