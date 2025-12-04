@@ -15,6 +15,8 @@ jobs:
   security-scan:
     name: Website Security Test
     runs-on: ubuntu-latest
+    # Use Preview environment to access environment secrets
+    environment: Preview
     # Only run when deployment is successful or on manual trigger
     if: >
       github.event_name == 'workflow_dispatch' ||
