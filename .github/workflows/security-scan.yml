@@ -28,45 +28,42 @@ jobs:
 
       - name: Determine target URL
         id: url
-        env:
-          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             if [ -n "${{ github.event.inputs.target_url }}" ]; then
-              TARGET_URL="${{ github.event.inputs.target_url }}"
+              BASE_URL="${{ github.event.inputs.target_url }}"
             else
-              TARGET_URL="https://wise-lexware-convert.evelan.de"
+              BASE_URL="https://wise-lexware-convert.evelan.de"
             fi
           else
             # Use Vercel preview URL from deployment
-            TARGET_URL="${{ github.event.deployment_status.target_url }}"
+            BASE_URL="${{ github.event.deployment_status.target_url }}"
           fi
 
-          # Append Vercel protection bypass parameters for preview deployments
-          # This allows scanning protected Vercel preview deployments
-          # See: https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation
-          if [ -n "$VERCEL_AUTOMATION_BYPASS_SECRET" ]; then
-            echo "✓ VERCEL_AUTOMATION_BYPASS_SECRET is configured (length: ${#VERCEL_AUTOMATION_BYPASS_SECRET} chars)"
-            # Check if URL already has query parameters
-            if [[ "$TARGET_URL" == *"?"* ]]; then
-              TARGET_URL="${TARGET_URL}&x-vercel-protection-bypass=${VERCEL_AUTOMATION_BYPASS_SECRET}&x-vercel-set-bypass-cookie=samesitenone"
-            else
-              TARGET_URL="${TARGET_URL}?x-vercel-protection-bypass=${VERCEL_AUTOMATION_BYPASS_SECRET}&x-vercel-set-bypass-cookie=samesitenone"
-            fi
-            echo "Vercel protection bypass parameters added to URL"
-          else
-            echo "⚠ VERCEL_AUTOMATION_BYPASS_SECRET is NOT configured - preview deployments may return 401"
-          fi
-
-          echo "target_url=${TARGET_URL}" >> $GITHUB_OUTPUT
-          echo "Scanning URL: ${TARGET_URL%\?*}"  # Log URL without secret
+          # Output the base URL (without bypass parameters - those will be added in scan step)
+          echo "base_url=${BASE_URL}" >> $GITHUB_OUTPUT
+          echo "Scanning URL: ${BASE_URL}"
 
       - name: Run ImmuniWeb Website Security Test
         id: security-scan
+        env:
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: |
-          TARGET_URL="${{ steps.url.outputs.target_url }}"
-          # Log URL without query parameters (to avoid exposing bypass secret)
-          echo "Starting ImmuniWeb security scan for: ${TARGET_URL%\?*}"
+          BASE_URL="${{ steps.url.outputs.base_url }}"
+          echo "Starting ImmuniWeb security scan for: ${BASE_URL}"
+
+          # Construct full URL with Vercel bypass parameters if secret is configured
+          if [ -n "$VERCEL_AUTOMATION_BYPASS_SECRET" ]; then
+            echo "✓ VERCEL_AUTOMATION_BYPASS_SECRET is configured (length: ${#VERCEL_AUTOMATION_BYPASS_SECRET} chars)"
+            TARGET_URL="${BASE_URL}?x-vercel-protection-bypass=${VERCEL_AUTOMATION_BYPASS_SECRET}&x-vercel-set-bypass-cookie=samesitenone"
+            echo "Vercel protection bypass parameters added to URL"
+          else
+            echo "⚠ VERCEL_AUTOMATION_BYPASS_SECRET is NOT configured - preview deployments may return 401"
+            TARGET_URL="${BASE_URL}"
+          fi
+
+          # Debug: Show URL structure (masked)
+          echo "URL structure: ${BASE_URL}?x-vercel-protection-bypass=***&x-vercel-set-bypass-cookie=samesitenone"
 
           # Pull Docker image first (separates pull logs from scan output)
           echo "Pulling ImmuniWeb Docker image..."
@@ -82,7 +79,6 @@ jobs:
 
           # Run the security scan using Docker
           # -o specifies output file, -f specifies format (pretty_json for readability)
-          # Note: Running without -p first to debug, will add pipeline mode back later
           echo "Running security scan..."
           set +e
           docker run --rm \
@@ -121,9 +117,7 @@ jobs:
       - name: Parse scan results
         if: always()
         run: |
-          # Extract base URL without query parameters (to avoid exposing bypass secret)
-          TARGET_URL="${{ steps.url.outputs.target_url }}"
-          DISPLAY_URL="${TARGET_URL%\?*}"
+          DISPLAY_URL="${{ steps.url.outputs.base_url }}"
 
           echo "## ImmuniWeb Security Scan Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
