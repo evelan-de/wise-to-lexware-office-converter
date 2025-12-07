@@ -6,7 +6,7 @@ import { StatsCard } from '@/components/stats-card';
 import { ErrorAlert } from '@/components/error-alert';
 import { SuccessMessage } from '@/components/success-message';
 import { PreviewContainer } from '@/components/preview/preview-container';
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import { HeroSection } from '@/components/hero-section';
 import { parseWiseCSV } from '@/lib/csv-utils';
 import { calculateStats } from '@/lib/converter';
 import { trackFileUpload, trackConversionSuccess, trackConversionError } from '@/lib/analytics';
@@ -188,39 +188,7 @@ export default function ConverterPage() {
 
   return (
     <>
-      {/* Theme Switcher */}
-      <div className="absolute top-4 right-4">
-        <ThemeSwitcher />
-      </div>
-
-      {/* Header */}
-        <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-3">
-            WISE zu Lexware Office Konverter
-          </h1>
-          <p className="text-lg text-foreground mb-2">
-            Wandeln Sie Wise CSV-Exporte in das Lexware Office Bankimport-Format um
-          </p>
-          <p className="text-sm text-muted-foreground mb-4">
-            Für Lexware Office: Banking → Konten → Transaktionen importieren
-          </p>
-          <div className="flex items-center justify-center gap-4 text-sm">
-            <span className="text-green-600 dark:text-green-400 font-medium">
-              ✓ 100% Datenschutz
-            </span>
-            <span className="text-muted-foreground/50">•</span>
-            <span className="text-green-600 dark:text-green-400 font-medium">
-              ✓ Keine Server-Uploads
-            </span>
-            <span className="text-muted-foreground/50">•</span>
-            <a
-              href="/hilfe"
-              className="text-primary hover:text-primary/80 font-medium transition-colors underline"
-            >
-              Anleitung ansehen
-            </a>
-          </div>
-        </header>
+      <HeroSection />
 
         {/* Main Content */}
         <div className="space-y-6">
