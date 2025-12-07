@@ -19,9 +19,10 @@ describe('FileUpload', () => {
       />
     );
 
-    expect(screen.getByText(/CSV-Datei hier ablegen oder klicken/i)).toBeInTheDocument();
+    expect(screen.getByText(/CSV-Datei hier ablegen oder/i)).toBeInTheDocument();
+    expect(screen.getByText(/klicken/i)).toBeInTheDocument();
     expect(screen.getByText(/Nur Wise Export CSV-Dateien/i)).toBeInTheDocument();
-    expect(screen.getByText(/Maximale Dateigröße: 5 MB/i)).toBeInTheDocument();
+    expect(screen.getByText(/Max\. 5 MB/i)).toBeInTheDocument();
   });
 
   it('should show processing state when isProcessing is true', () => {
@@ -205,9 +206,8 @@ describe('FileUpload', () => {
       />
     );
 
-    const dropZone = screen.getByText(/Datei wird verarbeitet/i).closest('div');
-
-    // Should not be clickable when processing
-    expect(dropZone?.parentElement).toHaveClass('border-primary/50');
+    // Card should have processing state styles
+    const card = screen.getByRole('button');
+    expect(card).toHaveClass('border-primary/60');
   });
 });
