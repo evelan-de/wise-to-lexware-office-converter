@@ -6,7 +6,7 @@ import { StatsCard } from '@/components/stats-card';
 import { ErrorAlert } from '@/components/error-alert';
 import { SuccessMessage } from '@/components/success-message';
 import { PreviewContainer } from '@/components/preview/preview-container';
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import { HeroSection } from '@/components/hero-section';
 import { parseWiseCSV } from '@/lib/csv-utils';
 import { calculateStats } from '@/lib/converter';
 import { trackFileUpload, trackConversionSuccess, trackConversionError } from '@/lib/analytics';
@@ -188,75 +188,8 @@ export default function ConverterPage() {
 
   return (
     <>
-      {/* Theme Switcher */}
-      <div className="absolute top-4 right-4 z-10">
-        <ThemeSwitcher />
-      </div>
-
-      {/* Hero Section */}
-      <header className="relative text-center mb-16 pt-8">
-        {/* Animated gradient background blur */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-20 dark:opacity-15 animate-gradient animate-pulse-glow" />
-          <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-3xl opacity-15 dark:opacity-10 animate-gradient" style={{ animationDelay: '2s' }} />
-        </div>
-
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 animate-float">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          <span className="text-sm font-medium text-primary">Kostenlos & Open Source</span>
-        </div>
-
-        {/* Main Headline */}
-        <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight mb-6">
-          <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 dark:from-indigo-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-            WISE
-          </span>
-          <span className="text-foreground"> zu </span>
-          <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-            Lexware Office
-          </span>
-        </h1>
-
-        {/* Subtitle */}
-        <p className="text-xl sm:text-2xl text-muted-foreground mb-4 max-w-2xl mx-auto">
-          CSV-Konverter für Bankimport
-        </p>
-        <p className="text-base text-muted-foreground/80 mb-8">
-          Banking → Konten → Transaktionen importieren
-        </p>
-
-        {/* Trust Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <div className="animate-float inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800">
-            <svg className="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-            </svg>
-            <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">100% Datenschutz</span>
-          </div>
-
-          <div className="animate-float-delayed inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800">
-            <svg className="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-            </svg>
-            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Keine Server-Uploads</span>
-          </div>
-
-          <a
-            href="/hilfe"
-            className="animate-float inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-50 dark:bg-violet-950/50 border border-violet-200 dark:border-violet-800 hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-colors"
-            style={{ animationDelay: '0.25s' }}
-          >
-            <svg className="w-4 h-4 text-violet-600 dark:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-            </svg>
-            <span className="text-sm font-medium text-violet-700 dark:text-violet-300">Anleitung</span>
-          </a>
-        </div>
-      </header>
+      {/* Hero Section - Change variant to 'split' for alternative design */}
+      <HeroSection variant="gradient" />
 
         {/* Main Content */}
         <div className="space-y-6">
