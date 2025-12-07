@@ -188,8 +188,7 @@ export default function ConverterPage() {
 
   return (
     <>
-      {/* Hero Section - Change variant to 'split' for alternative design */}
-      <HeroSection variant="gradient" />
+      <HeroSection />
 
         {/* Main Content */}
         <div className="space-y-6">
