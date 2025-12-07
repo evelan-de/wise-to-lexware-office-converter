@@ -80,38 +80,38 @@
 }
 
 .dark {
-  /* Evelan CI Colors - Dark Mode (Dark Petrol background) */
-  --background: #08292E; /* Evelan Dark Petrol */
-  --foreground: #FFFFFF;
-  --card: #0D3338; /* Slightly lighter petrol */
-  --card-foreground: #FFFFFF;
-  --popover: #0D3338;
-  --popover-foreground: #FFFFFF;
-  --primary: #DDA95B; /* Evelan Warm Gold as primary in dark mode */
-  --primary-foreground: #08292E;
-  --secondary: #5A9A9E; /* Lighter teal for dark mode */
-  --secondary-foreground: #08292E;
-  --muted: #0F3D42;
-  --muted-foreground: #A0B3B5;
-  --accent: #F3C079; /* Lighter warm gold */
-  --accent-foreground: #08292E;
-  --destructive: #EF6B6B;
-  --border: #1A4A50;
-  --input: #0F3D42;
-  --ring: #DDA95B;
-  --chart-1: #DDA95B;
-  --chart-2: #5A9A9E;
-  --chart-3: #F3C079;
-  --chart-4: #C88F44;
-  --chart-5: #3C777B;
-  --sidebar: #0D3338;
-  --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #DDA95B;
-  --sidebar-primary-foreground: #08292E;
-  --sidebar-accent: #5A9A9E;
-  --sidebar-accent-foreground: #08292E;
-  --sidebar-border: #1A4A50;
-  --sidebar-ring: #DDA95B;
+  /* Evelan CI Colors - Dark Mode - High Contrast */
+  --background: #041518; /* Deeper dark petrol for more contrast */
+  --foreground: #F8FAFA;
+  --card: #0A2D32; /* More visible card background */
+  --card-foreground: #F8FAFA;
+  --popover: #0A2D32;
+  --popover-foreground: #F8FAFA;
+  --primary: #E8B86D; /* Brighter warm gold */
+  --primary-foreground: #041518;
+  --secondary: #6AABAF; /* Brighter teal for dark mode */
+  --secondary-foreground: #041518;
+  --muted: #0D3A40; /* Visible muted areas */
+  --muted-foreground: #B8CACC;
+  --accent: #F5C87A; /* Bright gold accent */
+  --accent-foreground: #041518;
+  --destructive: #F87171;
+  --border: #1E5A62; /* More visible borders */
+  --input: #0D3A40;
+  --ring: #E8B86D;
+  --chart-1: #E8B86D;
+  --chart-2: #6AABAF;
+  --chart-3: #F5C87A;
+  --chart-4: #D4A05A;
+  --chart-5: #4A8A8E;
+  --sidebar: #0A2D32;
+  --sidebar-foreground: #F8FAFA;
+  --sidebar-primary: #E8B86D;
+  --sidebar-primary-foreground: #041518;
+  --sidebar-accent: #6AABAF;
+  --sidebar-accent-foreground: #041518;
+  --sidebar-border: #1E5A62;
+  --sidebar-ring: #E8B86D;
 }
 
 @layer base {
@@ -176,4 +176,71 @@
 
 .animate-pulse-glow {
   animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Glow Effects */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(221, 169, 91, 0.3), 0 0 40px rgba(221, 169, 91, 0.1);
+}
+
+.glow-gold-sm {
+  box-shadow: 0 0 10px rgba(221, 169, 91, 0.25);
+}
+
+.glow-teal {
+  box-shadow: 0 0 20px rgba(60, 119, 123, 0.3), 0 0 40px rgba(60, 119, 123, 0.1);
+}
+
+.glow-teal-sm {
+  box-shadow: 0 0 10px rgba(60, 119, 123, 0.25);
+}
+
+.dark .glow-gold {
+  box-shadow: 0 0 25px rgba(232, 184, 109, 0.4), 0 0 50px rgba(232, 184, 109, 0.15);
+}
+
+.dark .glow-teal {
+  box-shadow: 0 0 25px rgba(106, 171, 175, 0.4), 0 0 50px rgba(106, 171, 175, 0.15);
+}
+
+/* Card glow on hover */
+.card-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 4px 20px rgba(60, 119, 123, 0.15), 0 0 40px rgba(221, 169, 91, 0.08);
+  transform: translateY(-2px);
+}
+
+.dark .card-glow:hover {
+  box-shadow: 0 4px 25px rgba(106, 171, 175, 0.25), 0 0 50px rgba(232, 184, 109, 0.12);
+}
+
+/* Gradient text glow */
+.text-glow {
+  text-shadow: 0 0 30px rgba(221, 169, 91, 0.3);
+}
+
+.dark .text-glow {
+  text-shadow: 0 0 40px rgba(232, 184, 109, 0.5);
+}
+
+/* Button glow */
+.btn-glow {
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 4px 15px rgba(221, 169, 91, 0.4), 0 0 30px rgba(221, 169, 91, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Dark section styling */
+.section-dark {
+  background: linear-gradient(135deg, #08292E 0%, #0D3A40 100%);
+}
+
+.section-dark-deeper {
+  background: linear-gradient(180deg, #041518 0%, #08292E 100%);
 }

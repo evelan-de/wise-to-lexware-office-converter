@@ -79,10 +79,10 @@ export function FileUpload({ onFileSelect, onError, isProcessing }: FileUploadPr
 
   return (
     <Card
-      className={`border-2 border-dashed transition-all duration-200 ${
+      className={`border-2 border-dashed transition-all duration-300 card-glow ${
         isProcessing
-          ? 'border-primary/50 bg-primary/5'
-          : 'border-border hover:border-primary cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background'
+          ? 'border-[#3C777B]/50 bg-[#3C777B]/5 dark:bg-[#3C777B]/10'
+          : 'border-[#3C777B]/30 hover:border-[#DDA95B] hover:shadow-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#DDA95B] focus:ring-offset-2 dark:focus:ring-offset-background'
       }`}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -96,7 +96,9 @@ export function FileUpload({ onFileSelect, onError, isProcessing }: FileUploadPr
       <CardContent className="flex flex-col items-center justify-center py-12 px-6">
         {isProcessing ? (
           <>
-            <Loader2 className="w-12 h-12 text-primary mb-4 animate-spin" />
+            <div className="rounded-full bg-[#3C777B]/20 p-4 mb-4 glow-teal">
+              <Loader2 className="w-10 h-10 text-[#3C777B] dark:text-[#6AABAF] animate-spin" />
+            </div>
             <p className="text-lg font-medium text-foreground">
               Datei wird verarbeitet...
             </p>
@@ -106,8 +108,8 @@ export function FileUpload({ onFileSelect, onError, isProcessing }: FileUploadPr
           </>
         ) : (
           <>
-            <div className="rounded-full bg-primary/10 p-4 mb-4">
-              <Upload className="w-8 h-8 text-primary" />
+            <div className="rounded-full bg-gradient-to-br from-[#DDA95B]/20 to-[#C88F44]/20 p-4 mb-4 group-hover:glow-gold transition-all">
+              <Upload className="w-10 h-10 text-[#DDA95B]" />
             </div>
             <p className="text-lg font-medium text-foreground">
               CSV-Datei hier ablegen oder klicken

@@ -4,42 +4,54 @@ import { EvelanBadge } from '@/components/evelan-badge';
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-slate-100 via-slate-50 to-white dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 pt-12 pb-8">
-      <div className="max-w-4xl mx-auto px-4">
+    <footer className="relative -mx-4 mt-16 px-4 pt-16 pb-8 bg-gradient-to-br from-[#08292E] via-[#0A3538] to-[#08292E] overflow-hidden">
+      {/* Glowing background orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#3C777B]/15 rounded-full blur-[100px] animate-pulse-glow" />
+        <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-[#DDA95B]/10 rounded-full blur-[80px] animate-pulse-glow" />
+      </div>
+
+      <div className="relative max-w-4xl mx-auto">
         <div className="space-y-10">
           {/* Feature Boxes */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Security Box */}
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/40 dark:to-emerald-950/40 rounded-xl p-6 text-center border border-green-100 dark:border-green-800 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white/95 dark:bg-[#0A2D32] rounded-xl p-6 text-center border border-white/20 shadow-xl card-glow backdrop-blur-sm">
               <div className="flex justify-center mb-3">
-                <svg className="w-12 h-12 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
+                <div className="w-14 h-14 rounded-full bg-emerald-500/20 flex items-center justify-center glow-teal-sm">
+                  <svg className="w-7 h-7 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
               </div>
-              <div className="text-xl font-bold text-foreground mb-2">Note A</div>
-              <div className="text-sm text-muted-foreground">Sicherheit</div>
+              <div className="text-xl font-bold text-[#08292E] dark:text-white mb-2">Note A</div>
+              <div className="text-sm text-[#555] dark:text-[#8AB8BB]">Sicherheit</div>
             </div>
 
             {/* Privacy Box */}
-            <div className="bg-gradient-to-br from-[#3C777B]/5 to-[#08292E]/5 dark:from-[#3C777B]/20 dark:to-[#08292E]/20 rounded-xl p-6 text-center border border-[#3C777B]/20 dark:border-[#3C777B]/40 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white/95 dark:bg-[#0A2D32] rounded-xl p-6 text-center border border-white/20 shadow-xl card-glow backdrop-blur-sm">
               <div className="flex justify-center mb-3">
-                <svg className="w-12 h-12 text-[#3C777B] dark:text-[#5A9A9E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
+                <div className="w-14 h-14 rounded-full bg-[#3C777B]/20 flex items-center justify-center glow-teal-sm">
+                  <svg className="w-7 h-7 text-[#6AABAF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
               </div>
-              <div className="text-xl font-bold text-foreground mb-2">100% Lokal</div>
-              <div className="text-sm text-muted-foreground">Datenschutz</div>
+              <div className="text-xl font-bold text-[#08292E] dark:text-white mb-2">100% Lokal</div>
+              <div className="text-sm text-[#555] dark:text-[#8AB8BB]">Datenschutz</div>
             </div>
 
             {/* Open Source Box */}
-            <div className="bg-gradient-to-br from-[#DDA95B]/5 to-[#C88F44]/5 dark:from-[#DDA95B]/20 dark:to-[#C88F44]/20 rounded-xl p-6 text-center border border-[#DDA95B]/20 dark:border-[#DDA95B]/40 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white/95 dark:bg-[#0A2D32] rounded-xl p-6 text-center border border-white/20 shadow-xl card-glow backdrop-blur-sm">
               <div className="flex justify-center mb-3">
-                <svg className="w-12 h-12 text-[#C88F44] dark:text-[#DDA95B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
+                <div className="w-14 h-14 rounded-full bg-[#DDA95B]/20 flex items-center justify-center glow-gold-sm">
+                  <svg className="w-7 h-7 text-[#DDA95B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                </div>
               </div>
-              <div className="text-xl font-bold text-foreground mb-2">Open Source</div>
-              <div className="text-sm text-muted-foreground">Quellcode offen</div>
+              <div className="text-xl font-bold text-[#08292E] dark:text-white mb-2">Open Source</div>
+              <div className="text-sm text-[#555] dark:text-[#8AB8BB]">Quellcode offen</div>
             </div>
           </div>
 
@@ -57,39 +69,39 @@ export function Footer() {
                 alt="ImmuniWeb Website Security Test - Grade A"
                 width={300}
                 height={100}
-                className="mx-auto hover:opacity-90 transition-opacity dark:brightness-90 dark:contrast-110"
+                className="mx-auto hover:opacity-90 transition-opacity brightness-110"
               />
             </a>
-            <p className="mt-3 text-xs text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-3 text-xs text-[#A0C4C7] max-w-2xl mx-auto">
               Geprüfte Sicherheit durch unabhängige Zertifizierung von ImmuniWeb.<br />
               Diese Website erfüllt höchste Standards für Web-Sicherheit, Datenschutz und SSL/TLS-Verschlüsselung.
             </p>
           </div>
 
           {/* Legal Links */}
-          <div className="pt-8">
-            <nav className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm mb-4">
+          <div className="pt-8 border-t border-white/10">
+            <nav className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm mb-6">
               <Link
                 href="/blog"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-[#8AB8BB] hover:text-[#DDA95B] transition-colors"
               >
                 Blog
               </Link>
               <Link
                 href="/hilfe"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-[#8AB8BB] hover:text-[#DDA95B] transition-colors"
               >
                 Anleitung
               </Link>
               <Link
                 href="/impressum"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-[#8AB8BB] hover:text-[#DDA95B] transition-colors"
               >
                 Impressum
               </Link>
               <Link
                 href="/datenschutz"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-[#8AB8BB] hover:text-[#DDA95B] transition-colors"
               >
                 Datenschutz
               </Link>
@@ -97,7 +109,7 @@ export function Footer() {
                 href="https://github.com/evelan-de/wise-to-lexware-office-converter"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+                className="text-[#8AB8BB] hover:text-[#DDA95B] transition-colors inline-flex items-center gap-1"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
@@ -107,11 +119,11 @@ export function Footer() {
             </nav>
 
             {/* Made by and Copyright */}
-            <div className="text-center space-y-2">
+            <div className="text-center space-y-3">
               <div className="flex justify-center">
                 <EvelanBadge />
               </div>
-              <div className="text-xs text-muted-foreground">
+              <div className="text-xs text-[#6A9A9E]">
                 © {new Date().getFullYear()} Evelan GmbH. Alle Rechte vorbehalten.
               </div>
             </div>
