@@ -11,10 +11,10 @@ export function HeroSection() {
       </div>
 
       <header className="relative mb-16 pt-8">
-        {/* Background */}
+        {/* Background - Evelan CI */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/20 rounded-full blur-[100px]" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px]" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#003366]/15 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#00ADEF]/15 rounded-full blur-[100px]" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -28,8 +28,8 @@ export function HeroSection() {
                 </svg>
                 100% Datenschutz
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#003366]/10 dark:bg-[#003366]/30 text-[#003366] dark:text-[#4D9FD6]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00ADEF] animate-pulse" />
                 Open Source
               </span>
             </div>
@@ -37,7 +37,7 @@ export function HeroSection() {
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
               WISE zu{' '}
-              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#003366] to-[#00ADEF] dark:from-[#4D9FD6] dark:to-[#00ADEF] bg-clip-text text-transparent">
                 Lexware Office
               </span>{' '}
               Konverter
@@ -110,7 +110,7 @@ export function HeroSection() {
 
               {/* Arrow */}
               <div className="flex justify-center">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg animate-bounce">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#003366] to-[#00ADEF] flex items-center justify-center shadow-lg animate-bounce">
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
                   </svg>
@@ -120,7 +120,7 @@ export function HeroSection() {
               {/* Step 2: Lexware Office CSV */}
               <div className="animate-float-delayed relative bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-lg p-4">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#003366] to-[#00ADEF] flex items-center justify-center">
                     <span className="text-lg font-bold text-white">L</span>
                   </div>
                   <div>
@@ -141,8 +141,8 @@ export function HeroSection() {
             </div>
 
             {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 border-2 border-dashed border-indigo-200 dark:border-indigo-800 rounded-xl -z-10" />
-            <div className="absolute -bottom-4 -left-4 w-20 h-20 border-2 border-dashed border-purple-200 dark:border-purple-800 rounded-xl -z-10" />
+            <div className="absolute -top-4 -right-4 w-20 h-20 border-2 border-dashed border-[#003366]/30 dark:border-[#003366]/50 rounded-xl -z-10" />
+            <div className="absolute -bottom-4 -left-4 w-20 h-20 border-2 border-dashed border-[#00ADEF]/30 dark:border-[#00ADEF]/50 rounded-xl -z-10" />
           </div>
         </div>
       </header>

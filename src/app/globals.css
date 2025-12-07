@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: var(--font-mono), 'JetBrains Mono', 'Fira Code', monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -44,72 +44,74 @@
 }
 
 :root {
-  --radius: 0.75rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.623 0.212 259.81); /* Indigo #6366f1 */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.657 0.183 281.75); /* Purple #8b5cf6 */
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.985 0.015 264.36);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.977 0.016 276.2);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0.006 264.36);
-  --input: oklch(0.922 0.006 264.36);
-  --ring: oklch(0.623 0.212 259.81);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.5rem;
+  /* Evelan CI Colors - Light Mode */
+  --background: #FFFFFF;
+  --foreground: #111111;
+  --card: #FFFFFF;
+  --card-foreground: #111111;
+  --popover: #FFFFFF;
+  --popover-foreground: #111111;
+  --primary: #003366; /* Evelan Deep Blue */
+  --primary-foreground: #FFFFFF;
+  --secondary: #00ADEF; /* Evelan Cyan Accent */
+  --secondary-foreground: #FFFFFF;
+  --muted: #F5F5F5;
+  --muted-foreground: #555555;
+  --accent: #00ADEF;
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626;
+  --border: #DDDDDD;
+  --input: #DDDDDD;
+  --ring: #003366;
+  --chart-1: #003366;
+  --chart-2: #00ADEF;
+  --chart-3: #10B981;
+  --chart-4: #F59E0B;
+  --chart-5: #8B5CF6;
+  --sidebar: #F5F5F5;
+  --sidebar-foreground: #111111;
+  --sidebar-primary: #003366;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #00ADEF;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #DDDDDD;
+  --sidebar-ring: #003366;
 }
 
 .dark {
-  --background: oklch(0.145 0.015 264);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0.02 264);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0.02 264);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.7 0.18 264); /* Brighter indigo for dark mode */
-  --primary-foreground: oklch(0.145 0 0);
-  --secondary: oklch(0.72 0.16 282); /* Brighter purple for dark mode */
-  --secondary-foreground: oklch(0.145 0 0);
-  --muted: oklch(0.269 0.02 264);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.35 0.04 264);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.35 0.03 264);
-  --input: oklch(0.3 0.02 264);
-  --ring: oklch(0.7 0.18 264);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0.02 264);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.7 0.18 264);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.35 0.04 264);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.35 0.03 264);
-  --sidebar-ring: oklch(0.7 0.18 264);
+  /* Evelan CI Colors - Dark Mode */
+  --background: #0A0F1A;
+  --foreground: #F5F5F5;
+  --card: #111827;
+  --card-foreground: #F5F5F5;
+  --popover: #111827;
+  --popover-foreground: #F5F5F5;
+  --primary: #4D9FD6; /* Lighter blue for dark mode visibility */
+  --primary-foreground: #0A0F1A;
+  --secondary: #00ADEF;
+  --secondary-foreground: #0A0F1A;
+  --muted: #1F2937;
+  --muted-foreground: #9CA3AF;
+  --accent: #00ADEF;
+  --accent-foreground: #0A0F1A;
+  --destructive: #EF4444;
+  --border: #374151;
+  --input: #374151;
+  --ring: #4D9FD6;
+  --chart-1: #4D9FD6;
+  --chart-2: #00ADEF;
+  --chart-3: #34D399;
+  --chart-4: #FBBF24;
+  --chart-5: #A78BFA;
+  --sidebar: #111827;
+  --sidebar-foreground: #F5F5F5;
+  --sidebar-primary: #4D9FD6;
+  --sidebar-primary-foreground: #F5F5F5;
+  --sidebar-accent: #00ADEF;
+  --sidebar-accent-foreground: #F5F5F5;
+  --sidebar-border: #374151;
+  --sidebar-ring: #4D9FD6;
 }
 
 @layer base {

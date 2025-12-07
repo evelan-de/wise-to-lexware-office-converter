@@ -17,7 +17,7 @@ const categoryColors: Record<BlogArticle['category'], string> = {
   tutorial: 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300',
   guide: 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300',
   tips: 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300',
-  news: 'bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300',
+  news: 'bg-[#00ADEF]/10 text-[#003366] dark:bg-[#00ADEF]/20 dark:text-[#00ADEF]',
 };
 
 export function BlogCard({ article }: BlogCardProps) {

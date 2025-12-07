@@ -110,10 +110,10 @@ export function PreviewContainer({
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-semibold text-gray-900">
+          <h2 className="text-2xl font-semibold text-foreground">
             Datenvorschau & Validierung
           </h2>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Prüfen Sie Ihre Daten vor der Konvertierung
           </p>
         </div>
@@ -149,8 +149,8 @@ export function PreviewContainer({
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
           <CardContent className="pt-4">
-            <div className="text-2xl font-bold">{wiseData.length}</div>
-            <div className="text-sm text-gray-500">Transaktionen</div>
+            <div className="text-2xl font-bold text-foreground">{wiseData.length}</div>
+            <div className="text-sm text-muted-foreground">Transaktionen</div>
           </CardContent>
         </Card>
         <Card className={validation.rowsWithErrors > 0 ? 'border-red-200 bg-red-50' : ''}>
@@ -165,7 +165,7 @@ export function PreviewContainer({
                 {validation.rowsWithErrors}
               </span>
             </div>
-            <div className="text-sm text-gray-500">Fehler</div>
+            <div className="text-sm text-muted-foreground">Fehler</div>
           </CardContent>
         </Card>
         <Card className={validation.rowsWithWarnings > 0 ? 'border-yellow-200 bg-yellow-50' : ''}>
@@ -178,13 +178,13 @@ export function PreviewContainer({
                 {validation.rowsWithWarnings}
               </span>
             </div>
-            <div className="text-sm text-gray-500">Warnungen</div>
+            <div className="text-sm text-muted-foreground">Warnungen</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-4">
-            <div className="text-2xl font-bold">{convertedData.length}</div>
-            <div className="text-sm text-gray-500">Konvertierbar</div>
+            <div className="text-2xl font-bold text-foreground">{convertedData.length}</div>
+            <div className="text-sm text-muted-foreground">Konvertierbar</div>
           </CardContent>
         </Card>
       </div>
@@ -233,7 +233,7 @@ export function PreviewContainer({
 
       {/* Action Bar */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t">
-        <div className="text-sm text-gray-500">
+        <div className="text-sm text-muted-foreground">
           {canConvert ? (
             <span className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />

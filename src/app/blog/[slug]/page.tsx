@@ -560,7 +560,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </article>
 
       {/* CTA Section */}
-      <aside className="mt-12 bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-xl p-8 border border-primary/10">
+      <aside className="mt-12 bg-gradient-to-br from-primary/5 to-[#00ADEF]/5 rounded-xl p-8 border border-primary/10">
         <h2 className="text-2xl font-semibold text-foreground mb-3">
           Bereit, Ihre Wise-Transaktionen zu konvertieren?
         </h2>
