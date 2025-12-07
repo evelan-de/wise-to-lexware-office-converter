@@ -40,38 +40,41 @@ const steps: Step[] = [
 
 export function HowItWorks() {
   return (
-    <div className="py-6 px-4 -mx-4 bg-gradient-to-r from-transparent via-[#3C777B]/5 to-transparent dark:via-[#3C777B]/10 rounded-xl">
-      <div className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3">
+    <div className="relative py-8 px-6 -mx-4 rounded-2xl glass-card overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 mesh-gradient opacity-30 pointer-events-none" />
+
+      <div className="relative flex items-center justify-center gap-2 sm:gap-3 md:gap-4">
         {steps.map((step, index) => (
           <div key={step.title} className="flex items-center group">
             {/* Step */}
-            <div className="flex flex-col items-center text-center min-w-[48px] sm:min-w-[64px]">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full bg-[#3C777B]/10 dark:bg-[#3C777B]/20 flex items-center justify-center mb-1.5 overflow-hidden transition-all duration-300 group-hover:bg-[#3C777B]/20 dark:group-hover:bg-[#3C777B]/30 group-hover:shadow-md">
+            <div className="flex flex-col items-center text-center min-w-[50px] sm:min-w-[70px]">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20 flex items-center justify-center mb-2 overflow-hidden transition-all duration-300 group-hover:border-primary/40 group-hover:glow-teal">
                 {'logo' in step && step.logo ? (
                   <Image
                     src={step.logo}
                     alt=""
-                    width={44}
-                    height={44}
+                    width={56}
+                    height={56}
                     className="w-full h-full"
                   />
                 ) : 'icon' in step && step.icon ? (
-                  <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#3C777B] dark:text-[#6AABAF]" />
+                  <step.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                 ) : null}
               </div>
-              <span className="text-[10px] sm:text-xs font-medium text-foreground leading-tight">
+              <span className="text-[10px] sm:text-xs font-semibold text-foreground leading-tight">
                 {step.title}
               </span>
-              <span className="text-[9px] sm:text-[10px] text-muted-foreground hidden md:block leading-tight">
+              <span className="text-[8px] sm:text-[10px] text-muted-foreground hidden md:block leading-tight mt-0.5">
                 {step.description}
               </span>
             </div>
 
             {/* Arrow (except after last step) */}
             {index < steps.length - 1 && (
-              <div className="mx-0.5 sm:mx-1.5 md:mx-2 text-[#DDA95B]/50">
+              <div className="mx-1 sm:mx-2 md:mx-3 text-accent/60">
                 <svg
-                  className="w-3 h-3 sm:w-4 sm:h-4"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
