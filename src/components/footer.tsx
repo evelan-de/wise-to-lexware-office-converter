@@ -21,9 +21,9 @@ export function Footer() {
             </div>
 
             {/* Privacy Box */}
-            <div className="bg-gradient-to-br from-[#003366]/5 to-[#00ADEF]/5 dark:from-[#003366]/20 dark:to-[#00ADEF]/20 rounded-xl p-6 text-center border border-[#003366]/20 dark:border-[#003366]/40 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-gradient-to-br from-[#3C777B]/5 to-[#08292E]/5 dark:from-[#3C777B]/20 dark:to-[#08292E]/20 rounded-xl p-6 text-center border border-[#3C777B]/20 dark:border-[#3C777B]/40 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex justify-center mb-3">
-                <svg className="w-12 h-12 text-[#003366] dark:text-[#4D9FD6]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-12 h-12 text-[#3C777B] dark:text-[#5A9A9E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
@@ -32,9 +32,9 @@ export function Footer() {
             </div>
 
             {/* Open Source Box */}
-            <div className="bg-gradient-to-br from-[#00ADEF]/5 to-[#003366]/5 dark:from-[#00ADEF]/20 dark:to-[#003366]/20 rounded-xl p-6 text-center border border-[#00ADEF]/20 dark:border-[#00ADEF]/40 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-gradient-to-br from-[#DDA95B]/5 to-[#C88F44]/5 dark:from-[#DDA95B]/20 dark:to-[#C88F44]/20 rounded-xl p-6 text-center border border-[#DDA95B]/20 dark:border-[#DDA95B]/40 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex justify-center mb-3">
-                <svg className="w-12 h-12 text-[#00ADEF] dark:text-[#00ADEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-12 h-12 text-[#C88F44] dark:text-[#DDA95B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
               </div>

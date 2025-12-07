@@ -52,66 +52,66 @@
   --card-foreground: #111111;
   --popover: #FFFFFF;
   --popover-foreground: #111111;
-  --primary: #003366; /* Evelan Deep Blue */
+  --primary: #08292E; /* Evelan Dark Petrol */
   --primary-foreground: #FFFFFF;
-  --secondary: #00ADEF; /* Evelan Cyan Accent */
+  --secondary: #3C777B; /* Evelan Teal Accent */
   --secondary-foreground: #FFFFFF;
-  --muted: #F5F5F5;
+  --muted: #EDFAFC; /* Evelan Ice Blue */
   --muted-foreground: #555555;
-  --accent: #00ADEF;
-  --accent-foreground: #FFFFFF;
-  --destructive: #DC2626;
-  --border: #DDDDDD;
-  --input: #DDDDDD;
-  --ring: #003366;
-  --chart-1: #003366;
-  --chart-2: #00ADEF;
-  --chart-3: #10B981;
-  --chart-4: #F59E0B;
-  --chart-5: #8B5CF6;
-  --sidebar: #F5F5F5;
+  --accent: #DDA95B; /* Evelan Warm Gold */
+  --accent-foreground: #08292E;
+  --destructive: #D9534F;
+  --border: #DADADA;
+  --input: #F5F5F5;
+  --ring: #3C777B;
+  --chart-1: #08292E;
+  --chart-2: #3C777B;
+  --chart-3: #DDA95B;
+  --chart-4: #F3C079;
+  --chart-5: #C88F44;
+  --sidebar: #EDFAFC;
   --sidebar-foreground: #111111;
-  --sidebar-primary: #003366;
+  --sidebar-primary: #08292E;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #00ADEF;
+  --sidebar-accent: #3C777B;
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #DDDDDD;
-  --sidebar-ring: #003366;
+  --sidebar-border: #DADADA;
+  --sidebar-ring: #3C777B;
 }
 
 .dark {
-  /* Evelan CI Colors - Dark Mode */
-  --background: #0A0F1A;
-  --foreground: #F5F5F5;
-  --card: #111827;
-  --card-foreground: #F5F5F5;
-  --popover: #111827;
-  --popover-foreground: #F5F5F5;
-  --primary: #4D9FD6; /* Lighter blue for dark mode visibility */
-  --primary-foreground: #0A0F1A;
-  --secondary: #00ADEF;
-  --secondary-foreground: #0A0F1A;
-  --muted: #1F2937;
-  --muted-foreground: #9CA3AF;
-  --accent: #00ADEF;
-  --accent-foreground: #0A0F1A;
-  --destructive: #EF4444;
-  --border: #374151;
-  --input: #374151;
-  --ring: #4D9FD6;
-  --chart-1: #4D9FD6;
-  --chart-2: #00ADEF;
-  --chart-3: #34D399;
-  --chart-4: #FBBF24;
-  --chart-5: #A78BFA;
-  --sidebar: #111827;
-  --sidebar-foreground: #F5F5F5;
-  --sidebar-primary: #4D9FD6;
-  --sidebar-primary-foreground: #F5F5F5;
-  --sidebar-accent: #00ADEF;
-  --sidebar-accent-foreground: #F5F5F5;
-  --sidebar-border: #374151;
-  --sidebar-ring: #4D9FD6;
+  /* Evelan CI Colors - Dark Mode (Dark Petrol background) */
+  --background: #08292E; /* Evelan Dark Petrol */
+  --foreground: #FFFFFF;
+  --card: #0D3338; /* Slightly lighter petrol */
+  --card-foreground: #FFFFFF;
+  --popover: #0D3338;
+  --popover-foreground: #FFFFFF;
+  --primary: #DDA95B; /* Evelan Warm Gold as primary in dark mode */
+  --primary-foreground: #08292E;
+  --secondary: #5A9A9E; /* Lighter teal for dark mode */
+  --secondary-foreground: #08292E;
+  --muted: #0F3D42;
+  --muted-foreground: #A0B3B5;
+  --accent: #F3C079; /* Lighter warm gold */
+  --accent-foreground: #08292E;
+  --destructive: #EF6B6B;
+  --border: #1A4A50;
+  --input: #0F3D42;
+  --ring: #DDA95B;
+  --chart-1: #DDA95B;
+  --chart-2: #5A9A9E;
+  --chart-3: #F3C079;
+  --chart-4: #C88F44;
+  --chart-5: #3C777B;
+  --sidebar: #0D3338;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #DDA95B;
+  --sidebar-primary-foreground: #08292E;
+  --sidebar-accent: #5A9A9E;
+  --sidebar-accent-foreground: #08292E;
+  --sidebar-border: #1A4A50;
+  --sidebar-ring: #DDA95B;
 }
 
 @layer base {

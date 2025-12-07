@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#003366", // Evelan Deep Blue
+  themeColor: "#08292E", // Evelan Dark Petrol
 };
 
 export const metadata: Metadata = {
@@ -262,7 +262,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="min-h-screen flex flex-col">
-            <div className="flex-1 bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+            <div className="flex-1 bg-gradient-to-br from-[#EDFAFC] via-white to-[#F5FAFA] dark:from-[#08292E] dark:via-[#0A3035] dark:to-[#08292E]">
               <div className="max-w-4xl mx-auto px-4 py-12">
                 <ClientWrapper>{children}</ClientWrapper>
               </div>
