@@ -1,0 +1,6 @@
+<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Wise brand color: #9FE870 (lime green) -->
+  <circle cx="20" cy="20" r="20" fill="#9FE870"/>
+  <!-- Stylized W mark -->
+  <path d="M10 14L14.5 26L20 14L25.5 26L30 14" stroke="#163300" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
