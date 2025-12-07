@@ -23,7 +23,7 @@ export function StatsCard({ stats }: StatsCardProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {/* Total Transactions */}
-      <Card>
+      <Card className="border-evelan-teal/20 dark:border-evelan-teal/30 card-glow">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground">
             Gesamt Transaktionen
@@ -37,15 +37,15 @@ export function StatsCard({ stats }: StatsCardProps) {
                 {stats.debit} Ausgaben, {stats.credit} Eingänge
               </p>
             </div>
-            <div className="rounded-full bg-primary/10 p-3">
-              <FileCheck className="w-6 h-6 text-primary" />
+            <div className="rounded-full bg-evelan-teal/10 dark:bg-evelan-teal/20 p-3">
+              <FileCheck className="w-6 h-6 text-evelan-teal" />
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Debit Transactions */}
-      <Card>
+      <Card className="border-red-200/50 dark:border-red-800/50 card-glow">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground">
             Ausgaben
@@ -65,7 +65,7 @@ export function StatsCard({ stats }: StatsCardProps) {
       </Card>
 
       {/* Credit Transactions */}
-      <Card>
+      <Card className="border-evelan-gold/20 dark:border-evelan-gold/30 card-glow">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground">
             Eingänge
@@ -77,22 +77,22 @@ export function StatsCard({ stats }: StatsCardProps) {
               <p className="text-3xl font-bold text-foreground">{stats.credit}</p>
               <p className="text-xs text-muted-foreground mt-1">CREDIT Transaktionen</p>
             </div>
-            <div className="rounded-full bg-green-50 dark:bg-green-950/50 p-3">
-              <TrendingUp className="w-6 h-6 text-green-600 dark:text-green-400" />
+            <div className="rounded-full bg-evelan-gold/10 dark:bg-evelan-gold/20 p-3">
+              <TrendingUp className="w-6 h-6 text-evelan-gold dark:text-evelan-gold-light" />
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Total Amount - Full Width */}
-      <Card className="md:col-span-3">
+      <Card className="md:col-span-3 border-evelan-teal/20 dark:border-evelan-gold/20 card-glow">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground">
             Gesamtbetrag
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-4xl font-bold text-foreground">
+          <p className="text-4xl font-bold bg-gradient-to-r from-evelan-teal to-evelan-gold bg-clip-text text-transparent">
             {formatAmount(stats.totalAmount)}
           </p>
           <p className="text-xs text-muted-foreground mt-2">

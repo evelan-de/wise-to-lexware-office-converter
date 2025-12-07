@@ -110,14 +110,14 @@ export function PreviewContainer({
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-semibold text-gray-900">
+          <h2 className="text-2xl font-semibold text-foreground">
             Datenvorschau & Validierung
           </h2>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Prüfen Sie Ihre Daten vor der Konvertierung
           </p>
         </div>
-        <Button variant="outline" onClick={onCancel} className="gap-2">
+        <Button variant="outline" onClick={onCancel} className="gap-2 border-evelan-teal/30 hover:border-evelan-teal dark:border-evelan-gold/30 dark:hover:border-evelan-gold">
           <X className="w-4 h-4" />
           Abbrechen
         </Button>
@@ -147,44 +147,44 @@ export function PreviewContainer({
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
+        <Card className="border-evelan-teal/20 dark:border-evelan-teal/30 card-glow">
           <CardContent className="pt-4">
-            <div className="text-2xl font-bold">{wiseData.length}</div>
-            <div className="text-sm text-gray-500">Transaktionen</div>
+            <div className="text-2xl font-bold text-foreground">{wiseData.length}</div>
+            <div className="text-sm text-muted-foreground">Transaktionen</div>
           </CardContent>
         </Card>
-        <Card className={validation.rowsWithErrors > 0 ? 'border-red-200 bg-red-50' : ''}>
+        <Card className={validation.rowsWithErrors > 0 ? 'border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/30' : 'border-evelan-teal/20 dark:border-evelan-gold/30 card-glow'}>
           <CardContent className="pt-4">
             <div className="flex items-center gap-2">
               {validation.rowsWithErrors > 0 ? (
                 <AlertCircle className="w-5 h-5 text-red-500" />
               ) : (
-                <CheckCircle2 className="w-5 h-5 text-green-500" />
+                <CheckCircle2 className="w-5 h-5 text-evelan-teal dark:text-evelan-gold" />
               )}
-              <span className="text-2xl font-bold">
+              <span className="text-2xl font-bold text-foreground">
                 {validation.rowsWithErrors}
               </span>
             </div>
-            <div className="text-sm text-gray-500">Fehler</div>
+            <div className="text-sm text-muted-foreground">Fehler</div>
           </CardContent>
         </Card>
-        <Card className={validation.rowsWithWarnings > 0 ? 'border-yellow-200 bg-yellow-50' : ''}>
+        <Card className={validation.rowsWithWarnings > 0 ? 'border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-950/30' : 'border-evelan-gold/20 dark:border-evelan-gold/30 card-glow'}>
           <CardContent className="pt-4">
             <div className="flex items-center gap-2">
               {validation.rowsWithWarnings > 0 && (
                 <AlertTriangle className="w-5 h-5 text-yellow-500" />
               )}
-              <span className="text-2xl font-bold">
+              <span className="text-2xl font-bold text-foreground">
                 {validation.rowsWithWarnings}
               </span>
             </div>
-            <div className="text-sm text-gray-500">Warnungen</div>
+            <div className="text-sm text-muted-foreground">Warnungen</div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-evelan-gold/20 dark:border-evelan-gold/30 card-glow">
           <CardContent className="pt-4">
-            <div className="text-2xl font-bold">{convertedData.length}</div>
-            <div className="text-sm text-gray-500">Konvertierbar</div>
+            <div className="text-2xl font-bold text-foreground">{convertedData.length}</div>
+            <div className="text-sm text-muted-foreground">Konvertierbar</div>
           </CardContent>
         </Card>
       </div>
@@ -232,15 +232,15 @@ export function PreviewContainer({
       )}
 
       {/* Action Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t">
-        <div className="text-sm text-gray-500">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t border-evelan-teal/20 dark:border-evelan-gold/20">
+        <div className="text-sm text-muted-foreground">
           {canConvert ? (
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+              <CheckCircle2 className="w-5 h-5 text-evelan-teal dark:text-evelan-gold flex-shrink-0" />
               {convertedData.length} Transaktionen bereit zur Konvertierung
             </span>
           ) : (
-            <span className="flex items-center gap-2 text-red-600">
+            <span className="flex items-center gap-2 text-red-600 dark:text-red-400">
               <AlertCircle className="w-5 h-5 flex-shrink-0" />
               Bitte korrigieren Sie zuerst alle Fehler
             </span>
@@ -251,7 +251,7 @@ export function PreviewContainer({
             <Button
               variant="outline"
               onClick={() => setStep('comparison')}
-              className="gap-2"
+              className="gap-2 border-evelan-teal/30 hover:border-evelan-teal dark:border-evelan-gold/30 dark:hover:border-evelan-gold"
             >
               Vergleichen
               <ArrowRight className="w-4 h-4" />
@@ -260,7 +260,7 @@ export function PreviewContainer({
           <Button
             onClick={handleDownload}
             disabled={!canConvert}
-            className="gap-2 whitespace-nowrap"
+            className="gap-2 whitespace-nowrap btn-evelan-gradient disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Download className="w-4 h-4 flex-shrink-0" />
             Konvertieren & Herunterladen

@@ -226,7 +226,7 @@ export default function ConverterPage() {
             <div className="flex justify-center pt-4">
               <button
                 onClick={handleReset}
-                className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                className="px-6 py-3 rounded-lg font-semibold transition-all duration-300 btn-evelan-gradient"
               >
                 Neue Konvertierung starten
               </button>

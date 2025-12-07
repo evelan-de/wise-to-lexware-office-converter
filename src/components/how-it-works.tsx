@@ -46,7 +46,7 @@ export function HowItWorks() {
           <div key={step.title} className="flex items-center">
             {/* Step */}
             <div className="flex flex-col items-center text-center min-w-[48px] sm:min-w-[64px]">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-1.5 overflow-hidden">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full bg-evelan-teal/10 dark:bg-evelan-gold/15 flex items-center justify-center mb-1.5 overflow-hidden border border-evelan-teal/20 dark:border-evelan-gold/20 transition-all hover:border-evelan-teal/40 dark:hover:border-evelan-gold/40 hover:shadow-sm">
                 {'logo' in step && step.logo ? (
                   <Image
                     src={step.logo}
@@ -56,7 +56,7 @@ export function HowItWorks() {
                     className="w-full h-full"
                   />
                 ) : 'icon' in step && step.icon ? (
-                  <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                  <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-evelan-teal dark:text-evelan-gold" />
                 ) : null}
               </div>
               <span className="text-[10px] sm:text-xs font-medium text-foreground leading-tight">
@@ -69,7 +69,7 @@ export function HowItWorks() {
 
             {/* Arrow (except after last step) */}
             {index < steps.length - 1 && (
-              <div className="mx-0.5 sm:mx-1.5 md:mx-2 text-muted-foreground/40">
+              <div className="mx-0.5 sm:mx-1.5 md:mx-2 text-evelan-teal/40 dark:text-evelan-gold/40">
                 <svg
                   className="w-3 h-3 sm:w-4 sm:h-4"
                   fill="none"

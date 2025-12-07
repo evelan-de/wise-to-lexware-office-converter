@@ -36,13 +36,13 @@ export function ThemeSwitcher() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="h-9 w-9"
+      className="h-9 w-9 hover:bg-evelan-teal/10 dark:hover:bg-evelan-gold/10"
       aria-label={isDark ? 'Zum hellen Modus wechseln' : 'Zum dunklen Modus wechseln'}
     >
       {isDark ? (
-        <Sun className="h-5 w-5 text-yellow-500" />
+        <Sun className="h-5 w-5 text-evelan-gold" />
       ) : (
-        <Moon className="h-5 w-5 text-slate-700" />
+        <Moon className="h-5 w-5 text-evelan-petrol" />
       )}
     </Button>
   );
