@@ -7,6 +7,7 @@ import { ErrorAlert } from '@/components/error-alert';
 import { SuccessMessage } from '@/components/success-message';
 import { PreviewContainer } from '@/components/preview/preview-container';
 import { HeroSection } from '@/components/hero-section';
+import { HowItWorks } from '@/components/how-it-works';
 import { parseWiseCSV } from '@/lib/csv-utils';
 import { calculateStats } from '@/lib/converter';
 import { trackFileUpload, trackConversionSuccess, trackConversionError } from '@/lib/analytics';
@@ -192,34 +193,8 @@ export default function ConverterPage() {
 
         {/* Main Content */}
         <div className="space-y-6">
-          {/* Info Box */}
-          {state.status === 'idle' && (
-            <div className="bg-blue-50 dark:bg-blue-950/40 rounded-xl border border-blue-200 dark:border-blue-800 p-6">
-              <div className="flex gap-3">
-                <div className="flex-shrink-0">
-                  <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">
-                    So funktioniert&apos;s
-                  </h3>
-                  <ol className="list-decimal list-outside ml-6 space-y-1 text-blue-800 dark:text-blue-200 text-sm">
-                    <li>Laden Sie Ihre Wise CSV-Exportdatei hoch (max. 5 MB)</li>
-                    <li><strong>Neu:</strong> Vorschau und Validierung Ihrer Daten</li>
-                    <li>Bearbeiten Sie fehlerhafte Transaktionen direkt</li>
-                    <li>Vergleichen Sie Quell- und Zielformat</li>
-                    <li>Laden Sie die konvertierte Datei herunter</li>
-                  </ol>
-                  <p className="mt-3 text-xs text-blue-700 dark:text-blue-300">
-                    <strong>Hinweis:</strong> Lexware Office prüft nicht auf Duplikate. Stellen Sie sicher, dass Sie nur neue Transaktionen importieren.{' '}
-                    <a href="/hilfe" className="underline hover:text-blue-900 dark:hover:text-blue-100">Mehr erfahren</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
+          {/* How It Works */}
+          {state.status === 'idle' && <HowItWorks />}
 
           {/* File Upload */}
           <FileUpload
