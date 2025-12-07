@@ -1,8 +1,18 @@
-import { FileDown, Upload, Search, ArrowRightLeft, Building2 } from 'lucide-react';
+import Image from 'next/image';
+import { Upload, Search, ArrowRightLeft } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
-const steps = [
+type Step = {
+  title: string;
+  description: string;
+} & (
+  | { icon: LucideIcon; logo?: never }
+  | { logo: string; icon?: never }
+);
+
+const steps: Step[] = [
   {
-    icon: FileDown,
+    logo: '/wise-logo.svg',
     title: 'Exportieren',
     description: 'CSV aus Wise',
   },
@@ -22,7 +32,7 @@ const steps = [
     description: 'Download startet',
   },
   {
-    icon: Building2,
+    logo: '/lexware-logo.svg',
     title: 'Importieren',
     description: 'In Lexware Office',
   },
@@ -36,8 +46,18 @@ export function HowItWorks() {
           <div key={step.title} className="flex items-center">
             {/* Step */}
             <div className="flex flex-col items-center text-center min-w-[48px] sm:min-w-[64px]">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-1.5">
-                <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-1.5 overflow-hidden">
+                {'logo' in step && step.logo ? (
+                  <Image
+                    src={step.logo}
+                    alt=""
+                    width={44}
+                    height={44}
+                    className="w-full h-full"
+                  />
+                ) : 'icon' in step && step.icon ? (
+                  <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                ) : null}
               </div>
               <span className="text-[10px] sm:text-xs font-medium text-foreground leading-tight">
                 {step.title}
@@ -68,11 +88,6 @@ export function HowItWorks() {
           </div>
         ))}
       </div>
-
-      {/* Subtle hint about duplicates */}
-      <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-3">
-        Tipp: Lexware Office prüft nicht auf Duplikate beim Import
-      </p>
     </div>
   );
 }
