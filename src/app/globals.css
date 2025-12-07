@@ -417,9 +417,21 @@
    BACKGROUNDS & SECTIONS
    ============================================ */
 
-/* Dark hero/footer section */
-.section-dark {
+/* Hero/footer section - light in light mode, dark in dark mode */
+.section-hero {
+  background: linear-gradient(180deg, #E8F4F3 0%, #F8FBFC 100%);
+}
+
+.dark .section-hero {
   background: linear-gradient(180deg, #030B0D 0%, #071517 100%);
+}
+
+.section-footer {
+  background: linear-gradient(180deg, #F8FBFC 0%, #E8F4F3 100%);
+}
+
+.dark .section-footer {
+  background: linear-gradient(180deg, #071517 0%, #030B0D 100%);
 }
 
 /* Mesh gradient background */
