@@ -1,20 +1,25 @@
-import { Upload, CheckCircle, Download, Building2 } from 'lucide-react';
+import { FileDown, Upload, Search, ArrowRightLeft, Building2 } from 'lucide-react';
 
 const steps = [
   {
-    icon: Upload,
-    title: 'Hochladen',
-    description: 'Wise CSV',
+    icon: FileDown,
+    title: 'Exportieren',
+    description: 'CSV aus Wise',
   },
   {
-    icon: CheckCircle,
+    icon: Upload,
+    title: 'Hochladen',
+    description: 'Datei hier ablegen',
+  },
+  {
+    icon: Search,
     title: 'Prüfen',
     description: 'Vorschau & Bearbeiten',
   },
   {
-    icon: Download,
-    title: 'Download',
-    description: 'Lexware-Format',
+    icon: ArrowRightLeft,
+    title: 'Konvertieren',
+    description: 'Download startet',
   },
   {
     icon: Building2,
@@ -26,27 +31,27 @@ const steps = [
 export function HowItWorks() {
   return (
     <div className="py-4">
-      <div className="flex items-center justify-center gap-2 sm:gap-4">
+      <div className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3">
         {steps.map((step, index) => (
           <div key={step.title} className="flex items-center">
             {/* Step */}
-            <div className="flex flex-col items-center text-center">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-2">
-                <step.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+            <div className="flex flex-col items-center text-center min-w-[48px] sm:min-w-[64px]">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-1.5">
+                <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
               </div>
-              <span className="text-xs sm:text-sm font-medium text-foreground">
+              <span className="text-[10px] sm:text-xs font-medium text-foreground leading-tight">
                 {step.title}
               </span>
-              <span className="text-[10px] sm:text-xs text-muted-foreground hidden sm:block">
+              <span className="text-[9px] sm:text-[10px] text-muted-foreground hidden md:block leading-tight">
                 {step.description}
               </span>
             </div>
 
             {/* Arrow (except after last step) */}
             {index < steps.length - 1 && (
-              <div className="mx-2 sm:mx-4 text-muted-foreground/50">
+              <div className="mx-0.5 sm:mx-1.5 md:mx-2 text-muted-foreground/40">
                 <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  className="w-3 h-3 sm:w-4 sm:h-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -65,7 +70,7 @@ export function HowItWorks() {
       </div>
 
       {/* Subtle hint about duplicates */}
-      <p className="text-center text-xs text-muted-foreground mt-4">
+      <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-3">
         Tipp: Lexware Office prüft nicht auf Duplikate beim Import
       </p>
     </div>
