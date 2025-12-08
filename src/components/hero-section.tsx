@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 
 export function HeroSection() {
@@ -98,8 +99,8 @@ export function HeroSection() {
               {/* Step 1: Wise CSV */}
               <div className="animate-float relative rounded-xl shadow-xl p-5 card-glow border-2 border-transparent hover:border-evelan-teal/40 transition-all duration-300">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#9fe870] to-[#7dd654] flex items-center justify-center shadow-lg glow-teal animate-vibrant-pulse">
-                    <span className="text-xl font-black text-[#1a3d0f]">W</span>
+                  <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg glow-teal animate-vibrant-pulse">
+                    <Image src="/wise-logo.svg" alt="Wise" width={48} height={48} className="w-full h-full" />
                   </div>
                   <div>
                     <p className="font-bold text-foreground">Wise Export</p>
@@ -124,8 +125,8 @@ export function HeroSection() {
               {/* Step 2: Lexware Office CSV */}
               <div className="animate-float-delayed relative rounded-xl shadow-xl p-5 card-glow border-2 border-transparent hover:border-evelan-gold/40 transition-all duration-300">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-evelan-gold-light via-evelan-gold to-evelan-gold-dark flex items-center justify-center shadow-lg glow-gold animate-vibrant-pulse">
-                    <span className="text-xl font-black text-evelan-petrol">L</span>
+                  <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg glow-gold animate-vibrant-pulse">
+                    <Image src="/lexware-logo.svg" alt="Lexware Office" width={48} height={48} className="w-full h-full" />
                   </div>
                   <div>
                     <p className="font-bold text-foreground">Lexware Office Format</p>
