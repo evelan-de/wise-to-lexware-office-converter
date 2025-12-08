@@ -94,8 +94,8 @@ export function HeroSection() {
           </div>
 
           {/* Right: Visual Flow */}
-          <div className="relative overflow-hidden sm:overflow-visible">
-            <div className="space-y-4">
+          <div className="relative">
+            <div className="space-y-4 pr-4 pt-4 sm:pr-0 sm:pt-0">
               {/* Step 1: Wise CSV */}
               <div className="animate-float relative rounded-xl shadow-xl p-5 card-glow border-2 border-transparent hover:border-evelan-teal/40 transition-all duration-300">
                 <div className="flex items-center gap-4 mb-4">
@@ -137,7 +137,7 @@ export function HeroSection() {
                   <div className="truncate">Buchungstag;Valuta;Auftraggeber...</div>
                   <div className="truncate opacity-70">29.09.2025;29.09.2025;Kontoinhaber...</div>
                 </div>
-                <div className="absolute -top-3 -right-3">
+                <div className="absolute -top-3 right-2 sm:-right-3">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/90 dark:bg-evelan-petrol/95 backdrop-blur-md text-evelan-teal dark:text-evelan-ice border border-evelan-teal/40 dark:border-evelan-teal/50 shadow-lg glow-teal">
                     Bereit zum Import
                   </span>
@@ -145,11 +145,11 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Decorative elements - More Vibrant */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 border-2 border-dashed border-evelan-gold/40 dark:border-evelan-gold/30 rounded-xl -z-10 animate-pulse-glow" />
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 border-2 border-dashed border-evelan-teal/40 dark:border-evelan-teal/30 rounded-xl -z-10 animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
-            {/* Extra glow orb */}
-            <div className="absolute top-1/2 -right-12 w-24 h-24 bg-gradient-to-r from-evelan-gold/20 to-evelan-teal/20 rounded-full blur-2xl -z-10 animate-pulse-glow" />
+            {/* Decorative elements - Hidden on mobile */}
+            <div className="hidden sm:block absolute -top-6 -right-6 w-24 h-24 border-2 border-dashed border-evelan-gold/40 dark:border-evelan-gold/30 rounded-xl -z-10 animate-pulse-glow" />
+            <div className="hidden sm:block absolute -bottom-6 -left-6 w-24 h-24 border-2 border-dashed border-evelan-teal/40 dark:border-evelan-teal/30 rounded-xl -z-10 animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
+            {/* Extra glow orb - Hidden on mobile */}
+            <div className="hidden sm:block absolute top-1/2 -right-12 w-24 h-24 bg-gradient-to-r from-evelan-gold/20 to-evelan-teal/20 rounded-full blur-2xl -z-10 animate-pulse-glow" />
           </div>
         </div>
       </header>
