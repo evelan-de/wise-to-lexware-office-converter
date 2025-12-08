@@ -93,7 +93,7 @@ export function HeroSection() {
           </div>
 
           {/* Right: Visual Flow */}
-          <div className="relative">
+          <div className="relative overflow-hidden sm:overflow-visible">
             <div className="space-y-4">
               {/* Step 1: Wise CSV */}
               <div className="animate-float relative rounded-xl shadow-xl p-5 card-glow border-2 border-transparent hover:border-evelan-teal/40 transition-all duration-300">
@@ -137,7 +137,7 @@ export function HeroSection() {
                   <div className="truncate opacity-70">29.09.2025;29.09.2025;Kontoinhaber...</div>
                 </div>
                 <div className="absolute -top-3 -right-3">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-evelan-teal/20 to-evelan-teal/30 dark:from-evelan-teal/30 dark:to-evelan-teal/40 text-evelan-teal dark:text-evelan-ice border border-evelan-teal/40 dark:border-evelan-teal/50 shadow-sm glow-teal">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/90 dark:bg-evelan-petrol/95 backdrop-blur-md text-evelan-teal dark:text-evelan-ice border border-evelan-teal/40 dark:border-evelan-teal/50 shadow-lg glow-teal">
                     Bereit zum Import
                   </span>
                 </div>
