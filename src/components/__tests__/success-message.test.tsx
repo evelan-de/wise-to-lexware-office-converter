@@ -25,19 +25,19 @@ describe('SuccessMessage', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render with green styling', () => {
+  it('should render with Evelan teal styling', () => {
     const { container } = render(<SuccessMessage />);
 
     const card = container.querySelector('[data-slot="card"]');
-    expect(card).toHaveClass('border-green-200');
-    expect(card).toHaveClass('bg-green-50');
+    expect(card).toHaveClass('border-evelan-teal/30');
+    expect(card).toHaveClass('bg-evelan-teal/5');
   });
 
   it('should render CheckCircle2 icon', () => {
     const { container } = render(<SuccessMessage />);
 
-    // Check for the SVG icon with green color
-    const checkIcon = container.querySelector('.w-8.h-8.text-green-600');
+    // Check for the SVG icon with Evelan teal color
+    const checkIcon = container.querySelector('.w-8.h-8.text-evelan-teal');
     expect(checkIcon).toBeInTheDocument();
   });
 
@@ -55,7 +55,7 @@ describe('SuccessMessage', () => {
     // Should have h3 heading
     const heading = container.querySelector('h3');
     expect(heading).toBeInTheDocument();
-    expect(heading).toHaveClass('text-lg', 'font-semibold', 'text-green-900');
+    expect(heading).toHaveClass('text-lg', 'font-semibold', 'text-evelan-petrol');
 
     // Should have paragraph elements
     const paragraphs = container.querySelectorAll('p');
@@ -69,8 +69,8 @@ describe('SuccessMessage', () => {
     const flexContainer = container.querySelector('.flex.items-center.gap-4');
     expect(flexContainer).toBeInTheDocument();
 
-    // Check for rounded icon background
-    const iconBackground = container.querySelector('.rounded-full.bg-green-100');
+    // Check for rounded icon background with Evelan teal
+    const iconBackground = container.querySelector('.rounded-full.bg-evelan-teal\\/10');
     expect(iconBackground).toBeInTheDocument();
   });
 });
