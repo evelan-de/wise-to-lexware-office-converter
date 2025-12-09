@@ -578,7 +578,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </Link>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-muted text-foreground rounded-lg font-medium hover:bg-muted/80 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-evelan-petrol-alt border border-evelan-teal/40 dark:border-evelan-gold/30 text-foreground rounded-lg font-medium hover:border-evelan-teal dark:hover:border-evelan-gold transition-colors shadow-sm"
           >
             Weitere Artikel
           </Link>
