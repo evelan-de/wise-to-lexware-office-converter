@@ -191,15 +191,15 @@ export function PreviewContainer({
 
       {/* Validation Alert */}
       {validation.rowsWithErrors > 0 && (
-        <Card className="border-red-200 bg-red-50">
+        <Card className="border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/30">
           <CardContent className="py-4">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-red-500 mt-0.5" />
               <div>
-                <h4 className="font-medium text-red-800">
+                <h4 className="font-medium text-red-800 dark:text-red-300">
                   {validation.rowsWithErrors} Transaktion(en) mit Fehlern
                 </h4>
-                <p className="text-sm text-red-700 mt-1">
+                <p className="text-sm text-red-700 dark:text-red-400 mt-1">
                   Diese Transaktionen können nicht konvertiert werden. Bitte
                   korrigieren Sie die Fehler oder die fehlerhaften Zeilen werden
                   übersprungen.
@@ -207,7 +207,7 @@ export function PreviewContainer({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="mt-2 gap-2"
+                  className="mt-2 gap-2 border-red-300 dark:border-red-700 hover:bg-red-100 dark:hover:bg-red-900/30"
                   onClick={() => setStep('source')}
                 >
                   <Edit className="w-4 h-4" />

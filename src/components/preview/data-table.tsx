@@ -133,10 +133,10 @@ function MobileRowCard({
     <div
       className={`p-4 border rounded-lg ${
         status === 'error'
-          ? 'bg-red-50 border-red-200'
+          ? 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-800'
           : status === 'warning'
-          ? 'bg-yellow-50 border-yellow-200'
-          : 'bg-white border-gray-200'
+          ? 'bg-yellow-50 dark:bg-yellow-950/30 border-yellow-200 dark:border-yellow-800'
+          : 'bg-card border-border'
       }`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -155,19 +155,19 @@ function MobileRowCard({
           </TooltipProvider>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2">
-              <span className="text-sm text-gray-500">{row.Date}</span>
+              <span className="text-sm text-muted-foreground">{row.Date}</span>
               <span
                 className={`font-semibold ${
-                  isNegative ? 'text-red-600' : 'text-green-600'
+                  isNegative ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'
                 }`}
               >
                 {formatAmount(row.Amount)} {row.Currency}
               </span>
             </div>
-            <p className="text-sm font-medium mt-1 truncate">
+            <p className="text-sm font-medium mt-1 truncate text-foreground">
               {row.Description || row['Payment Reference'] || '-'}
             </p>
-            <p className="text-xs text-gray-500 mt-0.5">
+            <p className="text-xs text-muted-foreground mt-0.5">
               {row['Transaction Type'] === 'DEBIT' ? 'An: ' : 'Von: '}
               {row['Transaction Type'] === 'DEBIT'
                 ? row['Payee Name'] || '-'
@@ -281,7 +281,7 @@ export function DataTable({
       {showSearch && (
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               placeholder="Suchen in Transaktionen..."
               value={filters.search}
@@ -290,7 +290,7 @@ export function DataTable({
             />
           </div>
           <select
-            className="h-9 rounded-md border border-input bg-transparent px-3 text-sm"
+            className="h-9 rounded-md border border-input bg-background text-foreground px-3 text-sm"
             value={filters.transactionType}
             onChange={(e) => {
               setFilters((prev) => ({
@@ -316,8 +316,8 @@ export function DataTable({
           }}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors ${
             statusFilter === 'valid'
-              ? 'bg-green-100 text-green-800 ring-2 ring-green-500'
-              : 'hover:bg-green-50 text-gray-700'
+              ? 'bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 ring-2 ring-green-500'
+              : 'hover:bg-green-50 dark:hover:bg-green-900/20 text-foreground'
           }`}
         >
           <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -331,8 +331,8 @@ export function DataTable({
             }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors ${
               statusFilter === 'warning'
-                ? 'bg-yellow-100 text-yellow-800 ring-2 ring-yellow-500'
-                : 'hover:bg-yellow-50 text-gray-700'
+                ? 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-300 ring-2 ring-yellow-500'
+                : 'hover:bg-yellow-50 dark:hover:bg-yellow-900/20 text-foreground'
             }`}
           >
             <AlertTriangle className="w-4 h-4 text-yellow-500" />
@@ -347,8 +347,8 @@ export function DataTable({
             }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors ${
               statusFilter === 'error'
-                ? 'bg-red-100 text-red-800 ring-2 ring-red-500'
-                : 'hover:bg-red-50 text-gray-700'
+                ? 'bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-300 ring-2 ring-red-500'
+                : 'hover:bg-red-50 dark:hover:bg-red-900/20 text-foreground'
             }`}
           >
             <AlertCircle className="w-4 h-4 text-red-500" />
@@ -361,13 +361,13 @@ export function DataTable({
               setStatusFilter('all');
               setCurrentPage(1);
             }}
-            className="text-gray-500 hover:text-gray-700 text-xs underline"
+            className="text-muted-foreground hover:text-foreground text-xs underline"
           >
             Filter zurücksetzen
           </button>
         )}
         {maxPreviewRows && data.length > maxPreviewRows && (
-          <span className="text-gray-500">
+          <span className="text-muted-foreground">
             (Vorschau: erste {maxPreviewRows} von {data.length} Zeilen)
           </span>
         )}
@@ -376,7 +376,7 @@ export function DataTable({
       {/* Mobile View - Card Layout */}
       <div className="block md:hidden space-y-3">
         {processedData.data.length === 0 ? (
-          <div className="text-center py-8 text-gray-500 border rounded-lg">
+          <div className="text-center py-8 text-muted-foreground border border-border rounded-lg bg-card">
             Keine Transaktionen gefunden
           </div>
         ) : (
@@ -435,7 +435,7 @@ export function DataTable({
               <TableRow>
                 <TableCell
                   colSpan={DISPLAY_COLUMNS.length + (onEditRow ? 2 : 1)}
-                  className="text-center py-8 text-gray-500"
+                  className="text-center py-8 text-muted-foreground"
                 >
                   Keine Transaktionen gefunden
                 </TableCell>
@@ -457,9 +457,9 @@ export function DataTable({
                     key={`${row['TransferWise ID']}-${originalIndex}`}
                     className={
                       status === 'error'
-                        ? 'bg-red-50'
+                        ? 'bg-red-50 dark:bg-red-950/30'
                         : status === 'warning'
-                        ? 'bg-yellow-50'
+                        ? 'bg-yellow-50 dark:bg-yellow-950/30'
                         : ''
                     }
                   >
@@ -485,8 +485,8 @@ export function DataTable({
                         } ${
                           col.key === 'Amount'
                             ? parseFloat(row.Amount) < 0
-                              ? 'text-red-600 font-medium'
-                              : 'text-green-600 font-medium'
+                              ? 'text-red-600 dark:text-red-400 font-medium'
+                              : 'text-green-600 dark:text-green-400 font-medium'
                             : ''
                         }`}
                       >
@@ -522,7 +522,7 @@ export function DataTable({
       {/* Pagination */}
       {processedData.totalPages > 1 && (
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="text-sm text-gray-500 text-center sm:text-left">
+          <div className="text-sm text-muted-foreground text-center sm:text-left">
             Zeige {(processedData.currentPage - 1) * pageSize + 1} bis{' '}
             {Math.min(
               processedData.currentPage * pageSize,
