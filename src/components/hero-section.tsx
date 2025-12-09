@@ -123,9 +123,9 @@ export function HeroSection() {
               </div>
 
               {/* Step 2: Lexware Office CSV */}
-              <div className="animate-float-delayed relative rounded-xl shadow-xl p-5 card-glow border-2 border-transparent hover:border-evelan-gold/40 transition-all duration-300">
+              <div className="animate-float-delayed relative rounded-xl shadow-xl p-5 card-glow border-2 border-transparent hover:border-[#ff4554]/40 transition-all duration-300">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg glow-gold animate-vibrant-pulse">
+                  <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg glow-lexware animate-vibrant-pulse">
                     <Image src="/lexware-logo.svg" alt="Lexware Office" width={48} height={48} className="w-full h-full" />
                   </div>
                   <div>
@@ -133,7 +133,7 @@ export function HeroSection() {
                     <p className="text-xs text-muted-foreground">lexware-import.csv</p>
                   </div>
                 </div>
-                <div className="font-mono text-xs bg-gradient-to-br from-evelan-ice to-evelan-ice/80 dark:from-evelan-petrol dark:to-evelan-petrol-alt rounded-lg p-3 text-muted-foreground overflow-hidden border border-evelan-gold/10 dark:border-evelan-gold/20">
+                <div className="font-mono text-xs bg-gradient-to-br from-evelan-ice to-evelan-ice/80 dark:from-evelan-petrol dark:to-evelan-petrol-alt rounded-lg p-3 text-muted-foreground overflow-hidden border border-[#ff4554]/10 dark:border-[#ff4554]/20">
                   <div className="truncate">Buchungstag;Valuta;Auftraggeber...</div>
                   <div className="truncate opacity-70">29.09.2025;29.09.2025;Kontoinhaber...</div>
                 </div>

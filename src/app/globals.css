@@ -391,6 +391,15 @@
   box-shadow: 0 0 40px rgba(230, 180, 80, 0.6), 0 0 80px rgba(230, 180, 80, 0.25), 0 0 120px rgba(230, 180, 80, 0.1);
 }
 
+/* Lexware Red Accent Glow - Matches Lexware logo #ff4554 */
+.glow-lexware {
+  box-shadow: 0 0 25px rgba(255, 69, 84, 0.35), 0 0 50px rgba(255, 69, 84, 0.1);
+}
+
+.glow-lexware-strong {
+  box-shadow: 0 0 40px rgba(255, 69, 84, 0.5), 0 0 80px rgba(255, 69, 84, 0.2), 0 0 120px rgba(255, 69, 84, 0.08);
+}
+
 /* Teal Accent Glow - Enhanced */
 .glow-teal {
   box-shadow: 0 0 20px rgba(74, 156, 160, 0.4), 0 0 40px rgba(74, 156, 160, 0.15);
