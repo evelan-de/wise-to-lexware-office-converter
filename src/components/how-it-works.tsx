@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { Upload, Search, ArrowRightLeft } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import wiseLogo from "../../public/wise-logo.svg";
+import lexwareLogo from "../../public/lexware-logo.svg";
 
 type Step = {
   title: string;
@@ -12,7 +14,7 @@ type Step = {
 
 const steps: Step[] = [
   {
-    logo: '/wise-logo.svg',
+    logo: wiseLogo,
     title: 'Exportieren',
     description: 'CSV aus Wise',
   },
@@ -32,7 +34,7 @@ const steps: Step[] = [
     description: 'Download startet',
   },
   {
-    logo: '/lexware-logo.svg',
+    logo: lexwareLogo,
     title: 'Importieren',
     description: 'In Lexware Office',
   },
@@ -50,10 +52,9 @@ export function HowItWorks() {
                 {'logo' in step && step.logo ? (
                   <Image
                     src={step.logo}
-                    alt=""
-                    width={44}
-                    height={44}
-                    className="w-full h-full"
+                    alt={step.description}
+                    layout="responsive"
+                    className="object-cover"
                   />
                 ) : 'icon' in step && step.icon ? (
                   <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-evelan-teal dark:text-evelan-gold" />

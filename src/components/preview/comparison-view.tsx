@@ -288,22 +288,22 @@ export function ComparisonView({ wiseData }: ComparisonViewProps) {
       </div>
 
       {/* Transformation Legend */}
-      <Card className="bg-evelan-ice/50 dark:bg-evelan-petrol-alt border-evelan-teal/20 dark:border-evelan-gold/20">
+      <Card className="bg-white dark:bg-evelan-petrol-alt border-evelan-teal/40 dark:border-evelan-gold/20 shadow-sm">
         <CardContent className="py-3">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
             <span className="font-medium text-evelan-teal dark:text-evelan-gold">Transformationen:</span>
             <div className="flex items-center gap-1.5">
-              <code className="bg-white dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">dd-mm-yyyy</code>
+              <code className="bg-evelan-ice dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">dd-mm-yyyy</code>
               <ArrowRight className="w-3 h-3 text-evelan-gold" />
-              <code className="bg-white dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">dd.mm.yyyy</code>
+              <code className="bg-evelan-ice dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">dd.mm.yyyy</code>
             </div>
             <div className="flex items-center gap-1.5">
-              <code className="bg-white dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">1234.56</code>
+              <code className="bg-evelan-ice dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">1234.56</code>
               <ArrowRight className="w-3 h-3 text-evelan-gold" />
-              <code className="bg-white dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">1234,56</code>
+              <code className="bg-evelan-ice dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">1234,56</code>
             </div>
             <div className="flex items-center gap-1.5">
-              <code className="bg-white dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">CSV</code>
+              <code className="bg-evelan-ice dark:bg-evelan-petrol px-1.5 py-0.5 rounded text-xs text-foreground">CSV</code>
               <ArrowRight className="w-3 h-3 text-evelan-gold" />
               <span className="text-evelan-teal dark:text-evelan-gold">Semikolon, UTF-8 BOM</span>
             </div>
