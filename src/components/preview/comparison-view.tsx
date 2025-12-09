@@ -45,12 +45,12 @@ function ComparisonRow({
   lexOfficeRow: LexOfficeRow;
 }) {
   const isNegative = parseFloat(wiseRow.Amount) < 0;
-  const amountClass = isNegative ? 'text-red-600' : 'text-green-600';
+  const amountClass = isNegative ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400';
 
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-0">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr,auto,1fr] divide-y md:divide-y-0 md:divide-x">
+        <div className="grid grid-cols-[1fr,auto,1fr] divide-x divide-border">
           {/* Source (Wise) */}
           <div className="p-4 bg-gray-50 dark:bg-evelan-petrol-alt">
             <div className="flex items-center gap-2 mb-3">
@@ -96,14 +96,9 @@ function ComparisonRow({
           </div>
 
           {/* Arrow */}
-          <div className="hidden md:flex items-center justify-center px-3 bg-white dark:bg-evelan-petrol">
+          <div className="flex items-center justify-center px-3 bg-white dark:bg-evelan-petrol">
             <div className="bg-evelan-gold text-evelan-petrol rounded-full p-2">
               <ArrowRight className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="flex md:hidden items-center justify-center py-2 bg-white dark:bg-evelan-petrol">
-            <div className="bg-evelan-gold text-evelan-petrol rounded-full p-1.5 rotate-90">
-              <ArrowRight className="w-3 h-3" />
             </div>
           </div>
 
