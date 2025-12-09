@@ -1,12 +1,6 @@
-<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Lexware/lexoffice brand colors: blue gradient -->
-  <rect width="40" height="40" rx="8" fill="url(#lexware-gradient)"/>
-  <!-- Stylized L mark -->
-  <path d="M12 10V30H28" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <defs>
-    <linearGradient id="lexware-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0066CC"/>
-      <stop offset="1" stop-color="#004499"/>
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -30 258.43 258.43">
+  <rect x="-30" y="-30" width="258.43" height="258.43" rx="50" ry="50" fill="#fff"/>
+  <polygon fill="#ff4554" points="127.71 106.47 105.48 133.9 123.89 156.61 136.38 156.61 152.37 156.61 168.34 156.61 127.71 106.47"/>
+  <polygon fill="#ff4554" points="167.22 40.92 152.37 40.92 152.37 40.93 152.37 40.93 152.37 40.92 136.38 40.93 136.38 40.92 123.86 40.92 105.46 63.63 127.71 91.06 127.71 91.06 168.34 40.92 167.22 40.92"/>
+  <polygon fill="#ff4554" points="97.53 69.24 74.59 40.92 29.93 40.92 29.93 40.92 52.87 69.24 76.8 98.77 52.87 128.3 29.92 156.61 73.47 156.61 74.59 156.61 97.53 128.3 121.46 98.77 97.53 69.24"/>
 </svg>

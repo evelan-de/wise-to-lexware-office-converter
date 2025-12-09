@@ -262,7 +262,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="min-h-screen flex flex-col">
-            <div className="flex-1 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+            <div className="flex-1 bg-gradient-to-br from-evelan-ice via-white to-evelan-ice/50 dark:from-evelan-petrol dark:via-evelan-petrol dark:to-evelan-petrol-alt">
               <div className="max-w-4xl mx-auto px-4 py-12">
                 <ClientWrapper>{children}</ClientWrapper>
               </div>

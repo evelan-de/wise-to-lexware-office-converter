@@ -79,10 +79,10 @@ export function FileUpload({ onFileSelect, onError, isProcessing }: FileUploadPr
 
   return (
     <Card
-      className={`border-2 border-dashed transition-all duration-200 ${
+      className={`border-2 border-dashed transition-all duration-300 ${
         isProcessing
-          ? 'border-primary/50 bg-primary/5'
-          : 'border-border hover:border-primary cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background'
+          ? 'border-evelan-gold/50 dark:border-evelan-gold/40 bg-evelan-gold/5 animate-glow-pulse'
+          : 'border-evelan-teal/30 dark:border-evelan-teal/20 hover:border-evelan-teal dark:hover:border-evelan-gold cursor-pointer focus:outline-none focus:ring-2 focus:ring-evelan-teal dark:focus:ring-evelan-gold focus:ring-offset-2 dark:focus:ring-offset-background card-glow'
       }`}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -96,7 +96,7 @@ export function FileUpload({ onFileSelect, onError, isProcessing }: FileUploadPr
       <CardContent className="flex flex-col items-center justify-center py-12 px-6">
         {isProcessing ? (
           <>
-            <Loader2 className="w-12 h-12 text-primary mb-4 animate-spin" />
+            <Loader2 className="w-12 h-12 text-evelan-gold mb-4 animate-spin" />
             <p className="text-lg font-medium text-foreground">
               Datei wird verarbeitet...
             </p>
@@ -106,8 +106,8 @@ export function FileUpload({ onFileSelect, onError, isProcessing }: FileUploadPr
           </>
         ) : (
           <>
-            <div className="rounded-full bg-primary/10 p-4 mb-4">
-              <Upload className="w-8 h-8 text-primary" />
+            <div className="rounded-full bg-gradient-to-br from-evelan-teal/10 to-evelan-gold/10 dark:from-evelan-teal/20 dark:to-evelan-gold/15 p-4 mb-4 border border-evelan-teal/20 dark:border-evelan-gold/20">
+              <Upload className="w-8 h-8 text-evelan-teal dark:text-evelan-gold" />
             </div>
             <p className="text-lg font-medium text-foreground">
               CSV-Datei hier ablegen oder klicken

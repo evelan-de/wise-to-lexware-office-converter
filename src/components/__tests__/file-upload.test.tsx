@@ -208,6 +208,6 @@ describe('FileUpload', () => {
     const dropZone = screen.getByText(/Datei wird verarbeitet/i).closest('div');
 
     // Should not be clickable when processing
-    expect(dropZone?.parentElement).toHaveClass('border-primary/50');
+    expect(dropZone?.parentElement).toHaveClass('border-evelan-gold/50');
   });
 });

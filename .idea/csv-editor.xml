@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/docs/examples/WISE-export-example.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/lexoffice-09-2025.csv">
           <value>
             <Attribute>

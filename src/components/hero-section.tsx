@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ThemeSwitcher } from '@/components/theme-switcher';
 
 export function HeroSection() {
@@ -11,33 +12,37 @@ export function HeroSection() {
       </div>
 
       <header className="relative mb-16 pt-8">
-        {/* Background */}
+        {/* Vibrant Background with Multiple Layers */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/20 rounded-full blur-[100px]" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px]" />
+          {/* Primary glow - Gold */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-evelan-gold/30 via-evelan-gold/20 to-transparent rounded-full blur-[120px] animate-pulse-glow" />
+          {/* Secondary glow - Teal */}
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-evelan-teal/35 via-evelan-teal/20 to-transparent rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '1s' }} />
+          {/* Accent glow - Center */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-evelan-teal/10 via-evelan-gold/15 to-evelan-teal/10 rounded-full blur-[150px] animate-gradient bg-[length:200%_200%]" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text Content */}
           <div className="space-y-6">
-            {/* Badges */}
+            {/* Badges - More Vibrant */}
             <div className="flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">
-                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-evelan-teal/15 to-evelan-teal/25 dark:from-evelan-teal/25 dark:to-evelan-teal/35 text-evelan-teal dark:text-evelan-ice border border-evelan-teal/30 dark:border-evelan-teal/40 shadow-sm glow-teal">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
                 100% Datenschutz
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+              <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-evelan-gold/15 to-evelan-gold/30 dark:from-evelan-gold/25 dark:to-evelan-gold/40 text-evelan-gold-dark dark:text-evelan-gold border border-evelan-gold/30 dark:border-evelan-gold/40 shadow-sm glow-gold">
+                <span className="w-2 h-2 rounded-full bg-gradient-to-r from-evelan-gold-light to-evelan-gold animate-pulse" />
                 Open Source
               </span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+            {/* Headline - Vibrant Gradient */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground">
               WISE zu{' '}
-              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+              <span className="text-gradient-vibrant">
                 Lexware Office
               </span>{' '}
               Konverter
@@ -48,41 +53,41 @@ export function HeroSection() {
               Wandle deine Wise CSV-Exporte in Sekundenschnelle in das Lexware Office Bankimport-Format um. Komplett im Browser - keine Daten verlassen deinen Computer.
             </p>
 
-            {/* Features */}
+            {/* Features - Enhanced */}
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center">
-                  <svg className="w-3 h-3 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <div className="flex items-center gap-3 text-sm text-muted-foreground group">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-evelan-teal/20 to-evelan-teal/30 dark:from-evelan-teal/30 dark:to-evelan-teal/40 flex items-center justify-center border border-evelan-teal/30 group-hover:glow-teal transition-all">
+                  <svg className="w-3.5 h-3.5 text-evelan-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
-                <span>Keine Server-Uploads - alles lokal</span>
+                <span className="group-hover:text-foreground transition-colors">Keine Server-Uploads - alles lokal</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center">
-                  <svg className="w-3 h-3 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <div className="flex items-center gap-3 text-sm text-muted-foreground group">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-evelan-teal/20 to-evelan-teal/30 dark:from-evelan-teal/30 dark:to-evelan-teal/40 flex items-center justify-center border border-evelan-teal/30 group-hover:glow-teal transition-all">
+                  <svg className="w-3.5 h-3.5 text-evelan-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
-                <span>Vorschau vor dem Download</span>
+                <span className="group-hover:text-foreground transition-colors">Vorschau vor dem Download</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center">
-                  <svg className="w-3 h-3 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <div className="flex items-center gap-3 text-sm text-muted-foreground group">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-evelan-teal/20 to-evelan-teal/30 dark:from-evelan-teal/30 dark:to-evelan-teal/40 flex items-center justify-center border border-evelan-teal/30 group-hover:glow-teal transition-all">
+                  <svg className="w-3.5 h-3.5 text-evelan-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
-                <span>Fehlerhafte Einträge bearbeiten</span>
+                <span className="group-hover:text-foreground transition-colors">Fehlerhafte Einträge bearbeiten</span>
               </div>
             </div>
 
-            {/* CTA */}
+            {/* CTA - More Vibrant */}
             <a
               href="/hilfe"
-              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-evelan-teal hover:text-evelan-gold transition-all duration-300 group"
             >
-              Anleitung lesen
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <span className="border-b-2 border-evelan-teal/50 group-hover:border-evelan-gold pb-0.5">Anleitung lesen</span>
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </a>
@@ -90,59 +95,61 @@ export function HeroSection() {
 
           {/* Right: Visual Flow */}
           <div className="relative">
-            <div className="space-y-4">
+            <div className="space-y-4 pr-4 pt-4 sm:pr-0 sm:pt-0">
               {/* Step 1: Wise CSV */}
-              <div className="animate-float relative bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-lg p-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#9fe870] flex items-center justify-center">
-                    <span className="text-lg font-bold text-black">W</span>
+              <div className="animate-float relative rounded-xl shadow-xl p-5 card-glow border-2 border-transparent hover:border-evelan-teal/40 transition-all duration-300">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg glow-teal animate-vibrant-pulse">
+                    <Image src="/wise-logo.svg" alt="Wise" width={48} height={48} className="w-full h-full" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground text-sm">Wise Export</p>
+                    <p className="font-bold text-foreground">Wise Export</p>
                     <p className="text-xs text-muted-foreground">wise-statement.csv</p>
                   </div>
                 </div>
-                <div className="font-mono text-xs bg-slate-100 dark:bg-slate-900 rounded p-2 text-muted-foreground overflow-hidden">
+                <div className="font-mono text-xs bg-gradient-to-br from-evelan-ice to-evelan-ice/80 dark:from-evelan-petrol dark:to-evelan-petrol-alt rounded-lg p-3 text-muted-foreground overflow-hidden border border-evelan-teal/10 dark:border-evelan-teal/20">
                   <div className="truncate">TransferWise ID,Date,Amount...</div>
-                  <div className="truncate">TRANSFER-123,29-09-2025,-553.76...</div>
+                  <div className="truncate opacity-70">TRANSFER-123,29-09-2025,-553.76...</div>
                 </div>
               </div>
 
-              {/* Arrow */}
+              {/* Arrow - More Vibrant */}
               <div className="flex justify-center">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg animate-bounce">
-                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-evelan-teal via-evelan-gold to-evelan-teal bg-[length:200%_200%] animate-gradient flex items-center justify-center shadow-xl glow-gold-strong">
+                  <svg className="w-6 h-6 text-white drop-shadow-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
                   </svg>
                 </div>
               </div>
 
               {/* Step 2: Lexware Office CSV */}
-              <div className="animate-float-delayed relative bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-lg p-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
-                    <span className="text-lg font-bold text-white">L</span>
+              <div className="animate-float-delayed relative rounded-xl shadow-xl p-5 card-glow border-2 border-transparent hover:border-[#ff4554]/40 transition-all duration-300">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg glow-lexware animate-vibrant-pulse">
+                    <Image src="/lexware-logo.svg" alt="Lexware Office" width={48} height={48} className="w-full h-full" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground text-sm">Lexware Office Format</p>
+                    <p className="font-bold text-foreground">Lexware Office Format</p>
                     <p className="text-xs text-muted-foreground">lexware-import.csv</p>
                   </div>
                 </div>
-                <div className="font-mono text-xs bg-slate-100 dark:bg-slate-900 rounded p-2 text-muted-foreground overflow-hidden">
+                <div className="font-mono text-xs bg-gradient-to-br from-evelan-ice to-evelan-ice/80 dark:from-evelan-petrol dark:to-evelan-petrol-alt rounded-lg p-3 text-muted-foreground overflow-hidden border border-[#ff4554]/10 dark:border-[#ff4554]/20">
                   <div className="truncate">Buchungstag;Valuta;Auftraggeber...</div>
-                  <div className="truncate">29.09.2025;29.09.2025;Kontoinhaber...</div>
+                  <div className="truncate opacity-70">29.09.2025;29.09.2025;Kontoinhaber...</div>
                 </div>
-                <div className="absolute -top-2 -right-2">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                <div className="absolute -top-3 right-2 sm:-right-3">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/90 dark:bg-evelan-petrol/95 backdrop-blur-md text-evelan-teal dark:text-evelan-ice border border-evelan-teal/40 dark:border-evelan-teal/50 shadow-lg glow-teal">
                     Bereit zum Import
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 border-2 border-dashed border-indigo-200 dark:border-indigo-800 rounded-xl -z-10" />
-            <div className="absolute -bottom-4 -left-4 w-20 h-20 border-2 border-dashed border-purple-200 dark:border-purple-800 rounded-xl -z-10" />
+            {/* Decorative elements - Hidden on mobile */}
+            <div className="hidden sm:block absolute -top-6 -right-6 w-24 h-24 border-2 border-dashed border-evelan-gold/40 dark:border-evelan-gold/30 rounded-xl -z-10 animate-pulse-glow" />
+            <div className="hidden sm:block absolute -bottom-6 -left-6 w-24 h-24 border-2 border-dashed border-evelan-teal/40 dark:border-evelan-teal/30 rounded-xl -z-10 animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
+            {/* Extra glow orb - Hidden on mobile */}
+            <div className="hidden sm:block absolute top-1/2 -right-12 w-24 h-24 bg-gradient-to-r from-evelan-gold/20 to-evelan-teal/20 rounded-full blur-2xl -z-10 animate-pulse-glow" />
           </div>
         </div>
       </header>

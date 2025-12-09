@@ -41,75 +41,107 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Evelan CI Colors */
+  --color-evelan-petrol: var(--evelan-petrol);
+  --color-evelan-petrol-alt: var(--evelan-petrol-alt);
+  --color-evelan-gold: var(--evelan-gold);
+  --color-evelan-gold-light: var(--evelan-gold-light);
+  --color-evelan-gold-dark: var(--evelan-gold-dark);
+  --color-evelan-teal: var(--evelan-teal);
+  --color-evelan-ice: var(--evelan-ice);
 }
 
 :root {
-  --radius: 0.75rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --radius: 0.5rem;
+  /* Evelan CI Light Mode Colors - More Vibrant */
+  --background: oklch(0.98 0.005 200); /* Slightly tinted with ice-blue */
+  --foreground: oklch(0.15 0.02 192); /* Dark with petrol tint */
+  --card: oklch(1 0 0); /* White */
+  --card-foreground: oklch(0.15 0.02 192);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.623 0.212 259.81); /* Indigo #6366f1 */
+  --popover-foreground: oklch(0.15 0.02 192);
+  --primary: oklch(0.55 0.10 192); /* More vibrant Teal */
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.657 0.183 281.75); /* Purple #8b5cf6 */
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.985 0.015 264.36);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.977 0.016 276.2);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0.006 264.36);
-  --input: oklch(0.922 0.006 264.36);
-  --ring: oklch(0.623 0.212 259.81);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --secondary: oklch(0.80 0.15 70); /* More vibrant Gold */
+  --secondary-foreground: oklch(0.15 0 0);
+  --muted: oklch(0.96 0.015 200); /* Ice-Blue more visible */
+  --muted-foreground: oklch(0.40 0.02 192);
+  --accent: oklch(0.94 0.02 200); /* Stronger Ice-Blue */
+  --accent-foreground: oklch(0.22 0.04 192);
+  --destructive: oklch(0.60 0.28 25);
+  --border: oklch(0.88 0.015 200);
+  --input: oklch(0.90 0.01 200);
+  --ring: oklch(0.55 0.10 192);
+  --chart-1: oklch(0.80 0.15 70); /* Vibrant Gold */
+  --chart-2: oklch(0.55 0.10 192); /* Vibrant Teal */
+  --chart-3: oklch(0.22 0.04 192); /* Dark Petrol */
+  --chart-4: oklch(0.72 0.14 65); /* Amber */
+  --chart-5: oklch(0.62 0.08 192); /* Teal variant */
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-primary: oklch(0.22 0.04 192);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-accent: oklch(0.94 0.02 200);
+  --sidebar-accent-foreground: oklch(0.22 0.04 192);
+  --sidebar-border: oklch(0.88 0.015 200);
+  --sidebar-ring: oklch(0.55 0.10 192);
+
+  /* Evelan CI Custom Properties - More Vibrant */
+  --evelan-petrol: oklch(0.22 0.04 192); /* Deeper petrol */
+  --evelan-petrol-alt: oklch(0.28 0.04 192); /* Slightly lighter */
+  --evelan-gold: oklch(0.80 0.15 70); /* More vibrant gold */
+  --evelan-gold-light: oklch(0.86 0.14 70); /* Brighter gold */
+  --evelan-gold-dark: oklch(0.68 0.16 65); /* Richer amber */
+  --evelan-teal: oklch(0.55 0.10 192); /* More saturated teal */
+  --evelan-ice: oklch(0.96 0.02 200); /* More visible ice */
+
+  /* NEW: Vibrant accent colors */
+  --evelan-coral: oklch(0.72 0.18 30); /* Warm coral accent */
+  --evelan-emerald: oklch(0.70 0.16 160); /* Fresh emerald */
+  --evelan-electric: oklch(0.65 0.20 250); /* Electric blue */
 }
 
 .dark {
-  --background: oklch(0.145 0.015 264);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0.02 264);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0.02 264);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.7 0.18 264); /* Brighter indigo for dark mode */
-  --primary-foreground: oklch(0.145 0 0);
-  --secondary: oklch(0.72 0.16 282); /* Brighter purple for dark mode */
-  --secondary-foreground: oklch(0.145 0 0);
-  --muted: oklch(0.269 0.02 264);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.35 0.04 264);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.35 0.03 264);
-  --input: oklch(0.3 0.02 264);
-  --ring: oklch(0.7 0.18 264);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0.02 264);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.7 0.18 264);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.35 0.04 264);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.35 0.03 264);
-  --sidebar-ring: oklch(0.7 0.18 264);
+  /* Evelan CI Dark Mode Colors - True Petrol #08292E */
+  --background: oklch(0.18 0.008 180); /* Near-neutral dark petrol */
+  --foreground: oklch(0.96 0.01 80); /* Warm white */
+  --card: oklch(0.22 0.012 180); /* Slightly lighter */
+  --card-foreground: oklch(0.96 0.01 80);
+  --popover: oklch(0.22 0.012 180);
+  --popover-foreground: oklch(0.96 0.01 80);
+  --primary: oklch(0.82 0.16 70); /* Gold */
+  --primary-foreground: oklch(0.18 0.008 180);
+  --secondary: oklch(0.55 0.08 180); /* Subtle teal */
+  --secondary-foreground: oklch(0.96 0 0);
+  --muted: oklch(0.26 0.012 180);
+  --muted-foreground: oklch(0.70 0.02 80);
+  --accent: oklch(0.28 0.015 180);
+  --accent-foreground: oklch(0.96 0.01 80);
+  --destructive: oklch(0.72 0.22 20);
+  --border: oklch(0.32 0.015 180);
+  --input: oklch(0.26 0.012 180);
+  --ring: oklch(0.82 0.16 70);
+  --chart-1: oklch(0.82 0.16 70);
+  --chart-2: oklch(0.55 0.08 180);
+  --chart-3: oklch(0.86 0.14 70);
+  --chart-4: oklch(0.70 0.18 60);
+  --chart-5: oklch(0.60 0.06 180);
+  --sidebar: oklch(0.22 0.012 180);
+  --sidebar-foreground: oklch(0.96 0.01 80);
+  --sidebar-primary: oklch(0.82 0.16 70);
+  --sidebar-primary-foreground: oklch(0.18 0.008 180);
+  --sidebar-accent: oklch(0.28 0.015 180);
+  --sidebar-accent-foreground: oklch(0.96 0.01 80);
+  --sidebar-border: oklch(0.32 0.015 180);
+  --sidebar-ring: oklch(0.82 0.16 70);
+
+  /* Dark mode accents */
+  --evelan-gold: oklch(0.84 0.18 68);
+  --evelan-gold-light: oklch(0.88 0.16 70);
+  --evelan-teal: oklch(0.55 0.10 180);
+  --evelan-petrol: oklch(0.18 0.008 180);
+  --evelan-petrol-alt: oklch(0.22 0.012 180);
 }
 
 @layer base {
@@ -131,16 +163,19 @@
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
+@keyframes gradient-rotate {
+  0% {
+    background-position: 0% 0%;
   }
   50% {
-    transform: translateY(-6px);
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }
 
-@keyframes float-delayed {
+@keyframes float {
   0%, 100% {
     transform: translateY(0px);
   }
@@ -149,12 +184,84 @@
   }
 }
 
-@keyframes pulse-glow {
+@keyframes float-delayed {
   0%, 100% {
-    opacity: 0.4;
+    transform: translateY(0px);
   }
   50% {
-    opacity: 0.7;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(230, 180, 80, 0.4), 0 0 50px rgba(230, 180, 80, 0.15), 0 0 80px rgba(230, 180, 80, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(230, 180, 80, 0.6), 0 0 80px rgba(230, 180, 80, 0.25), 0 0 120px rgba(230, 180, 80, 0.1);
+  }
+}
+
+@keyframes border-glow {
+  0%, 100% {
+    border-color: rgba(80, 140, 145, 0.5);
+  }
+  50% {
+    border-color: rgba(80, 140, 145, 1);
+  }
+}
+
+@keyframes teal-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(80, 140, 145, 0.3), 0 0 40px rgba(80, 140, 145, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(80, 140, 145, 0.5), 0 0 70px rgba(80, 140, 145, 0.25);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes vibrant-pulse {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.1) saturate(1.2);
+  }
+}
+
+@keyframes gradient-border-spin {
+  0% {
+    background: linear-gradient(0deg, #4A9CA0 0%, #E8B85A 50%, #4A9CA0 100%);
+  }
+  25% {
+    background: linear-gradient(90deg, #4A9CA0 0%, #E8B85A 50%, #4A9CA0 100%);
+  }
+  50% {
+    background: linear-gradient(180deg, #4A9CA0 0%, #E8B85A 50%, #4A9CA0 100%);
+  }
+  75% {
+    background: linear-gradient(270deg, #4A9CA0 0%, #E8B85A 50%, #4A9CA0 100%);
+  }
+  100% {
+    background: linear-gradient(360deg, #4A9CA0 0%, #E8B85A 50%, #4A9CA0 100%);
   }
 }
 
@@ -174,4 +281,221 @@
 
 .animate-pulse-glow {
   animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-border-glow {
+  animation: border-glow 2s ease-in-out infinite;
+}
+
+.animate-teal-glow {
+  animation: teal-glow-pulse 3s ease-in-out infinite;
+}
+
+/* Evelan Gradient Button - More Vibrant */
+.btn-evelan-gradient {
+  background: linear-gradient(135deg, #FFD485 0%, #E8A830 50%, #C88520 100%);
+  color: #0A1F22;
+  font-weight: 700;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-evelan-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-evelan-gradient:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-evelan-gradient:hover {
+  background: linear-gradient(135deg, #FFE0A0 0%, #F0B840 50%, #D99528 100%);
+  box-shadow: 0 8px 30px rgba(230, 170, 50, 0.5), 0 0 60px rgba(230, 170, 50, 0.2);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-evelan-gradient:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Secondary Teal Button */
+.btn-evelan-teal {
+  background: linear-gradient(135deg, #5AB5BA 0%, #3C8E93 50%, #2A7074 100%);
+  color: white;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-evelan-teal:hover {
+  background: linear-gradient(135deg, #6FC5CA 0%, #4AA0A5 50%, #358084 100%);
+  box-shadow: 0 8px 30px rgba(74, 156, 160, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Glow Cards - Enhanced */
+.card-glow {
+  position: relative;
+  border: 1px solid rgba(74, 156, 160, 0.25);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 250, 252, 0.95) 100%);
+}
+
+.dark .card-glow {
+  background: linear-gradient(135deg, rgba(36, 64, 70, 0.9) 0%, rgba(24, 48, 54, 0.95) 100%);
+  border: 1px solid rgba(230, 180, 80, 0.2);
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(74, 156, 160, 0.4), rgba(230, 180, 80, 0.4), rgba(74, 156, 160, 0.4));
+  background-size: 200% 200%;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: gradient-shift 4s ease infinite;
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 40px rgba(74, 156, 160, 0.2), 0 0 80px rgba(230, 180, 80, 0.1), 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Gold Accent Glow - Enhanced */
+.glow-gold {
+  box-shadow: 0 0 25px rgba(230, 180, 80, 0.4), 0 0 50px rgba(230, 180, 80, 0.1);
+}
+
+.glow-gold-strong {
+  box-shadow: 0 0 40px rgba(230, 180, 80, 0.6), 0 0 80px rgba(230, 180, 80, 0.25), 0 0 120px rgba(230, 180, 80, 0.1);
+}
+
+/* Lexware Red Accent Glow - Matches Lexware logo #ff4554 */
+.glow-lexware {
+  box-shadow: 0 0 25px rgba(255, 69, 84, 0.35), 0 0 50px rgba(255, 69, 84, 0.1);
+}
+
+.glow-lexware-strong {
+  box-shadow: 0 0 40px rgba(255, 69, 84, 0.5), 0 0 80px rgba(255, 69, 84, 0.2), 0 0 120px rgba(255, 69, 84, 0.08);
+}
+
+/* Teal Accent Glow - Enhanced */
+.glow-teal {
+  box-shadow: 0 0 20px rgba(74, 156, 160, 0.4), 0 0 40px rgba(74, 156, 160, 0.15);
+}
+
+.glow-teal-strong {
+  box-shadow: 0 0 35px rgba(74, 156, 160, 0.6), 0 0 70px rgba(74, 156, 160, 0.25), 0 0 100px rgba(74, 156, 160, 0.1);
+}
+
+/* Vibrant Gradient Border */
+.border-gradient {
+  position: relative;
+  border: none;
+}
+
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #4A9CA0 0%, #E8B85A 33%, #4A9CA0 66%, #E8B85A 100%);
+  background-size: 300% 300%;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Animated Gradient Border */
+.border-gradient-animated::before {
+  animation: gradient-shift 2s linear infinite;
+}
+
+/* Glass Effect - Enhanced */
+.glass-effect {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 250, 252, 0.9) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(74, 156, 160, 0.15);
+}
+
+.dark .glass-effect {
+  background: linear-gradient(135deg, rgba(24, 48, 54, 0.85) 0%, rgba(36, 64, 70, 0.9) 100%);
+  border: 1px solid rgba(230, 180, 80, 0.15);
+}
+
+/* Shimmer Effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Vibrant Text Gradients */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFD485 0%, #E8A830 50%, #C88520 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-teal {
+  background: linear-gradient(135deg, #6FC5CA 0%, #4A9CA0 50%, #3C8E93 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-vibrant {
+  background: linear-gradient(135deg, #4A9CA0 0%, #E8B85A 50%, #4A9CA0 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Vibrant Pulse Animation */
+.animate-vibrant-pulse {
+  animation: vibrant-pulse 2s ease-in-out infinite;
+}
+
+/* Gradient Background */
+.bg-gradient-vibrant {
+  background: linear-gradient(135deg, rgba(74, 156, 160, 0.1) 0%, rgba(230, 180, 80, 0.1) 50%, rgba(74, 156, 160, 0.1) 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+.dark .bg-gradient-vibrant {
+  background: linear-gradient(135deg, rgba(74, 156, 160, 0.15) 0%, rgba(230, 180, 80, 0.15) 50%, rgba(74, 156, 160, 0.15) 100%);
 }

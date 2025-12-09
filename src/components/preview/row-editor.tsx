@@ -139,11 +139,11 @@ export function RowEditor({ row, rowIndex, onSave, onCancel }: RowEditorProps) {
       <CardContent className="space-y-4">
         {/* Validation Summary */}
         {validation && (
-          <div className="flex items-center gap-4 p-3 rounded-lg bg-gray-50">
+          <div className="flex items-center gap-4 p-3 rounded-lg bg-muted">
             {validation.isValid ? (
               <>
                 <CheckCircle2 className="w-5 h-5 text-green-500" />
-                <span className="text-sm text-green-700">
+                <span className="text-sm text-green-700 dark:text-green-400">
                   Transaktion ist gültig
                   {validation.hasWarnings && ' (mit Warnungen)'}
                 </span>
@@ -151,7 +151,7 @@ export function RowEditor({ row, rowIndex, onSave, onCancel }: RowEditorProps) {
             ) : (
               <>
                 <AlertCircle className="w-5 h-5 text-red-500" />
-                <span className="text-sm text-red-700">
+                <span className="text-sm text-red-700 dark:text-red-400">
                   Bitte korrigieren Sie die Fehler
                 </span>
               </>
@@ -185,11 +185,11 @@ export function RowEditor({ row, rowIndex, onSave, onCancel }: RowEditorProps) {
                 </label>
                 {field.type === 'select' ? (
                   <select
-                    className={`w-full h-9 rounded-md border px-3 text-sm ${
+                    className={`w-full h-9 rounded-md border px-3 text-sm bg-background text-foreground ${
                       fieldStatus === 'error'
-                        ? 'border-red-500 bg-red-50'
+                        ? 'border-red-500 bg-red-50 dark:bg-red-950/30'
                         : fieldStatus === 'warning'
-                        ? 'border-yellow-500 bg-yellow-50'
+                        ? 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950/30'
                         : 'border-input'
                     }`}
                     value={editedRow[field.key] as string}
@@ -208,16 +208,16 @@ export function RowEditor({ row, rowIndex, onSave, onCancel }: RowEditorProps) {
                     onChange={(e) => handleFieldChange(field.key, e.target.value)}
                     className={
                       fieldStatus === 'error'
-                        ? 'border-red-500 bg-red-50'
+                        ? 'border-red-500 bg-red-50 dark:bg-red-950/30'
                         : fieldStatus === 'warning'
-                        ? 'border-yellow-500 bg-yellow-50'
+                        ? 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950/30'
                         : ''
                     }
                     placeholder={field.helpText}
                   />
                 )}
                 {field.helpText && fieldStatus === 'valid' && (
-                  <p className="text-xs text-gray-500">{field.helpText}</p>
+                  <p className="text-xs text-muted-foreground">{field.helpText}</p>
                 )}
                 {fieldIssues.length > 0 && (
                   <div className="space-y-1">
@@ -226,8 +226,8 @@ export function RowEditor({ row, rowIndex, onSave, onCancel }: RowEditorProps) {
                         key={idx}
                         className={`text-xs ${
                           issue.severity === 'error'
-                            ? 'text-red-600'
-                            : 'text-yellow-600'
+                            ? 'text-red-600 dark:text-red-400'
+                            : 'text-yellow-600 dark:text-yellow-400'
                         }`}
                       >
                         {issue.message}
@@ -241,8 +241,8 @@ export function RowEditor({ row, rowIndex, onSave, onCancel }: RowEditorProps) {
         </div>
 
         {/* Read-only Info */}
-        <div className="pt-4 border-t">
-          <p className="text-sm text-gray-500 mb-2">Weitere Informationen (nur lesen):</p>
+        <div className="pt-4 border-t border-border">
+          <p className="text-sm text-muted-foreground mb-2">Weitere Informationen (nur lesen):</p>
           <div className="flex flex-wrap gap-2">
             <Badge variant="outline">
               Wise ID: {row['TransferWise ID'] || '-'}
@@ -261,14 +261,14 @@ export function RowEditor({ row, rowIndex, onSave, onCancel }: RowEditorProps) {
         </div>
 
         {/* Actions */}
-        <div className="flex justify-end gap-2 pt-4 border-t">
-          <Button variant="outline" onClick={onCancel}>
+        <div className="flex justify-end gap-2 pt-4 border-t border-border">
+          <Button variant="outline" onClick={onCancel} className="border-evelan-teal/30 hover:border-evelan-teal dark:border-evelan-gold/30 dark:hover:border-evelan-gold">
             Abbrechen
           </Button>
           <Button
             onClick={handleSave}
             disabled={!canSave}
-            className="gap-2"
+            className="gap-2 btn-evelan-gradient disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             Speichern
