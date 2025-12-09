@@ -48,8 +48,8 @@ function ComparisonRow({
   const amountClass = isNegative ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400';
 
   return (
-    <Card className="overflow-hidden">
-      <CardContent className="p-0">
+    <Card className="overflow-hidden !p-0">
+      <CardContent className="!p-0">
         {/* Desktop: Side by side with arrow */}
         <div className="hidden sm:flex bg-gray-50 dark:bg-evelan-petrol-alt">
           {/* Source (Wise) */}
