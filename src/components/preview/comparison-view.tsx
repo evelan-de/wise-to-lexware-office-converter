@@ -50,9 +50,10 @@ function ComparisonRow({
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-0">
-        <div className="grid grid-cols-[1fr,auto,1fr] divide-x divide-border">
+        {/* Desktop: Side by side with arrow */}
+        <div className="hidden sm:flex">
           {/* Source (Wise) */}
-          <div className="p-4 bg-gray-50 dark:bg-evelan-petrol-alt">
+          <div className="flex-1 p-4 bg-gray-50 dark:bg-evelan-petrol-alt">
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="outline" className="text-xs">Quelle</Badge>
               <span className="text-xs text-muted-foreground">Wise Export</span>
@@ -96,14 +97,14 @@ function ComparisonRow({
           </div>
 
           {/* Arrow */}
-          <div className="flex items-center justify-center px-3 bg-white dark:bg-evelan-petrol">
+          <div className="flex items-center justify-center px-3 bg-white dark:bg-evelan-petrol border-x border-border">
             <div className="bg-evelan-gold text-evelan-petrol rounded-full p-2">
               <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Target (LexOffice) */}
-          <div className="p-4 bg-evelan-ice dark:bg-evelan-petrol-alt/80">
+          <div className="flex-1 p-4 bg-evelan-ice dark:bg-evelan-petrol-alt/80">
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="default" className="text-xs bg-evelan-gold text-evelan-petrol">Ziel</Badge>
               <span className="text-xs text-muted-foreground">Lexware Office</span>
@@ -139,6 +140,72 @@ function ComparisonRow({
                   </span>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile: Stacked with arrow */}
+        <div className="sm:hidden">
+          {/* Source (Wise) */}
+          <div className="p-4 bg-gray-50 dark:bg-evelan-petrol-alt">
+            <div className="flex items-center gap-2 mb-3">
+              <Badge variant="outline" className="text-xs">Quelle</Badge>
+              <span className="text-xs text-muted-foreground">Wise Export</span>
+            </div>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Datum:</span>
+                <span className="font-mono text-foreground">{wiseRow.Date}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Betrag:</span>
+                <span className={`font-mono font-medium ${amountClass}`}>
+                  {formatAmount(wiseRow.Amount)} {wiseRow.Currency}
+                </span>
+              </div>
+              <div className="flex justify-between gap-4">
+                <span className="text-muted-foreground flex-shrink-0">Beschreibung:</span>
+                <span className="text-right break-words text-foreground">{wiseRow.Description || '-'}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Typ:</span>
+                <span className="text-foreground">{wiseRow['Transaction Type'] === 'DEBIT' ? 'Ausgabe' : 'Einnahme'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Arrow */}
+          <div className="flex items-center justify-center py-2 bg-white dark:bg-evelan-petrol border-y border-border">
+            <div className="bg-evelan-gold text-evelan-petrol rounded-full p-1.5 rotate-90">
+              <ArrowRight className="w-3 h-3" />
+            </div>
+          </div>
+
+          {/* Target (LexOffice) */}
+          <div className="p-4 bg-evelan-ice dark:bg-evelan-petrol-alt/80">
+            <div className="flex items-center gap-2 mb-3">
+              <Badge variant="default" className="text-xs bg-evelan-gold text-evelan-petrol">Ziel</Badge>
+              <span className="text-xs text-muted-foreground">Lexware Office</span>
+            </div>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Buchungstag:</span>
+                <span className="font-mono text-foreground">{lexOfficeRow.Buchungstag}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Betrag:</span>
+                <span className={`font-mono font-medium ${amountClass}`}>
+                  {lexOfficeRow.Betrag} EUR
+                </span>
+              </div>
+              <div className="flex justify-between gap-4">
+                <span className="text-muted-foreground flex-shrink-0">Verwendungszweck:</span>
+                <span className="text-right break-words text-foreground">{lexOfficeRow['Vorgang/Verwendungszweck']}</span>
+              </div>
+              <div className="flex justify-between gap-4">
+                <span className="text-muted-foreground flex-shrink-0">Empfänger:</span>
+                <span className="text-right text-foreground">{lexOfficeRow['Empfänger/Zahlungspflichtiger']}</span>
+              </div>
             </div>
           </div>
         </div>
