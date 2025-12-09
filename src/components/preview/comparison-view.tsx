@@ -51,9 +51,9 @@ function ComparisonRow({
     <Card className="overflow-hidden">
       <CardContent className="p-0">
         {/* Desktop: Side by side with arrow */}
-        <div className="hidden sm:flex">
+        <div className="hidden sm:flex bg-gray-50 dark:bg-evelan-petrol-alt">
           {/* Source (Wise) */}
-          <div className="flex-1 p-4 bg-gray-50 dark:bg-evelan-petrol-alt">
+          <div className="flex-1 p-4">
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="outline" className="text-xs">Quelle</Badge>
               <span className="text-xs text-muted-foreground">Wise Export</span>
@@ -97,14 +97,14 @@ function ComparisonRow({
           </div>
 
           {/* Arrow */}
-          <div className="flex items-center justify-center px-3 bg-white dark:bg-evelan-petrol border-x border-border">
+          <div className="flex items-center justify-center px-4">
             <div className="bg-evelan-gold text-evelan-petrol rounded-full p-2">
               <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Target (LexOffice) */}
-          <div className="flex-1 p-4 bg-evelan-ice dark:bg-evelan-petrol-alt/80">
+          <div className="flex-1 p-4 bg-evelan-ice dark:bg-evelan-petrol-alt/60">
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="default" className="text-xs bg-evelan-gold text-evelan-petrol">Ziel</Badge>
               <span className="text-xs text-muted-foreground">Lexware Office</span>
@@ -145,9 +145,9 @@ function ComparisonRow({
         </div>
 
         {/* Mobile: Stacked with arrow */}
-        <div className="sm:hidden">
+        <div className="sm:hidden bg-gray-50 dark:bg-evelan-petrol-alt">
           {/* Source (Wise) */}
-          <div className="p-4 bg-gray-50 dark:bg-evelan-petrol-alt">
+          <div className="p-4">
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="outline" className="text-xs">Quelle</Badge>
               <span className="text-xs text-muted-foreground">Wise Export</span>
@@ -175,14 +175,14 @@ function ComparisonRow({
           </div>
 
           {/* Arrow */}
-          <div className="flex items-center justify-center py-2 bg-white dark:bg-evelan-petrol border-y border-border">
+          <div className="flex items-center justify-center py-2">
             <div className="bg-evelan-gold text-evelan-petrol rounded-full p-1.5 rotate-90">
               <ArrowRight className="w-3 h-3" />
             </div>
           </div>
 
           {/* Target (LexOffice) */}
-          <div className="p-4 bg-evelan-ice dark:bg-evelan-petrol-alt/80">
+          <div className="p-4 bg-evelan-ice dark:bg-evelan-petrol-alt/60">
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="default" className="text-xs bg-evelan-gold text-evelan-petrol">Ziel</Badge>
               <span className="text-xs text-muted-foreground">Lexware Office</span>
