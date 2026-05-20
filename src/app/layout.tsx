@@ -262,7 +262,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="min-h-screen flex flex-col">
-            <div className="flex-1 bg-gradient-to-br from-evelan-ice via-white to-evelan-ice/50 dark:from-evelan-petrol dark:via-evelan-petrol dark:to-evelan-petrol-alt">
+            <div className="flex-1 bg-linear-to-br from-evelan-ice via-white to-evelan-ice/50 dark:from-evelan-petrol dark:via-evelan-petrol dark:to-evelan-petrol-alt">
               <div className="max-w-4xl mx-auto px-4 py-12">
                 <ClientWrapper>{children}</ClientWrapper>
               </div>
@@ -270,6 +270,16 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+
+        {/* Jexity Chat Widget */}
+        {process.env.NEXT_PUBLIC_JEXITY_WIDGET_URL && (
+          <Script
+            src={process.env.NEXT_PUBLIC_JEXITY_WIDGET_URL}
+            strategy="afterInteractive"
+            data-org-slug="evelan"
+            data-proj-slug="wise-lexware-konverter"
+          />
+        )}
       </body>
     </html>
   );

@@ -1,5 +1,11 @@
 import type { NextConfig } from "next";
 
+// Extract origin from Jexity widget URL for CSP headers
+const jexityWidgetUrl = process.env.NEXT_PUBLIC_JEXITY_WIDGET_URL;
+const jexityCdnOrigin = jexityWidgetUrl
+  ? new URL(jexityWidgetUrl).origin
+  : "";
+
 const nextConfig: NextConfig = {
   async rewrites() {
     return [
@@ -48,11 +54,15 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+              // Allow Jexity widget script from its CDN (and localhost:3003 for local dev)
+              `script-src 'self' 'unsafe-eval' 'unsafe-inline'${jexityCdnOrigin ? ` ${jexityCdnOrigin}` : ""}`,
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob:",
+              // Allow https: images for chat avatars etc.
+              "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
-              "connect-src 'self'",
+              // Allow Jexity widget to reach its Convex backend (HTTPS + WebSocket + HTTP actions).
+              // Wildcards avoid tying the embedder to a specific Convex deployment.
+              `connect-src 'self'${jexityCdnOrigin ? ` ${jexityCdnOrigin}` : ""} https://*.convex.cloud wss://*.convex.cloud https://*.convex.site`,
               "object-src 'none'",
               "frame-ancestors 'none'",
               "base-uri 'self'",
